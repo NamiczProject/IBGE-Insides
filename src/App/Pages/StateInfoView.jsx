@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // Components:
 import CardImage from "../../Components/CardImage/CardImage.jsx";
@@ -8,6 +8,12 @@ import Header from "../../Components/Header/Header.jsx";
 import Footer from "../../Components/Footer/Footer.jsx";
 
 function StateInfoView() {
+  const [selectedState, setSelectedState] = useState("BR");
+
+  useEffect(() => {
+    console.log(selectedState);
+  }, [selectedState]);
+
   return (
     <>
       <Header />
@@ -66,6 +72,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/AC?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("AC");
+                }}
               />
               <CardImage
                 title={"Alagoas"}
@@ -73,6 +82,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/AL?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("AL");
+                }}
               />
               <CardImage
                 title={"Amapá"}
@@ -80,6 +92,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/AP?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("AP");
+                }}
               />
               <CardImage
                 title={"Amazonas"}
@@ -87,6 +102,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/AM?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("AM");
+                }}
               />
               <CardImage
                 title={"Bahia"}
@@ -94,6 +112,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/BA?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("BA");
+                }}
               />
               <CardImage
                 title={"Ceará"}
@@ -101,6 +122,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/CE?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("CE");
+                }}
               />
               <CardImage
                 title={"Distrito Federal"}
@@ -108,6 +132,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/DF?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("DF");
+                }}
               />
               <CardImage
                 title={"Espírito Santo"}
@@ -115,6 +142,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/ES?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("ES");
+                }}
               />
               <CardImage
                 title={"Goiás"}
@@ -122,6 +152,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/GO?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("GO");
+                }}
               />
               <CardImage
                 title={"Maranhão"}
@@ -129,6 +162,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/MA?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("MA");
+                }}
               />
               <CardImage
                 title={"Mato Grosso"}
@@ -136,6 +172,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/MT?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("MT");
+                }}
               />
               <CardImage
                 title={"Mato Grosso do Sul"}
@@ -143,6 +182,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/MS?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("MS");
+                }}
               />
               <CardImage
                 title={"Minas Gerais"}
@@ -150,6 +192,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/MG?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("MG");
+                }}
               />
               <CardImage
                 title={"Pará"}
@@ -157,6 +202,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/PA?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("PA");
+                }}
               />
               <CardImage
                 title={"Paraíba"}
@@ -164,6 +212,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/PB?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("PB");
+                }}
               />
               <CardImage
                 title={"Paraná"}
@@ -171,6 +222,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/PR?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("PR");
+                }}
               />
               <CardImage
                 title={"Pernambuco"}
@@ -178,6 +232,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/PE?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("PE");
+                }}
               />
               <CardImage
                 title={"Piauí"}
@@ -185,6 +242,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/PI?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("PI");
+                }}
               />
               <CardImage
                 title={"Rio de Janeiro"}
@@ -192,13 +252,20 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/RJ?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("RJ");
+                }}
               />
+
               <CardImage
                 title={"Rio Grande do Norte"}
                 goTo={"./Estado"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/RN?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("RN");
+                }}
               />
               <CardImage
                 title={"Rio Grande do Sul"}
@@ -206,6 +273,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/RS?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("RS");
+                }}
               />
               <CardImage
                 title={"Rondônia"}
@@ -213,6 +283,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/RO?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("RO");
+                }}
               />
               <CardImage
                 title={"Roraima"}
@@ -220,6 +293,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/RR?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("RR");
+                }}
               />
               <CardImage
                 title={"Santa Catarina"}
@@ -227,6 +303,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/SC?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("SC");
+                }}
               />
               <CardImage
                 title={"São Paulo"}
@@ -234,6 +313,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/SP?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("SP");
+                }}
               />
               <CardImage
                 title={"Sergipe"}
@@ -241,6 +323,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/SE?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("SE");
+                }}
               />
               <CardImage
                 title={"Tocantins"}
@@ -248,6 +333,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/TO?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("TO");
+                }}
               />
               <CardImage
                 title={"Brasil"}
@@ -255,6 +343,9 @@ function StateInfoView() {
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=image/svg+xml&qualidade=maxima"
                 }
+                onClick={() => {
+                  setSelectedState("BR");
+                }}
               />
             </div>
           </div>
@@ -286,12 +377,16 @@ function StateInfoView() {
         <div className="flex justify-center mt-28">
           <div>
             <div>
-              <h1 className="border-b p-5 flex justify-center bg-slate-800 text-slate-50">
-                <h1 className='text-2xl'>Ranking</h1>
+              <h1 className="border-b p-5 flex justify-center bg-slate-800 text-slate-50 text-2xl">
+                Ranking
               </h1>
             </div>
-            <div className='w-[1200px] h-[600px] border'>
-              <img src="https://extra.globo.com/incoming/24278153-b3c-c03/w640h360-PROP/grafico-fgv-redes.png" alt="Ranking" className='w-[1200px] h-[600px] border-b'/>
+            <div className="w-[1200px] h-[600px] border">
+              <img
+                src="https://extra.globo.com/incoming/24278153-b3c-c03/w640h360-PROP/grafico-fgv-redes.png"
+                alt="Ranking"
+                className="w-[1200px] h-[600px] border-b"
+              />
             </div>
           </div>
         </div>
