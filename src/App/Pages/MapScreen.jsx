@@ -14,7 +14,12 @@ import Map, { Source, Layer } from "react-map-gl";
 import Modal from "../../Components/Modal/Modal.jsx";
 import Drawerbar from "../../Components/Drawerbar/Drawerbar.jsx";
 import { Box, IconButton, TextField } from "@mui/material";
+
+// Icons:
 import SubdirectoryArrowRightIcon from "@mui/icons-material/SubdirectoryArrowRight";
+import SearchIcon from "@mui/icons-material/Search";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 
 // Icons:
 // import FilterAltIcon from "@mui/icons-material/FilterAlt";
@@ -181,6 +186,7 @@ function MapScreen() {
   const [clickedCounty, setClickedCounty] = useState(false);
   const [clickedCodeArea, setClickedCodeArea] = useState(false);
   const [ranking, setRanking] = useState(null);
+  const [openSearchbar, setOpenSearchbar] = useState(false);
 
   //filter handler
   const [sex, setSex] = useState(false);
@@ -249,8 +255,7 @@ function MapScreen() {
                 onSelectCity({ longitude: -47, latitude: -15 }, 1000);
               }
             }
-          }}
-        >
+          }}>
           {searchGeojson ? (
             <Source type="geojson" data={searchGeojson}>
               <Layer {...layerStyle} />
@@ -262,19 +267,31 @@ function MapScreen() {
           )}
         </Map>
 
-        <Box className="absolute top-3 right-3 bg-white flex items-center justify-center rounded-sm p-2 w-1/4 h-1/20">
-          <TextField
-            id="filled-basic"
-            label="Pesquise a ocorrência de um nome específico"
-            variant="outlined"
-            size="small"
-            className={`w-full h-full`}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          {!!search && (
-            <IconButton
-              aria-label="enter"
-              sx={{ marginLeft: 1 }}
+        <div className="fixed flex top-0 right-0 min-h-[34px] w-fit">
+          <button
+            className="flex justify-center items-center w-[34px] bg-slate-800 text-white border border-t-0 border-r-0 hover:bg-slate-700 duration-75"
+            onClick={() => {
+              setOpenSearchbar(!openSearchbar);
+            }}>
+            {openSearchbar ? <ArrowRightIcon /> : <ArrowLeftIcon />}
+          </button>
+          <div
+            className={`${
+              openSearchbar ? "w-[26rem]" : "w-0"
+            } flex overflow-hidden duration-75`}>
+            <input
+              className="w-[24rem] p-2 hover:pl-3 focus:pl-4 outline-none border border-slate-200 duration-75"
+              type="text"
+              name="occurrence"
+              id="occurrence-input"
+              placeholder="Pesquise a ocorrência de um nome específico..."
+              onChange={(e) => {
+                setSearch(e.target.value);
+                console.log(e.target.value);
+              }}
+            />
+            <button
+              className="p-2 bg-white rounded-sm border-l group hover:bg-slate-50 duration-75"
               onClick={() => {
                 console.log("click");
 
@@ -312,12 +329,13 @@ function MapScreen() {
                 });
 
                 // newGeojson.features[0].properties.frequencia = 0.5;
-              }}
-            >
-              <SubdirectoryArrowRightIcon />
-            </IconButton>
-          )}
-        </Box>
+              }}>
+              <div className="group-hover:scale-125 duration-75">
+                <SearchIcon />
+              </div>
+            </button>
+          </div>
+        </div>
 
         <Modal
           open={modalOpen}

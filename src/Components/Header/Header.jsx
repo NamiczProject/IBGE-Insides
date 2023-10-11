@@ -4,7 +4,7 @@ import React from "react";
 import Logo from "../../Components/Basic/Logo";
 
 // Import Icons:
-import MenuIcon from "@mui/icons-material/Menu";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 function Header() {
@@ -22,9 +22,9 @@ function Header() {
             onClick={togleSubMenu}
             className="flex justify-center items-center">
             {isSubMenuOpen ? (
-              <KeyboardArrowDownIcon className="text-black" fontSize="large" />
+              <KeyboardArrowUpIcon className="text-black" fontSize="large" />
             ) : (
-              <MenuIcon className="text-black" fontSize="large" />
+              <KeyboardArrowDownIcon className="text-black" fontSize="large" />
             )}
           </button>
         </div>
