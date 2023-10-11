@@ -160,7 +160,9 @@ function Drawerbar(props) {
                   </Box>
                 </Box>
                 {names.map((item, index) => (
-                  <Box key={index} className="flex justify-around sm:text-xs md:text-base">
+                  <Box
+                    key={index}
+                    className="flex justify-around sm:text-xs md:text-base">
                     <Box className=" w-1/3">
                       <h1>{item.nome}</h1>
                     </Box>

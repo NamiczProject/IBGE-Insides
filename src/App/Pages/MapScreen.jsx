@@ -20,6 +20,7 @@ import SubdirectoryArrowRightIcon from "@mui/icons-material/SubdirectoryArrowRig
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
+import ReplayIcon from "@mui/icons-material/Replay";
 
 // Icons:
 // import FilterAltIcon from "@mui/icons-material/FilterAlt";
@@ -272,13 +273,20 @@ function MapScreen() {
             openSearchbar ? "sm:w-[100vw]" : "sm:w-[0vw]"
           } md:w-fit`}>
           <button
-            className={`flex justify-center items-center min-w-[34px] bg-slate-800 text-white border sm:border-b-0 sm:border-l-0 md:border-l md:border-b border-t-0 md:border-r-0 ${
+            className={`group hover:pl-3 hover:pr-1 flex justify-center items-center min-w-[34px] bg-slate-800 text-white border sm:border-b-0 sm:border-l-0 md:border-l md:border-b border-t-0 md:border-r-0 ${
               openSearchbar ? "sm:border-0" : ""
             } hover:bg-slate-700 duration-75`}
             onClick={() => {
               setOpenSearchbar(!openSearchbar);
             }}>
-            {openSearchbar ? <ArrowRightIcon className="sm:rotate-180 md:rotate-0"/> : <ArrowLeftIcon className="sm:rotate-180 md:rotate-0"/>}
+            <h1 className="hidden group-hover:flex">
+              {openSearchbar ? "Fechar barra de pesquisa" : "Pesquisar um nome"}
+            </h1>
+            {openSearchbar ? (
+              <ArrowRightIcon className="sm:rotate-180 md:rotate-0" />
+            ) : (
+              <ArrowLeftIcon className="sm:rotate-180 md:rotate-0" />
+            )}
           </button>
           <div
             className={`${
@@ -340,6 +348,22 @@ function MapScreen() {
               </div>
             </button>
           </div>
+        </div>
+
+        <div className="fixed w-[34px] h-[34px] bottom-0 right-0 bg-slate-800 m-5 text-white border justify-center items-center sm:hidden md:flex hover:bg-slate-700 duration-75">
+          <button
+            onClick={() => {
+              // Voltando a visão inicial do mapa suavemente:
+              mapRef.current?.flyTo({
+                center: [-57, -15],
+                zoom: 3.8,
+                pitch: 30,
+                bearing: 0,
+                duration: 1000,
+              });
+            }}>
+            <ReplayIcon />
+          </button>
         </div>
 
         <Modal

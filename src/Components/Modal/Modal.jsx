@@ -57,14 +57,14 @@ export default function Modaldiv({
               ))}
             </div>
           )}
-          <div className="bg-slate-50 pt-2 mt-3 mx-2 border-t-[1px] rounded-b-sm border-slate-300 text-center w-full sm:hidden md:block">
+          <div className="pt-2 mt-3 mx-2 border-t-[1px] rounded-b-sm border-slate-300 text-center w-full sm:hidden md:block">
             <h1>CodeArea: {codeArea}</h1>
           </div>
           <div className="sm:bottom-16 sm:left-1/2 sm:-translate-x-1/2 sm:absolute md:relative md:pt-2 md:bottom-auto md:translate-x-0 md:left-0">
             {/* a href para a página que exibe mais detalhes do estado */}
             <a href={`./MoreInfo/${acronym}`} rel="noreferrer">
               <h1>
-                <div className="flex justify-center items-center bg-slate-800 hover:bg-slate-600 text-slate-50 p-2 rounded-sm duration-75 w-full">
+                <div className="flex justify-center items-center bg-slate-800 border-white hover:bg-slate-600 text-white p-2 rounded-sm duration-75 w-full">
                   Ver mais detalhes
                 </div>
               </h1>
