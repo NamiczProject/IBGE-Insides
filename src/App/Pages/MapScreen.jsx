@@ -216,7 +216,7 @@ function MapScreen() {
           ref={mapRef}
           // Definições:
           maxZoom={5.6}
-          minZoom={3}
+          minZoom={2}
           doubleClickZoom={false}
           maxPitch={45}
           minPitch={0}
@@ -268,11 +268,11 @@ function MapScreen() {
         </Map>
 
         <div
-          className={`fixed flex top-0 md:right-0 sm:left-0 md:left-auto min-h-[34px] ${
-            openSearchbar ? "sm:w-screen" : "sm:w-auto"
+          className={`fixed flex top-0 md:right-0 sm:left-0 md:left-auto min-h-[34px] duration-200 ${
+            openSearchbar ? "sm:w-[100vw]" : "sm:w-[0vw]"
           } md:w-fit`}>
           <button
-            className={`flex justify-center items-center min-w-[35px] bg-slate-800 text-white border sm:border-b-0 sm:border-l-0 md:border-l md:border-b border-t-0 md:border-r-0 ${
+            className={`flex justify-center items-center min-w-[34px] bg-slate-800 text-white border sm:border-b-0 sm:border-l-0 md:border-l md:border-b border-t-0 md:border-r-0 ${
               openSearchbar ? "sm:border-0" : ""
             } hover:bg-slate-700 duration-75`}
             onClick={() => {
