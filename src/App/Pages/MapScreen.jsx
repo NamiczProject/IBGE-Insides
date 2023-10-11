@@ -291,7 +291,7 @@ function MapScreen() {
           <div
             className={`${
               openSearchbar ? "lg:w-[26rem]" : "w-0"
-            } flex overflow-hidden duration-75`}>
+            } flex overflow-hidden duration-[.6s]`}>
             <input
               className="w-[24rem] p-2 hover:pl-3 focus:pl-4 outline-none border border-slate-200 duration-75"
               type="text"
