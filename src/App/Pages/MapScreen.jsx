@@ -279,7 +279,7 @@ function MapScreen() {
             onClick={() => {
               setOpenSearchbar(!openSearchbar);
             }}>
-            <h1 className="hidden group-hover:flex">
+            <h1 className="hidden md:group-hover:flex">
               {openSearchbar ? "Fechar barra de pesquisa" : "Pesquisar um nome"}
             </h1>
             {openSearchbar ? (
