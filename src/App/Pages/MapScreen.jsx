@@ -226,6 +226,16 @@ function MapScreen() {
           // Eventos:
           onMouseMove={onHover}
           onMove={onMove}
+          // dois cliques para reiniciar a visão do mapa:
+          onDblClick={() => {
+            mapRef.current?.flyTo({
+              center: [-57, -15],
+              zoom: 3.8,
+              pitch: 30,
+              bearing: 0,
+              duration: 1000,
+            });
+          }}
           onClick={(e) => {
             console.log(e.features);
             if (!!hoverInfo.county != "") {
