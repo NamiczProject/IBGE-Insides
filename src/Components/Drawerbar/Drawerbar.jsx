@@ -75,7 +75,7 @@ function Drawerbar(props) {
     <>
       <button
         onClick={toggleDrawer}
-        className="fixed z-50 flex items-center group gap-1 text-white border-r border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 hover:z-10 duration-75">
+        className="fixed z-50 sm:mt-[42px] md:mt-0 flex items-center group gap-1 text-white border-r border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 hover:z-10 duration-75">
         <AddIcon
           fontSize="medium"
           className="group-hover:animate-spin group-hover:hidden duration-75"
@@ -88,7 +88,7 @@ function Drawerbar(props) {
       <a
         href={"./MoreInfo/BR"}
         rel="noreferrer"
-        className="fixed z-50 mt-[34px] flex items-center group gap-1 text-white border-r-[1px] border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 duration-75">
+        className="fixed z-50 sm:mt-[76px] md:mt-[34px] flex items-center group gap-1 text-white border-r-[1px] border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 duration-75">
         <ScienceIcon className="text-white group-hover:hidden" />
         <div className="group-hover:flex hidden">
           <QueryStatsIcon />
@@ -98,7 +98,7 @@ function Drawerbar(props) {
       <a
         href={"./#"}
         rel="noreferrer"
-        className="fixed z-50 mt-[68px] flex items-center group gap-1 text-white border-[1px] border-l-0 border-t-0 rounded-br-sm border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 duration-75">
+        className="fixed z-50 sm:mt-[110px] md:mt-[68px] flex items-center group gap-1 text-white border-[1px] border-l-0 border-t-0 rounded-br-sm border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 duration-75">
         <ExitToAppIcon className="text-white group-hover:hidden" />
         <div className="group-hover:flex hidden">
           <LogoutIcon />
@@ -114,7 +114,7 @@ function Drawerbar(props) {
         size={330}>
         <button
           onClick={toggleDrawer}
-          className="fixed right-0 translate-x-full flex items-center group gap-1 text-white border-r border-slate-50 border-b-slate-800 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 hover:z-10 duration-75">
+          className="fixed sm:mt-[42px] md:mt-0 right-0 translate-x-full flex items-center group gap-1 text-white border-r border-slate-50 border-b-slate-800 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 hover:z-10 duration-75">
           <CloseIcon className="text-white group-hover:hidden" />
           <div className="group-hover:flex hidden">
             <NavigateBeforeIcon />
@@ -124,7 +124,7 @@ function Drawerbar(props) {
         <a
           href={"./MoreInfo/BR"}
           rel="noreferrer"
-          className="fixed right-0 translate-x-full flex items-center mt-[34px] group gap-1 text-white border-r border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:border-t-slate-50 hover:pr-2 hover:z-10 duration-75">
+          className="fixed right-0 translate-x-full flex items-center sm:mt-[76px] md:mt-[34px] group gap-1 text-white border-r border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:border-t-slate-50 hover:pr-2 hover:z-10 duration-75">
           <ScienceIcon className="text-white group-hover:hidden" />
           <div className="group-hover:flex hidden">
             <QueryStatsIcon />
@@ -134,7 +134,7 @@ function Drawerbar(props) {
         <a
           href={"./#"}
           rel="noreferrer"
-          className="fixed right-0 translate-x-full flex items-center mt-[68px] group gap-1 text-white border border-l-0 border-t-0 rounded-br-sm border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:border-t-slate-50 hover:pr-2 hover:z-10 duration-75">
+          className="fixed right-0 translate-x-full flex items-center  sm:mt-[110px] md:mt-[68px] group gap-1 text-white border border-l-0 border-t-0 rounded-br-sm border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:border-t-slate-50 hover:pr-2 hover:z-10 duration-75">
           <ExitToAppIcon className="text-white group-hover:hidden" />
           <div className="group-hover:flex hidden">
             <LogoutIcon />

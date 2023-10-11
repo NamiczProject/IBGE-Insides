@@ -204,7 +204,7 @@ function MapScreen() {
     <>
       <Drawerbar onFilter={handleFilter} />
 
-      <div className="w-full h-screen bg-slate-300 overflow-hidden relative">
+      <div className="w-full h-screen bg-slate-300 overflow-hidden relative border-8 sm:border-red-400 md:border-yellow-400 lg:border-green-400">
         <Map
           // Estilos:
           mapStyle="mapbox://styles/camarg0vs/clm1c13c401ub01p7g8sngg8x"
@@ -267,24 +267,29 @@ function MapScreen() {
           )}
         </Map>
 
-        <div className="fixed flex top-0 right-0 min-h-[34px] w-fit">
+        <div
+          className={`fixed flex top-0 md:right-0 sm:left-0 md:left-auto min-h-[34px] ${
+            openSearchbar ? "sm:w-screen" : "sm:w-auto"
+          } md:w-fit`}>
           <button
-            className="flex justify-center items-center w-[34px] bg-slate-800 text-white border border-t-0 border-r-0 hover:bg-slate-700 duration-75"
+            className={`flex justify-center items-center min-w-[35px] bg-slate-800 text-white border sm:border-b-0 sm:border-l-0 md:border-l md:border-b border-t-0 md:border-r-0 ${
+              openSearchbar ? "sm:border-0" : ""
+            } hover:bg-slate-700 duration-75`}
             onClick={() => {
               setOpenSearchbar(!openSearchbar);
             }}>
-            {openSearchbar ? <ArrowRightIcon /> : <ArrowLeftIcon />}
+            {openSearchbar ? <ArrowRightIcon className="sm:rotate-180 md:rotate-0"/> : <ArrowLeftIcon className="sm:rotate-180 md:rotate-0"/>}
           </button>
           <div
             className={`${
-              openSearchbar ? "w-[26rem]" : "w-0"
+              openSearchbar ? "lg:w-[26rem]" : "w-0"
             } flex overflow-hidden duration-75`}>
             <input
               className="w-[24rem] p-2 hover:pl-3 focus:pl-4 outline-none border border-slate-200 duration-75"
               type="text"
               name="occurrence"
               id="occurrence-input"
-              placeholder="Pesquise a ocorrência de um nome específico..."
+              placeholder="Pesquise um nome..."
               onChange={(e) => {
                 setSearch(e.target.value);
                 console.log(e.target.value);
