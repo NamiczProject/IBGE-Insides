@@ -1,6 +1,6 @@
 // important imports:
 import * as turf from "@turf/turf";
-import React, { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback } from "react";
 
 // Files:
 import { getNames } from "../../utils/getNames.js";
@@ -14,7 +14,7 @@ import Modal from "../../Components/Modal/Modal.jsx";
 import Drawerbar from "../../Components/Drawerbar/Drawerbar.jsx";
 
 // Icons:
-import FilterAltIcon from "@mui/icons-material/FilterAlt";
+// import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
 function MapScreen() {
   const [hoverInfo, setHoverInfo] = useState(null);
@@ -160,6 +160,7 @@ function MapScreen() {
           countyName={clickedCounty}
           codeArea={clickedCodeArea}
           ranking={ranking}
+          acronym={hoverInfo ? hoverInfo.acronym : null}
         />
       </div>
     </>

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import UnderlineTx from '../Basic/UnderlineTx.jsx';
@@ -24,6 +25,7 @@ export default function Modaldiv({
   countyName,
   codeArea,
   ranking,
+  acronym
 }) {
   return (
     <Modal
@@ -70,7 +72,7 @@ export default function Modaldiv({
           </div>
           <div>
             {/* a href para a página que exibe mais detalhes do estado */}
-            <a href={'./Estado'} rel="noreferrer" className="flex justify-center items-center mt-2 bg-slate-800 hover:bg-slate-600 text-slate-50 p-2 rounded-sm duration-75">
+            <a href={`./MoreInfo/${acronym}`} rel="noreferrer" className="flex justify-center items-center mt-2 bg-slate-800 hover:bg-slate-600 text-slate-50 p-2 rounded-sm duration-75">
               <h1>Ver mais detalhes</h1>
             </a>
           </div>

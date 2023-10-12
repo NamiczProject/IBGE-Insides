@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // import component:
 import Drawer from "react-modern-drawer";
@@ -12,30 +12,56 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import CloseIcon from "@mui/icons-material/Close";
+import { getNames } from "../../utils/getNames";
+import {
+  Box,
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  Slider,
+} from "@mui/material";
 
 function Drawerbar() {
+  const [names, setNames] = useState(null);
+  // console.log(names);
+  const [dataLoaded, setDataLoaded] = useState(false);
+
+  useEffect(() => {
+    console.log("names");
+    // if (!dataLoaded) {
+    getNames("").then((response) => {
+      setNames(response[0].res);
+      setDataLoaded(true);
+    });
+    // }
+  }, [dataLoaded]);
+
   const [isOpen, setIsOpen] = React.useState(false);
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
   };
 
-  // Funções para as tabs:
-  const [tabState, setTabState] = React.useState(1);
-
-  const togleTab = (value) => {
-    setTabState(value);
-  };
-
-  const tabStyle =
-    "bg-slate-100 py-5 w-1/2 flex justify-center shadow-mg duration-75 cursor-pointer shadow-inner";
-  const activeTabStyle =
-    "bg-white py-5 border-t-4 border-slate-200 rounded-t-md w-1/2 flex justify-center duration-75 cursor-pointer";
-
+  const marks = [
+    {
+      value: 1920,
+      label: "N/A",
+    },
+    {
+      value: 1930,
+      label: "1930",
+    },
+    {
+      value: 2010,
+      label: "2010",
+    },
+  ];
   return (
     <>
       <button
         onClick={toggleDrawer}
-        className="fixed z-50 mt-5 flex items-center group gap-1 text-white border-[1px] border-l-0 rounded-r-sm border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 duration-75">
+        className="fixed z-50 mt-5 flex items-center group gap-1 text-white border-[1px] border-l-0 rounded-r-sm border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 duration-75"
+      >
         <AddIcon
           fontSize="medium"
           className="group-hover:animate-spin group-hover:hidden duration-75"
@@ -50,10 +76,12 @@ function Drawerbar() {
         direction="left"
         overlayOpacity={0}
         enableOverlay={false}
-        size={350}>
+        size={350}
+      >
         <button
           onClick={toggleDrawer}
-          className="fixed right-0 translate-x-full z-50 mt-5 flex items-center group gap-1 text-white border-[1px] border-l-0 rounded-r-sm border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 duration-75">
+          className="fixed right-0 translate-x-full z-50 mt-5 flex items-center group gap-1 text-white border-[1px] border-l-0 rounded-r-sm border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 duration-75"
+        >
           <CloseIcon className="text-white group-hover:hidden" />
           <div className="group-hover:flex hidden">
             <NavigateBeforeIcon />
@@ -65,19 +93,91 @@ function Drawerbar() {
             <h1>Análise dos dados</h1>
           </div>
 
-          <div className="flex bg-slate-200">
-            <div
-              onClick={() => togleTab(1)}
-              className={tabState === 1 ? activeTabStyle : tabStyle}>
-              Filtrar
-            </div>
-            <div
-              onClick={() => togleTab(2)}
-              className={tabState === 2 ? activeTabStyle : tabStyle}>
-              Ranking
-            </div>
-          </div>
-
+          <Box className="flex flex-col justify-center m-4 shadow-md">
+            <Box className="flex flex-col items-center justify-center bg-slate-900 text-white">
+              <p className="text-lg p-2">Ranking no Brasil</p>
+            </Box>
+            {dataLoaded && (
+              <Box className="m-2">
+                <Box className="flex justify-around">
+                  <Box className=" w-1/3 font-bold">
+                    <h1>Nome</h1>
+                  </Box>
+                  <Box className=" w-1/3 justify-end flex font-bold">
+                    <h1>Frequencia</h1>
+                  </Box>
+                </Box>
+                {names.map((item, index) => (
+                  <Box key={index} className="flex justify-around">
+                    <Box className=" w-1/3">
+                      <h1>{item.nome}</h1>
+                    </Box>
+                    <Box className=" w-1/3 justify-end flex">
+                      <h1>{item.frequencia}</h1>
+                    </Box>
+                  </Box>
+                ))}
+              </Box>
+            )}
+          </Box>
+          <Box className="flex flex-col justify-center m-4 shadow-md">
+            <Box className="flex flex-col items-center justify-center bg-slate-900 text-white">
+              <p className="text-lg p-2">Filtros</p>
+            </Box>
+            <Box className="flex flex-col items-center justify-center">
+              <FormControl className="flex flex-col items-center justify-center">
+                <h1 className="font-bold">Gênero</h1>
+                <RadioGroup
+                  row
+                  aria-labelledby="demo-row-radio-buttons-group-label"
+                  name="row-radio-buttons-group"
+                  defaultValue="unissex"
+                >
+                  <FormControlLabel
+                    value="female"
+                    control={<Radio />}
+                    label="Female"
+                  />
+                  <FormControlLabel
+                    value="male"
+                    control={<Radio />}
+                    label="Male"
+                  />
+                  <FormControlLabel
+                    value="unissex"
+                    control={<Radio />}
+                    label="Unissex"
+                  />
+                </RadioGroup>
+                <Box className="mt-2">
+                  <h1 className="font-bold">Decada</h1>
+                </Box>
+                <Slider
+                  track={false}
+                  aria-label="Decada"
+                  defaultValue={1930}
+                  getAriaValueText={(value) => {
+                    return value == 2020 ? "Todas" : value;
+                  }}
+                  valueLabelDisplay="auto"
+                  valueLabelFormat={(value) => {
+                    return value == 1920 ? "Todas" : value;
+                  }}
+                  step={10}
+                  marks={marks}
+                  min={1920}
+                  max={2010}
+                />
+              </FormControl>
+            </Box>
+          </Box>
+          <a
+            href={"./MoreInfo/BR"}
+            rel="noreferrer"
+            className="flex justify-center items-center mt-2 hover:text-bold text-slate-50 p-2 text-slate-900"
+          >
+            <h1>Ver mais detalhes</h1>
+          </a>
           <div className="absolute w-full bottom-0 border-t-[1px] p-3 hover:bg-slate-100 text-slate-600 duration-75">
             <a href="./" className="flex items-center justify-center">
               <FirstPageIcon fontSize="large" />

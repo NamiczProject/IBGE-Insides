@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 // Components:
 import CardImage from "../../Components/CardImage/CardImage.jsx";
@@ -6,8 +6,11 @@ import UnderlineTx from "../../Components/Basic/UnderlineTx.jsx";
 
 import Header from "../../Components/Header/Header.jsx";
 import Footer from "../../Components/Footer/Footer.jsx";
+import { useParams } from "react-router-dom";
 
-function StateInfoView() {
+function MoreInfoView() {
+  const { acronym } = useParams();
+  console.log(acronym);
   const [selectedState, setSelectedState] = useState("BR");
 
   useEffect(() => {
@@ -68,7 +71,7 @@ function StateInfoView() {
             <div className="flex flex-wrap gap-6 justify-center">
               <CardImage
                 title={"Acre"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/AC"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/AC?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -78,7 +81,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Alagoas"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/AL"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/AL?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -88,7 +91,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Amapá"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/AP"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/AP?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -98,7 +101,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Amazonas"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/AM"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/AM?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -108,7 +111,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Bahia"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/BA"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/BA?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -118,7 +121,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Ceará"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/CE"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/CE?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -128,7 +131,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Distrito Federal"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/DF"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/DF?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -138,7 +141,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Espírito Santo"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/ES"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/ES?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -148,7 +151,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Goiás"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/GO"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/GO?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -158,7 +161,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Maranhão"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/MA"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/MA?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -168,7 +171,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Mato Grosso"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/MT"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/MT?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -178,7 +181,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Mato Grosso do Sul"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/MS"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/MS?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -188,7 +191,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Minas Gerais"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/MG"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/MG?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -198,7 +201,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Pará"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/PA"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/PA?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -208,7 +211,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Paraíba"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/PB"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/PB?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -218,7 +221,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Paraná"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/PR"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/PR?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -228,7 +231,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Pernambuco"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/PE"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/PE?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -238,7 +241,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Piauí"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/PI"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/PI?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -248,7 +251,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Rio de Janeiro"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/RJ"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/RJ?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -259,7 +262,7 @@ function StateInfoView() {
 
               <CardImage
                 title={"Rio Grande do Norte"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/RN"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/RN?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -269,7 +272,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Rio Grande do Sul"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/RS"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/RS?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -279,7 +282,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Rondônia"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/RO"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/RO?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -289,7 +292,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Roraima"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/RR"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/RR?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -299,7 +302,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Santa Catarina"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/SC"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/SC?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -309,7 +312,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"São Paulo"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/SP"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/SP?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -319,7 +322,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Sergipe"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/SE"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/SE?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -329,7 +332,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Tocantins"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/TO"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/estados/TO?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -339,7 +342,7 @@ function StateInfoView() {
               />
               <CardImage
                 title={"Brasil"}
-                goTo={"./Estado"}
+                goTo={"./MoreInfo/BR"}
                 image={
                   "https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=image/svg+xml&qualidade=maxima"
                 }
@@ -397,4 +400,4 @@ function StateInfoView() {
   );
 }
 
-export default StateInfoView;
+export default MoreInfoView;
