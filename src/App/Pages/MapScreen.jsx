@@ -81,10 +81,10 @@ function MapScreen() {
   const GEOFENCE = turf.circle([-52.4, -16.3], 3000, { units: "kilometers" });
 
   //impedindo que o brasil saia da tela e mantendo uma boa proporção/margem conforme o zoom:
-  const bounds = [
-    [-80, 15], // Southwest coordinates
-    [-30, -15], // Northeast coordinates
-  ];
+  // const bounds = [
+  //   [-80, 30], // Southwest coordinates
+  //   [-30, -30], // Northeast coordinates
+  // ];
 
   const onSelectCity = useCallback(({ longitude, latitude }, duration) => {
     mapRef.current?.flyTo({
@@ -114,13 +114,13 @@ function MapScreen() {
           interactiveLayerIds={["data"]}
           ref={mapRef}
           // Definições:
-          zoom={3}
+          maxZoom={5.6}
+          minZoom={3}
           doubleClickZoom={false}
           maxPitch={45}
           minPitch={0}
-          scrollZoom={false}
           cursor={haveInfo ? "pointer" : "default"}
-          maxBounds={bounds}
+          // maxBounds={bounds}
           // Eventos:
           onMouseMove={onHover}
           onMove={onMove}
