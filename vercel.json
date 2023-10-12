@@ -1,7 +1,7 @@
 {
   "rewrites": [
     { "source": "/Map", "destination": "/" },
-    { "source": "/MoreInfo/*", "destination": "/" },
+    { "source": "/MoreInfo/((?!general).*)", "destination": "/" },
 
     {
       "source": "/view-source",
