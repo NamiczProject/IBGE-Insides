@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 // import component:
 import Drawer from "react-modern-drawer";
-import UnderlineTx from "../Basic/UnderlineTx";
 
 //import styles:
 import "react-modern-drawer/dist/index.css";
@@ -13,6 +12,10 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import CloseIcon from "@mui/icons-material/Close";
+import QueryStatsIcon from "@mui/icons-material/QueryStats";
+import ScienceIcon from "@mui/icons-material/Science";
+
+// import utils:
 import { getNames } from "../../utils/getNames";
 import {
   Box,
@@ -71,7 +74,7 @@ function Drawerbar(props) {
     <>
       <button
         onClick={toggleDrawer}
-        className="fixed z-50 mt-5 flex items-center group gap-1 text-white border-[1px] border-l-0 rounded-r-sm border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 duration-75">
+        className="fixed z-50 flex items-center group gap-1 text-white border-r border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 hover:z-10 duration-75">
         <AddIcon
           fontSize="medium"
           className="group-hover:animate-spin group-hover:hidden duration-75"
@@ -81,6 +84,17 @@ function Drawerbar(props) {
         </div>
         <p className="group-hover:block hidden">Abrir Menu</p>
       </button>
+      <a
+        href={"./MoreInfo/BR"}
+        rel="noreferrer"
+        className="fixed z-50 mt-[34px] flex items-center group gap-1 text-white border-[1px] border-l-0 border-t-0 rounded-br-sm border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 duration-75">
+        <ScienceIcon className="text-white group-hover:hidden"/>
+        <div className="group-hover:flex hidden">
+          <QueryStatsIcon />
+        </div>
+        <h1 className="hidden group-hover:flex">Ver mais detalhes</h1>
+      </a>
+
       <Drawer
         open={isOpen}
         direction="left"
@@ -89,13 +103,23 @@ function Drawerbar(props) {
         size={360}>
         <button
           onClick={toggleDrawer}
-          className="fixed right-0 translate-x-full z-50 mt-5 flex items-center group gap-1 text-white border-[1px] border-l-0 rounded-r-sm border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 duration-75">
+          className="fixed right-0 translate-x-full flex items-center group gap-1 text-white border-r border-slate-50 border-b-slate-800 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 hover:z-10 duration-75">
           <CloseIcon className="text-white group-hover:hidden" />
           <div className="group-hover:flex hidden">
             <NavigateBeforeIcon />
           </div>
           <h1 className="hidden group-hover:flex">Fechar Menu</h1>
         </button>
+        <a
+          href={"./MoreInfo/BR"}
+          rel="noreferrer"
+          className="fixed right-0 translate-x-full flex items-center mt-[34px] group gap-1 text-white border border-l-0 border-t-0 rounded-br-sm border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:border-t-slate-50 hover:pr-2 hover:z-10 duration-75">
+          <ScienceIcon className="text-white group-hover:hidden" />
+          <div className="group-hover:flex hidden">
+            <QueryStatsIcon />
+          </div>
+          <h1 className="hidden group-hover:flex">Ver mais detalhes</h1>
+        </a>
         <div>
           <Box className="border-b">
             <div className="bg-slate-800 flex p-5 justify-center text-xl text-white">
@@ -174,14 +198,6 @@ function Drawerbar(props) {
               />
             </FormControl>
           </Box>
-
-          {/* <a
-            href={"./MoreInfo/BR"}
-            rel="noreferrer"
-            className="flex justify-center items-center mt-2 hover:text-bold p-2 text-slate-900"
-          >
-            <h1>Ver mais detalhes</h1>
-          </a> */}
 
           <div className="absolute w-full bottom-0 border-t-[1px] p-3 hover:bg-slate-100 text-slate-600 duration-75">
             <a href="./" className="flex items-center justify-center">
