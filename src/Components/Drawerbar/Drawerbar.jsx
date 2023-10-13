@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 // import component:
 import Drawer from "react-modern-drawer";
+import UnderlineTx from "../Basic/UnderlineTx";
 
 //import styles:
 import "react-modern-drawer/dist/index.css";
@@ -70,8 +71,7 @@ function Drawerbar(props) {
     <>
       <button
         onClick={toggleDrawer}
-        className="fixed z-50 mt-5 flex items-center group gap-1 text-white border-[1px] border-l-0 rounded-r-sm border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 duration-75"
-      >
+        className="fixed z-50 mt-5 flex items-center group gap-1 text-white border-[1px] border-l-0 rounded-r-sm border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 duration-75">
         <AddIcon
           fontSize="medium"
           className="group-hover:animate-spin group-hover:hidden duration-75"
@@ -86,12 +86,10 @@ function Drawerbar(props) {
         direction="left"
         overlayOpacity={0}
         enableOverlay={false}
-        size={350}
-      >
+        size={360}>
         <button
           onClick={toggleDrawer}
-          className="fixed right-0 translate-x-full z-50 mt-5 flex items-center group gap-1 text-white border-[1px] border-l-0 rounded-r-sm border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 duration-75"
-        >
+          className="fixed right-0 translate-x-full z-50 mt-5 flex items-center group gap-1 text-white border-[1px] border-l-0 rounded-r-sm border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 duration-75">
           <CloseIcon className="text-white group-hover:hidden" />
           <div className="group-hover:flex hidden">
             <NavigateBeforeIcon />
@@ -99,14 +97,11 @@ function Drawerbar(props) {
           <h1 className="hidden group-hover:flex">Fechar Menu</h1>
         </button>
         <div>
-          <div className="bg-slate-800 flex p-5 justify-center text-xl text-white">
-            <h1>Análise dos dados</h1>
-          </div>
+          <Box className="border-b">
+            <div className="bg-slate-800 flex p-5 justify-center text-xl text-white">
+              <h1>Ranking do Brasil</h1>
+            </div>
 
-          <Box className="flex flex-col justify-center m-4 shadow-md">
-            <Box className="flex flex-col items-center justify-center bg-slate-900 text-white">
-              <p className="text-lg p-2">Ranking no Brasil</p>
-            </Box>
             {dataLoaded && (
               <Box className="m-2">
                 <Box className="flex justify-around">
@@ -130,66 +125,64 @@ function Drawerbar(props) {
               </Box>
             )}
           </Box>
-          <Box className="flex flex-col justify-center m-4 shadow-md">
-            <Box className="flex flex-col items-center justify-center bg-slate-900 text-white">
-              <p className="text-lg p-2">Filtros</p>
-            </Box>
-            <Box className="flex flex-col items-center justify-center">
-              <FormControl className="flex flex-col items-center justify-center">
-                <h1 className="font-bold">Gênero</h1>
-                <RadioGroup
-                  row
-                  aria-labelledby="demo-row-radio-buttons-group-label"
-                  name="row-radio-buttons-group"
-                  defaultValue="N/A"
-                  onChange={(e) => setSex(e.target.value)}
-                >
-                  <FormControlLabel
-                    value="F"
-                    control={<Radio />}
-                    label="Female"
-                  />
-                  <FormControlLabel
-                    value="M"
-                    control={<Radio />}
-                    label="Male"
-                  />
-                  <FormControlLabel
-                    value="N/A"
-                    control={<Radio />}
-                    label="Unissex"
-                  />
-                </RadioGroup>
-                <Box className="mt-2">
-                  <h1 className="font-bold">Decada</h1>
-                </Box>
-                <Slider
-                  track={false}
-                  aria-label="Decada"
-                  defaultValue={1920}
-                  getAriaValueText={(value) => {
-                    return value == 2020 ? "Todas" : value;
-                  }}
-                  valueLabelDisplay="auto"
-                  valueLabelFormat={(value) => {
-                    return value == 1920 ? "Todas" : value;
-                  }}
-                  step={10}
-                  marks={marks}
-                  min={1920}
-                  max={2010}
-                  onChange={(e) => setDec(e.target.value)}
+
+          <Box className="flex flex-col items-center justify-center p-3 px-10">
+            <FormControl className="flex items-center justify-center">
+              <h1 className="font-bold">Gênero</h1>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+                defaultValue="N/A"
+                onChange={(e) => setSex(e.target.value)}>
+                <FormControlLabel
+                  value="F"
+                  control={<Radio />}
+                  label="Feminino"
                 />
-              </FormControl>
-            </Box>
+                <FormControlLabel
+                  value="M"
+                  control={<Radio />}
+                  label="Masculino"
+                />
+                <FormControlLabel
+                  value="N/A"
+                  control={<Radio />}
+                  label="Todos"
+                />
+              </RadioGroup>
+
+              <Box className="mt-2">
+                <h1 className="font-bold">Decada</h1>
+              </Box>
+              <Slider
+                track={false}
+                aria-label="Decada"
+                defaultValue={1920}
+                getAriaValueText={(value) => {
+                  return value == 2020 ? "Todas" : value;
+                }}
+                valueLabelDisplay="auto"
+                valueLabelFormat={(value) => {
+                  return value == 1920 ? "Todas" : value;
+                }}
+                step={10}
+                marks={marks}
+                min={1920}
+                max={2010}
+                onChange={(e) => setDec(e.target.value)}
+              />
+            </FormControl>
           </Box>
-          <a
+
+          {/* <a
             href={"./MoreInfo/BR"}
             rel="noreferrer"
-            className="flex justify-center items-center mt-2 hover:text-bold text-slate-50 p-2 text-slate-900"
+            className="flex justify-center items-center mt-2 hover:text-bold p-2 text-slate-900"
           >
             <h1>Ver mais detalhes</h1>
-          </a>
+          </a> */}
+
           <div className="absolute w-full bottom-0 border-t-[1px] p-3 hover:bg-slate-100 text-slate-600 duration-75">
             <a href="./" className="flex items-center justify-center">
               <FirstPageIcon fontSize="large" />
