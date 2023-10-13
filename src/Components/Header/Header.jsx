@@ -89,14 +89,14 @@ function Header() {
 
       {/* SubMenu */}
       {isSubMenuOpen && (
-        <div className='mt-20 bg-slate-500 flex justify-center shadow-xl md:hidden sm:block'>
+        <div className='mt-20 bg-slate-500 flex justify-center shadow-xl md:hidden sm:fixed'>
           <ul className="">
-            <li><a href="/#"><div className="bg-slate-50 p-2 pl-10 border-b w-screen">Inicio</div></a></li>
-            <li><a href="/#"><div className="bg-slate-50 p-2 pl-10 border-b w-screen">Finalidades</div></a></li>
-            <li><a href="/#"><div className="bg-slate-50 p-2 pl-10 border-b w-screen">Funcionalidades</div></a></li>
-            <li><a href="/#"><div className="bg-slate-50 p-2 pl-10 border-b w-screen">Tecnologias</div></a></li>
-            <li><a href="/#"><div className="bg-slate-50 p-2 pl-10 border-b w-screen">Filtro de dados</div></a></li>
-            <li><a href="/#"><div className="bg-slate-50 p-2 pl-10 border-b w-screen">Ver mapa</div></a></li>
+            <li><a href="/#"><div className="bg-slate-50 p-2 pl-10 border-b w-screen hover:bg-slate-200 duration-75">Inicio</div></a></li>
+            <li><a href="/#"><div className="bg-slate-50 p-2 pl-10 border-b w-screen hover:bg-slate-200 duration-75">Finalidades</div></a></li>
+            <li><a href="/#"><div className="bg-slate-50 p-2 pl-10 border-b w-screen hover:bg-slate-200 duration-75">Funcionalidades</div></a></li>
+            <li><a href="/#"><div className="bg-slate-50 p-2 pl-10 border-b w-screen hover:bg-slate-200 duration-75">Tecnologias</div></a></li>
+            <li><a href="/#"><div className="bg-slate-50 p-2 pl-10 border-b w-screen hover:bg-slate-200 duration-75">Filtro de dados</div></a></li>
+            <li><a href="/#"><div className="bg-slate-50 p-2 pl-10 border-b w-screen hover:bg-slate-200 duration-75">Ver mapa</div></a></li>
           </ul>
         </div>)}
     </>
