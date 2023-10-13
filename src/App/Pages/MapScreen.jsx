@@ -43,7 +43,7 @@ function MapScreen() {
   }, []);
 
   const [viewState, setViewState] = useState({
-    longitude: -47,
+    longitude: -57,
     latitude: -15,
     zoom: 3.8,
   });

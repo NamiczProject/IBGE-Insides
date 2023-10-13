@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 // import component:
 import Drawer from "react-modern-drawer";
@@ -47,7 +47,7 @@ function Drawerbar(props) {
     console.log("dec", dec);
   }, [dataLoaded, sex, dec]);
 
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
   };
