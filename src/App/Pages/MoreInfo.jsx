@@ -8,7 +8,7 @@ import Header from "../../Components/Header/Header.jsx";
 import Footer from "../../Components/Footer/Footer.jsx";
 import { useParams } from "react-router-dom";
 
-function MoreInfoView() {
+function MoreInfo() {
   const { acronym } = useParams();
   console.log(acronym);
   const [selectedState, setSelectedState] = useState("BR");
@@ -400,4 +400,4 @@ function MoreInfoView() {
   );
 }
 
-export default MoreInfoView;
+export default MoreInfo;

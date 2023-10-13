@@ -14,34 +14,33 @@ function Header() {
       <div>
         <ul className="flex">
           <li className="mr-5">
-            <a href="./#" className="text-slate-500 hover:text-black">
+            <a href="/#" className="text-slate-500 hover:text-black">
               Início
             </a>
           </li>
           <li className="mr-5">
             <button
               onClick={togleContentMenu}
-              className="text-slate-500 hover:text-black"
+              className="text-slate-500 hover:text-black group"
             >
               Sobre
-            </button>
-            {isMenuOpen && (
-              <div className="bg-white border shadow-lg absolute grid -translate-x-[20%]">
-                <a href="./#finalidade" className="text-slate-500 hover:text-black border-b px-8 py-2 hover:bg-slate-100 duration-75">
+              <div className="bg-white border shadow-lg absolute -translate-x-[20%] group-hover:grid hover:grid hidden">
+                <a href="/Finalidade" className="text-slate-500 hover:text-black border-b px-8 py-2 hover:bg-slate-100 duration-75">
                   Finalidade
                 </a>
-                <a href="./#funcionalidades" className="text-slate-500 hover:text-black border-b px-8 py-2 hover:bg-slate-100 duration-75">
+                <a href="/Funcionalidade" className="text-slate-500 hover:text-black border-b px-8 py-2 hover:bg-slate-100 duration-75">
                   Funcionalidades
                 </a>
-                <a href="./#tecnologias" className="text-slate-500 hover:text-black px-8 py-2 hover:bg-slate-100 duration-75">
+                <a href="/Tecnologias" className="text-slate-500 hover:text-black px-8 py-2 hover:bg-slate-100 duration-75">
                   Tecnologias
                 </a>
               </div>
-            )}
+            </button>
+            
           </li>
 
           <li className="mr-5">
-            <a href="./Estado" className="text-slate-500 hover:text-black">
+            <a href="/MoreInfo/BR" className="text-slate-500 hover:text-black">
               Filtro de dados
             </a>
           </li>
