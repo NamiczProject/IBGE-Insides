@@ -22,7 +22,7 @@ import {
   Slider,
 } from "@mui/material";
 
-function Drawerbar() {
+function Drawerbar(props) {
   const [names, setNames] = useState(null);
   const [sex, setSex] = useState(false);
   const [dec, setDec] = useState(false);
@@ -32,6 +32,8 @@ function Drawerbar() {
   useEffect(() => {
     console.log("names");
 
+    // eslint-disable-next-line react/prop-types
+    props.onFilter(sex, dec);
     getNames(
       false,
       dec && dec != 1920 ? dec : false,

@@ -95,14 +95,21 @@ function MapScreen() {
 
   const [modalOpen, setModalOpen] = useState(false);
 
-  //HARCODE
   const [clickedCounty, setClickedCounty] = useState(false);
   const [clickedCodeArea, setClickedCodeArea] = useState(false);
   const [ranking, setRanking] = useState(null);
 
+  //filter handler
+  const [sex, setSex] = useState(false);
+  const [dec, setDec] = useState(false);
+  const handleFilter = (sexFiltered, decadeFiltered) => {
+    setSex(sexFiltered);
+    setDec(decadeFiltered);
+  };
+
   return (
     <>
-      <Drawerbar />
+      <Drawerbar onFilter={handleFilter} />
       <div className="w-full h-screen bg-slate-300 overflow-hidden">
         <Map
           // Estilos:
@@ -133,7 +140,11 @@ function MapScreen() {
                 },
                 1000
               );
-              getNames(hoverInfo.codearea, null, null).then((res) => {
+              getNames(
+                hoverInfo.codearea,
+                dec && dec != 1920 ? dec : false,
+                sex && sex != "N/A" ? sex : false
+              ).then((res) => {
                 setClickedCounty(selectedCounty);
                 setClickedCodeArea(hoverInfo.codearea);
                 setRanking(res[0].res);
@@ -149,7 +160,8 @@ function MapScreen() {
                 onSelectCity({ longitude: -47, latitude: -15 }, 1000);
               }
             }
-          }}>
+          }}
+        >
           <Source type="geojson" data={geojson}>
             <Layer {...layerStyle} />
           </Source>
