@@ -24,18 +24,26 @@ import {
 
 function Drawerbar() {
   const [names, setNames] = useState(null);
+  const [sex, setSex] = useState(false);
+  const [dec, setDec] = useState(false);
   // console.log(names);
   const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
     console.log("names");
-    // if (!dataLoaded) {
-    getNames("").then((response) => {
+
+    getNames(
+      false,
+      dec && dec != 1920 ? dec : false,
+      sex && sex != "N/A" ? sex : false
+    ).then((response) => {
       setNames(response[0].res);
       setDataLoaded(true);
     });
-    // }
-  }, [dataLoaded]);
+
+    console.log("sex", sex);
+    console.log("dec", dec);
+  }, [dataLoaded, sex, dec]);
 
   const [isOpen, setIsOpen] = React.useState(false);
   const toggleDrawer = () => {
@@ -131,20 +139,21 @@ function Drawerbar() {
                   row
                   aria-labelledby="demo-row-radio-buttons-group-label"
                   name="row-radio-buttons-group"
-                  defaultValue="unissex"
+                  defaultValue="N/A"
+                  onChange={(e) => setSex(e.target.value)}
                 >
                   <FormControlLabel
-                    value="female"
+                    value="F"
                     control={<Radio />}
                     label="Female"
                   />
                   <FormControlLabel
-                    value="male"
+                    value="M"
                     control={<Radio />}
                     label="Male"
                   />
                   <FormControlLabel
-                    value="unissex"
+                    value="N/A"
                     control={<Radio />}
                     label="Unissex"
                   />
@@ -155,7 +164,7 @@ function Drawerbar() {
                 <Slider
                   track={false}
                   aria-label="Decada"
-                  defaultValue={1930}
+                  defaultValue={1920}
                   getAriaValueText={(value) => {
                     return value == 2020 ? "Todas" : value;
                   }}
@@ -167,6 +176,7 @@ function Drawerbar() {
                   marks={marks}
                   min={1920}
                   max={2010}
+                  onChange={(e) => setDec(e.target.value)}
                 />
               </FormControl>
             </Box>

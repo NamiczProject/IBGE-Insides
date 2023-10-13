@@ -133,7 +133,7 @@ function MapScreen() {
                 },
                 1000
               );
-              getNames(hoverInfo.codearea).then((res) => {
+              getNames(hoverInfo.codearea, null, null).then((res) => {
                 setClickedCounty(selectedCounty);
                 setClickedCodeArea(hoverInfo.codearea);
                 setRanking(res[0].res);
