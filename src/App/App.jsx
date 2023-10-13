@@ -6,6 +6,8 @@ import Functionalities from './Pages/Functionalities';
 import Technologies from './Pages/Technologies';
 import Purpouse from './Pages/Purposes';
 
+import DevelopmentArea from './Pages/DevelopmentArea';
+
 function App() {
   return (
     <Router>
@@ -16,6 +18,7 @@ function App() {
         <Route path="/Funcionalidade" element={<Functionalities/>}/>
         <Route path="/Finalidade" element={<Purpouse/>}/>
         <Route path="/Tecnologias" element={<Technologies/>}/>
+        <Route path="/DevelopmentArea" element={<DevelopmentArea/>}/>
       </Routes>
     </Router>
   );

@@ -5,6 +5,13 @@ export default {
   ],
   theme: {
     extend: {},
+    screens:{
+      'sm': '0px',
+      'md': '540px',
+      'lg': '720px',
+      'xl':'1280px',
+      '2xl':'1920px',
+    }
   },
   plugins: [],
 }
