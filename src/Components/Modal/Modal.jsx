@@ -29,7 +29,7 @@ export default function Modaldiv({
           </button>
         </div>
 
-        <div className="bg-slate-50 pt-2 p-4 w-full">
+        <div className="bg-white pt-2 p-4 w-full">
           <div className=" mb-2 border-b-[1px] border-slate-300 pb-2">
             <h1 className="text-xl text-center pb-2">
               <UnderlineTx text="Ranking" />

@@ -111,7 +111,7 @@ function MapScreen() {
     <>
       <Drawerbar onFilter={handleFilter} />
 
-      <div className="w-full h-screen bg-slate-300 overflow-hidden border-8 sm:border-red-400 md:border-yellow-400 lg:border-green-400">
+      <div className="w-full h-screen bg-slate-300 overflow-hidden">
         <Map
           // Estilos:
           mapStyle="mapbox://styles/camarg0vs/clm1c13c401ub01p7g8sngg8x"
