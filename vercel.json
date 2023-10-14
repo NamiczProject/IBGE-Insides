@@ -2,9 +2,6 @@
   "rewrites": [
     { "source": "/Map", "destination": "/" },
     { "source": "/MoreInfo/((?!general).*)", "destination": "/" },
-    { "source": "/Funcionalidade", "destination": "/"},
-    { "source": "/Finalidade", "destination": "/"},
-    { "source": "/Tecnologias", "destination": "/"},
 
     {
       "source": "/view-source",

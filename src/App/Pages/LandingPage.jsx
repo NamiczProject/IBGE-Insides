@@ -18,6 +18,7 @@ import searchCardImg from "../../assets/search-card-image.png";
 
 // Icons:
 import SearchIcon from "@mui/icons-material/Search";
+import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 
 function LandingPage() {
   const [showNamicz, setshowNamicz] = useState(false);
@@ -28,6 +29,8 @@ function LandingPage() {
   return (
     <>
       <Header />
+
+      {/* Tela 1 */}
       <div className="block h-screen">
         <div className="w-full flex items-center text-center justify-center h-[94vh]">
           <h1 className="text-4xl">
@@ -107,7 +110,8 @@ function LandingPage() {
         )}
       </div>
 
-      <div id="sobre" className="bg-slate-700 w-full h-full shadow-inner">
+      {/* Tela 2 */}
+      <div id="Sobre" className="bg-slate-700 w-full h-full shadow-inner">
         <div className="h-[95vh] flex justify-evenly items-center">
           <div className="bg-slate-50 cursor-pointer">
             <img
@@ -154,21 +158,192 @@ function LandingPage() {
         </div>
       </div>
 
-      <div className="shadow-[0_-65px_60px_-15px_rgba(0,0,0,0.3)] w-full py-28">
+      {/* Tela 3 */}
+      <div id="Finalidade" className="w-full h-screen pt-28 shadow-[0_-65px_60px_-15px_rgba(0,0,0,0.3)]">
+        <div className="flex justify-center items-center mb-4">
+          <div className="border-[1px] rounded-sm w-[45rem] h-fit shadow-2xl duration-100 hover:scale-[1.02]">
+            <div className="w-full rounded-t-sm border-b-[1px] py-5 flex justify-center">
+              <h1 className="text-xl">
+                Nossa finalidade, a <UnderlineTx text="antroponomástica" />:
+              </h1>
+            </div>
+            <div className="py-5 px-14 bg-white">
+              <h1>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Molestias nam quasi ut tenetur iste labore expedita voluptatem
+                sapiente minus inventore voluptatum qui at debitis maxime,
+                laborum nobis suscipit minima maiores. Lorem ipsum dolor sit
+                amet consectetur adipisicing elit. Aliquid dolorum similique
+                impedit delectus ullam molestias voluptas laborum harum
+                cupiditate eveniet ea libero, praesentium laboriosam nam,
+                commodi at, deleniti laudantium quae? Lorem ipsum dolor, sit
+                amet consectetur adipisicing elit. Doloremque, fugiat quasi.
+                Expedita porro, ea, nemo fuga blanditiis dolor dolores ab
+                officiis, inventore accusantium est aut obcaecati atque! Minus,
+                autem qui?
+              </h1>
+              <h1>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. At quia
+                eos officiis quasi minima facilis, accusantium ullam earum
+                repellat maiores ea obcaecati sequi eius itaque. Facilis illo
+                debitis sequi rerum? Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Reiciendis vitae molestiae ipsa nostrum dicta
+                laborum necessitatibus adipisci laudantium accusamus,
+                voluptatibus sed est voluptatum deleniti, numquam ut, et illo
+                iste earum.
+              </h1>
+              <h1>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Repudiandae quidem consectetur eaque rem molestias hic, quaerat
+                omnis sit possimus, doloribus alias veritatis illo asperiores
+                dolorum vero doloremque dicta neque! Nihil? Lorem ipsum, dolor
+                sit amet consectetur adipisicing elit. Tempore, illum
+                recusandae. At ullam a corporis distinctio, maxime officia. Odit
+                dolorum similique repellat, eaque nam enim nesciunt id
+                distinctio consequatur unde? Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Explicabo id, quia et laboriosam
+                culpa excepturi possimus quod consequatur autem tempore eligendi
+                rerum velit quae odit rem quis corrupti eaque cupiditate.
+              </h1>
+            </div>
+            <div className="rounded-sm pl-14 w-full h-24 flex items-center">
+              <a
+                href="#"
+                className="flex items-center justify-center gap-1 h-11 p-2 border-[1px] border-slate-950 text-slate-950 rounded-sm hover:bg-slate-50 hover:w-fit hover:px-3 duration-75">
+                <AutoStoriesIcon className="text-slate-950" />{" "}
+                <p>Saiba mais!</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+      {/* Tela 4 */}
+      <div id="Funcionalidade" className="w-full h-screen pt-28">
+        <div className="flex justify-center items-center">
+          <h1 className="text-3xl">
+            <UnderlineTx text="Funcionalidades" />
+          </h1>
+        </div>
+
+        <div className="flex justify-evenly items-start py-10">
+          <Card
+            title="Visualização de dados"
+            description="A análise de dados no NAMICZ permite entender a distribuição geográfica de nomes de pessoas, revelando preferências culturais e variações regionais. Isso ajuda os usuários a compreender as características demográficas de uma região e é útil em pesquisas socioculturais, estudos de mercado e planejamento urbano."
+            image={brasilCardImg}
+            goTo="/Estado"
+          />
+          <Card
+            title="Ranking de nomes"
+            description="A plataforma gera um ranking hierarquizado dos nomes mais comuns em diferentes regiões geográficas, considerando dados demográficos e populacionais relevantes. Isso permite comparar a popularidade dos nomes em diferentes localidades, fornecendo uma perspectiva valiosa sobre as preferências de nomes em várias áreas geográficas e facilitando a análise de dados demográficos.."
+            image={rankingCardImg}
+            goTo="#funcionalidades"
+          />
+          <Card
+            title="Pesquisa de nomes"
+            description="A pesquisa de nomes no Namicz é essencial para explorar dados demográficos relacionados a nomes de pessoas. Os usuários podem buscar nomes específicos, explorar nomes populares em regiões e filtrar dados com critérios personalizados, como faixa etária e gênero, permitindo análises detalhadas das preferências de nomes em grupos específicos"
+            image={searchCardImg}
+            goTo="/Map"
+          />
+        </div>
+      </div>
+
+      {/* Tela 5 */}
+      <div id="Tecnologias" className="w-full pt-28">
+        <div className="flex justify-center items-center">
+          <h1 className="text-3xl">
+            <UnderlineTx text="Tecnologias" />
+          </h1>
+        </div>
+
+        <div className="flex justify-center w-full py-10 mb-10">
+          <div className="grid grid-cols-3 gap-10">
+            <Card
+              title="React"
+              description="React é uma biblioteca JavaScript de código aberto com foco em criar interfaces de usuário em páginas web. É mantido pelo Facebook, Instagram, outras empresas e uma comunidade de desenvolvedores individuais."
+              image="https://seeklogo.com/images/R/react-logo-7B3CE81517-seeklogo.com.png"
+              goTo="https://pt-br.reactjs.org/"
+            />
+            <Card
+              title="Vite"
+              description="Vite é um construtor de aplicações web que visa oferecer uma experiência de desenvolvimento de desenvolvedor extremamente rápida. Ele faz isso através do agrupamento de módulos ES e de um servidor de desenvolvimento com recarga rápida do módulo (HMR) integrado."
+              image="https://seeklogo.com/images/V/vite-logo-BFD4283991-seeklogo.com.png"
+              goTo="https://vitejs.dev/"
+            />
+            <Card
+              title="GitHub"
+              description="GitHub é uma plataforma de hospedagem de código-fonte e arquivos com controle de versão usando o Git. Ele permite que programadores, utilitários ou qualquer usuário cadastrado na plataforma contribuam em projetos privados e/ou Open Source de qualquer lugar do mundo."
+              image="https://seeklogo.com/images/G/github-logo-5F384D0265-seeklogo.com.png"
+              goTo="https://github.com"
+            />
+            <Card
+              title="Material UI"
+              description="Material-UI é uma biblioteca de componentes simples e personalizáveis para construir aplicativos React mais rápidos, bonitos e acessíveis. A biblioteca de componentes React para um desenvolvimento web mais rápido e fácil. Crie interfaces de usuário bonitas e responsivas usando os componentes Material Design."
+              image="https://seeklogo.com/images/M/material-ui-logo-5BDCB9BA8F-seeklogo.com.png"
+              goTo="https://material-ui.com/pt/"
+            />
+            <Card
+              title="Mapbox GL"
+              description="Mapbox GL JS é uma biblioteca JavaScript para renderizar mapas interativos em navegadores da web e aplicativos móveis. Ele fornece uma API para adicionar camadas personalizadas, controles e ferramentas de interação de mapa para o seu aplicativo."
+              image="https://seeklogo.com/images/M/mapbox-logo-D6FDDD219C-seeklogo.com.png"
+              goTo="https://docs.mapbox.com/"
+            />
+            <Card
+              title="TailwindCSS"
+              description="Tailwind CSS é um framework CSS de código aberto que utiliza uma abordagem de utilitários CSS para construir projetos customizados. Ele fornece classes de baixo nível que você pode combinar para criar qualquer interface de usuário que você desejar."
+              image="https://seeklogo.com/images/T/tailwind-css-logo-5AD4175897-seeklogo.com.png"
+              goTo="https://tailwindcss.com/"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Tela 6 */}
+      <div className="w-full py-28">
         <div className="flex justify-center items-center">
           <h1 className="text-3xl">
             <UnderlineTx text="Veja mais sobre o nosso projeto!" />
           </h1>
         </div>
 
-        <div className='pt-5 flex justify-center' id="MoreContent">
-          <div className='w-fit text-2xl'>
-            <ul className='flex'>
-              <li><a href="/Finalidade" ><div className='bg-slate-50 border-[1px] hover:bg-slate-200 duration-75 p-5 w-56 text-center rounded-l-sm'>Finalidade</div></a></li>
-              <li><a href="/Funcionalidade" ><div className='bg-slate-50 border-[1px] hover:bg-slate-200 duration-75 p-5 w-56 text-center'>Funcionalidade</div></a></li>
-              <li><a href="/Tecnologias" ><div className='bg-slate-50 border-[1px] hover:bg-slate-200 duration-75 p-5 w-56 text-center'>Tecnologias</div></a></li>
-              <li><a href="/Funcionalidade" ><div className='bg-slate-50 border-[1px] hover:bg-slate-200 duration-75 p-5 w-56 text-center'>Filtro de dados</div></a></li>
-              <li><a href="/Map" ><div className='bg-slate-50 border-[1px] hover:bg-slate-200 duration-75 p-5 w-56 text-center rounded-r-sm'>Mapa de Dados</div></a></li>
+        <div className="pt-5 flex justify-center" id="MoreContent">
+          <div className="w-fit text-2xl">
+            <ul className="flex">
+              <li>
+                <a href="/Finalidade">
+                  <div className="bg-slate-50 border-[1px] hover:bg-slate-200 duration-75 p-5 w-56 text-center rounded-l-sm">
+                    Finalidade
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="/Funcionalidade">
+                  <div className="bg-slate-50 border-[1px] hover:bg-slate-200 duration-75 p-5 w-56 text-center">
+                    Funcionalidade
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="/Tecnologias">
+                  <div className="bg-slate-50 border-[1px] hover:bg-slate-200 duration-75 p-5 w-56 text-center">
+                    Tecnologias
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="/Funcionalidade">
+                  <div className="bg-slate-50 border-[1px] hover:bg-slate-200 duration-75 p-5 w-56 text-center">
+                    Filtro de dados
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="/Map">
+                  <div className="bg-slate-50 border-[1px] hover:bg-slate-200 duration-75 p-5 w-56 text-center rounded-r-sm">
+                    Mapa de Dados
+                  </div>
+                </a>
+              </li>
             </ul>
           </div>
         </div>
