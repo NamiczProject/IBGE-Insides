@@ -4,7 +4,7 @@ function Card({ title, description, image, goTo }) {
   return (
     <div className="flex">
       <a href={goTo} className="bg-white md:hover:scale-105 sm:scale-75 md:scale-100 sm:hover:scale-[80%] duration-75 group">
-      <div className="w-96 h-fit border-[1px]">
+      <div className="w-96 min-h-[45rem] border-[1px]">
         <div className="p-10 overflow-hidden">
           <img src={image} alt={title} className="group-hover:scale-105 duration-75"/>
         </div>
