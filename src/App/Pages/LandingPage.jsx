@@ -28,9 +28,9 @@ function LandingPage() {
       <Header />
 
       {/* Tela 1 */}
-      <div className="block h-screen">
+      <div className="block h-screen sm:text-sm sm:px-6 md:text-2xl md:px-10 lg:text-4xl lg:px-16">
         <div className="w-full flex items-center text-center justify-center h-[94vh]">
-          <h1 className="text-4xl">
+          <h1 className="">
             <Typewriter
               words={["Bem vindo ao "]}
               loop={1}
