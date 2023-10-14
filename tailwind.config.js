@@ -8,9 +8,9 @@ export default {
     screens:{
       'sm': '0px',
       'md': '620px',
-      'lg': '1000px',
-      'xl':'1280px',
-      '2xl':'1920px',
+      'lg': '1280px',
+      'xl':'1920px',
+      '2xl':'2560px',
     }
   },
   plugins: [],

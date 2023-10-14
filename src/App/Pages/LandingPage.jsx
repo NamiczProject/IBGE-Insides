@@ -1,12 +1,10 @@
 // Dependencies:
 import React, { useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
-import Slide from "@mui/material/Slide";
 
 // Components:
 import Header from "../../Components/Header/Header";
 import UnderlineTx from "../../Components/Basic/UnderlineTx";
-import GoDownBtn from "../../Components/Basic/goDownBtn";
 import Card from "../../Components/Card/Card";
 import Footer from "../../Components/Footer/Footer";
 
@@ -23,7 +21,6 @@ import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 function LandingPage() {
   const [showNamicz, setshowNamicz] = useState(false);
   const [showRest, setshowRest] = useState(false);
-  const [showSlide, setShowSlide] = useState(false);
 
   var cont = 0;
   return (
@@ -78,40 +75,14 @@ function LandingPage() {
                 typeSpeed={70}
                 deleteSpeed={50}
                 delaySpeed={40}
-                onDelete={() => {
-                  cont--;
-                }}
-                onType={() => {
-                  cont++;
-                  if (cont === 73) {
-                    setShowSlide(true);
-                    cont = 0;
-                  }
-                }}
               />
             )}
           </h1>
         </div>
-
-        {!!showSlide && (
-          <Slide
-            direction="up"
-            in={showSlide}
-            mountOnEnter
-            unmountOnExit
-            timeout={1000}>
-            <div id="aboutBtn" className="flex justify-center items-center">
-              <GoDownBtn
-                addClasses="bg-slate-800 text-white hover:bg-black border-2 border-slate-800 rounded-sm shadow-2xl"
-                goTo="#sobre"
-              />
-            </div>
-          </Slide>
-        )}
       </div>
 
       {/* Tela 2 */}
-      <div id="Sobre" className="bg-slate-700 w-full h-full shadow-inner">
+      <div id="Sobre" className="bg-slate-700 w-full h-screen shadow-inner">
         <div className="h-[95vh] flex justify-evenly items-center">
           <div className="bg-slate-50 cursor-pointer">
             <img
@@ -149,17 +120,10 @@ function LandingPage() {
             </div>
           </div>
         </div>
-
-        <div className="w-full flex justify-center pb-5">
-          <GoDownBtn
-            addClasses="bg-slate-50 text-bg-slate-800 hover:bg-slate-100 border-2 border-slate-50 rounded-sm shadow-2xl"
-            goTo="#MoreContent"
-          />
-        </div>
       </div>
 
       {/* Tela 3 */}
-      <div id="Finalidade" className="w-full h-screen pt-28 shadow-[0_-65px_60px_-15px_rgba(0,0,0,0.3)]">
+      {/* <div id="Finalidade" className="w-full h-screen pt-28 shadow-[0_-65px_60px_-15px_rgba(0,0,0,0.3)]">
         <div className="flex justify-center items-center mb-4">
           <div className="border-[1px] rounded-sm w-[45rem] h-fit shadow-2xl duration-100 hover:scale-[1.02]">
             <div className="w-full rounded-t-sm border-b-[1px] py-5 flex justify-center">
@@ -216,40 +180,40 @@ function LandingPage() {
             </div>
           </div>
         </div>
-      </div>
-        
+      </div> */}
+
       {/* Tela 4 */}
-      <div id="Funcionalidade" className="w-full h-screen pt-28">
+      <div id="Funcionalidade" className="w-full min-h-screen pt-28">
         <div className="flex justify-center items-center">
           <h1 className="text-3xl">
             <UnderlineTx text="Funcionalidades" />
           </h1>
         </div>
 
-        <div className="flex justify-evenly items-start py-10">
-          <Card
-            title="Visualização de dados"
-            description="A análise de dados no NAMICZ permite entender a distribuição geográfica de nomes de pessoas, revelando preferências culturais e variações regionais. Isso ajuda os usuários a compreender as características demográficas de uma região e é útil em pesquisas socioculturais, estudos de mercado e planejamento urbano."
-            image={brasilCardImg}
-            goTo="/Estado"
-          />
-          <Card
-            title="Ranking de nomes"
-            description="A plataforma gera um ranking hierarquizado dos nomes mais comuns em diferentes regiões geográficas, considerando dados demográficos e populacionais relevantes. Isso permite comparar a popularidade dos nomes em diferentes localidades, fornecendo uma perspectiva valiosa sobre as preferências de nomes em várias áreas geográficas e facilitando a análise de dados demográficos.."
-            image={rankingCardImg}
-            goTo="#funcionalidades"
-          />
-          <Card
-            title="Pesquisa de nomes"
-            description="A pesquisa de nomes no Namicz é essencial para explorar dados demográficos relacionados a nomes de pessoas. Os usuários podem buscar nomes específicos, explorar nomes populares em regiões e filtrar dados com critérios personalizados, como faixa etária e gênero, permitindo análises detalhadas das preferências de nomes em grupos específicos"
-            image={searchCardImg}
-            goTo="/Map"
-          />
+        <div className="flex sm:flex-col md:flex-col lg:flex-row pt-10 lg:px-14 md:px-0 justify-around md:gap-10 md:scale-100 items-center">
+            <Card
+              title="Visualização de dados"
+              description="A análise de dados no NAMICZ permite entender a distribuição geográfica de nomes de pessoas, revelando preferências culturais e variações regionais. Isso ajuda os usuários a compreender as características demográficas de uma região e é útil em pesquisas socioculturais, estudos de mercado e planejamento urbano."
+              image={brasilCardImg}
+              goTo="/MoreInfo/BR"
+            />
+            <Card
+              title="Ranking de nomes"
+              description="A plataforma gera um ranking hierarquizado dos nomes mais comuns em diferentes regiões geográficas, considerando dados demográficos e populacionais relevantes. Isso permite comparar a popularidade dos nomes em diferentes localidades, fornecendo uma perspectiva valiosa sobre as preferências de nomes em várias áreas geográficas e facilitando a análise de dados demográficos.."
+              image={rankingCardImg}
+              goTo="#/Map"
+            />
+            <Card
+              title="Pesquisa de nomes"
+              description="A pesquisa de nomes no Namicz é essencial para explorar dados demográficos relacionados a nomes de pessoas. Os usuários podem buscar nomes específicos, explorar nomes populares em regiões e filtrar dados com critérios personalizados, como faixa etária e gênero, permitindo análises detalhadas das preferências de nomes em grupos específicos"
+              image={searchCardImg}
+              goTo="/MoreInfo/BR"
+            />
         </div>
       </div>
 
       {/* Tela 5 */}
-      <div id="Tecnologias" className="w-full pt-28">
+      {/* <div id="Tecnologias" className="w-full pt-28">
         <div className="flex justify-center items-center">
           <h1 className="text-3xl">
             <UnderlineTx text="Tecnologias" />
@@ -296,10 +260,10 @@ function LandingPage() {
             />
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Tela 6 */}
-      <div className="w-full py-28">
+      {/* <div className="w-full py-28">
         <div className="flex justify-center items-center">
           <h1 className="text-3xl">
             <UnderlineTx text="Veja mais sobre o nosso projeto!" />
@@ -347,7 +311,7 @@ function LandingPage() {
             </ul>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <Footer />
     </>
