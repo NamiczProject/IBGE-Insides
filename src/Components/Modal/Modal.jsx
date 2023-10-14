@@ -1,23 +1,11 @@
 /* eslint-disable react/prop-types */
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import UnderlineTx from '../Basic/UnderlineTx.jsx';
+import Modal from "@mui/material/Modal";
+import UnderlineTx from "../Basic/UnderlineTx.jsx";
 // import { getCountyMesh } from "./getCountyMesh";
 // import { useEffect, useState } from "react";
 // import { getRankingNames } from "./getRankingNames";
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '30rem',
-  border: 0,
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  flexDirection: 'column',
-};
+import CloseIcon from "@mui/icons-material/Close";
 
 export default function Modaldiv({
   open,
@@ -25,18 +13,20 @@ export default function Modaldiv({
   countyName,
   codeArea,
   ranking,
-  acronym
+  acronym,
 }) {
   return (
     <Modal
       open={open}
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
-      <Box sx={style}>
-        <div className="flex justify-center px-32 py-4 bg-slate-800 text-slate-50 text-2xl w-full rounded-t-sm">
+      aria-describedby="modal-modal-description">
+      <div className="sm:w-screen sm:h-screen md:w-[30rem] md:h-fit absolute md:top-1/2 md:left-1/2 md:-translate-y-1/2 md:-translate-x-1/2 flex flex-col sm:rounded-none md:rounded-sm sm:bg-white">
+        <div className="flex justify-center py-4 bg-slate-800 text-white text-2xl rounded-t-sm sm:rounded-none md:rounded-sm">
           <h1>{countyName}</h1>
+          <button onClick={handleClose} className="fixed right-0 top-0 w-[50px] h-[64px] sm:block md:hidden">
+            <CloseIcon />
+          </button>
         </div>
 
         <div className="bg-slate-50 pt-2 p-4 w-full">
@@ -54,7 +44,7 @@ export default function Modaldiv({
             </div>
           </div>
           {!!ranking && (
-            <div>
+            <div className="sm:text-sm">
               {ranking.map((item, index) => (
                 <div key={index} className="flex justify-around">
                   <div className=" w-1/2">
@@ -70,14 +60,18 @@ export default function Modaldiv({
           <div className="bg-slate-50 pt-2 mt-3 mx-2 border-t-[1px] rounded-b-sm border-slate-300 text-center w-full">
             <h1>CodeArea: {codeArea}</h1>
           </div>
-          <div>
+          <div className="sm:bottom-5 sm:left-1/2 sm:-translate-x-1/2 sm:absolute md:relative md:pt-2 md:bottom-auto md:translate-x-0 md:left-0">
             {/* a href para a página que exibe mais detalhes do estado */}
-            <a href={`./MoreInfo/${acronym}`} rel="noreferrer" className="flex justify-center items-center mt-2 bg-slate-800 hover:bg-slate-600 text-slate-50 p-2 rounded-sm duration-75">
-              <h1>Ver mais detalhes</h1>
+            <a href={`./MoreInfo/${acronym}`} rel="noreferrer">
+              <h1>
+                <div className="flex justify-center items-center bg-slate-800 hover:bg-slate-600 text-slate-50 p-2 rounded-sm duration-75 w-full">
+                  Ver mais detalhes
+                </div>
+              </h1>
             </a>
           </div>
         </div>
-      </Box>
+      </div>
     </Modal>
   );
 }

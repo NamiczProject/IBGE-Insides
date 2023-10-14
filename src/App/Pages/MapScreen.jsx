@@ -110,7 +110,8 @@ function MapScreen() {
   return (
     <>
       <Drawerbar onFilter={handleFilter} />
-      <div className="w-full h-screen bg-slate-300 overflow-hidden">
+
+      <div className="w-full h-screen bg-slate-300 overflow-hidden border-8 sm:border-red-400 md:border-yellow-400 lg:border-green-400">
         <Map
           // Estilos:
           mapStyle="mapbox://styles/camarg0vs/clm1c13c401ub01p7g8sngg8x"
@@ -166,6 +167,7 @@ function MapScreen() {
             <Layer {...layerStyle} />
           </Source>
         </Map>
+
         <Modal
           open={modalOpen}
           handleClose={() => setModalOpen(false)}
