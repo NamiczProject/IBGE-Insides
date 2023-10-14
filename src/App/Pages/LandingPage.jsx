@@ -25,11 +25,11 @@ function LandingPage() {
   var cont = 0;
   return (
     <>
-      <Header />
+    <Header />
 
       {/* Tela 1 */}
       <div className="block h-screen sm:text-sm sm:px-6 md:text-2xl md:px-10 lg:text-4xl lg:px-16">
-        <div className="w-full flex items-center text-center justify-center h-[94vh]">
+        <div className="w-full flex items-center text-center justify-center h-full">
           <h1 className="">
             <Typewriter
               words={["Bem vindo ao "]}
@@ -83,8 +83,9 @@ function LandingPage() {
 
       {/* Tela 2 */}
       <div id="Sobre" className="bg-slate-700 w-full h-screen shadow-inner">
-        <div className="h-[95vh] flex justify-evenly items-center">
-          <div className="bg-slate-50 cursor-pointer">
+        
+        <div className="h-full flex justify-evenly items-center">
+          <div className="bg-slate-50 cursor-pointer sm:hidden md:hidden lg:block">
             <img
               src={namiczImg}
               alt="namiczLogo"
@@ -92,7 +93,7 @@ function LandingPage() {
             />
           </div>
 
-          <div className="border-[1px] border-slate-800 rounded-sm w-[45rem] h-fit shadow-2xl">
+          <div className="border-[1px] border-slate-800 rounded-sm md:w-[35rem] lg:w-[45rem] h-fit shadow-2xl sm:scale-75 md:scale-90 lg:scale-100">
             <div className="w-full bg-slate-100 rounded-t-sm border-b-[1px] border-slate-800 py-5 pl-4">
               <h1 className="text-xl">
                 <UnderlineTx text="O que é isso?" />

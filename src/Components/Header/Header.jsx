@@ -5,19 +5,15 @@ import Logo from "../../Components/Basic/Logo";
 
 // Import Icons:
 import MenuIcon from "@mui/icons-material/Menu";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 function Header() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isSubMenuOpen, setIsSubMenuOpen] = React.useState(false);
 
   function togleSubMenu() {
     setIsSubMenuOpen(!isSubMenuOpen);
   }
 
-  function togleContentMenu() {
-    setIsMenuOpen(!isMenuOpen);
-  }
   return (
     <>
       <div className="fixed top-0 h-20 z-50 flex justify-between items-center w-screen bg-slate-100 py-5 px-10">
@@ -27,7 +23,7 @@ function Header() {
             className="flex justify-center items-center">
             {isSubMenuOpen ? (
               <KeyboardArrowDownIcon className="text-black" fontSize="large" />
-              ) : (
+            ) : (
               <MenuIcon className="text-black" fontSize="large" />
             )}
           </button>
@@ -44,11 +40,13 @@ function Header() {
                 Início
               </a>
             </li>
-            <li className="mr-5">
-              <a
-                onClick={togleContentMenu} href="/#Sobre"
-                className="text-slate-500 hover:text-black group pb-2">
-                Sobre
+            <li className="mr-5 group">
+              <div>
+                <a
+                  href="/#Sobre"
+                  className="text-slate-500 hover:text-black pb-2">
+                  Sobre
+                </a>
                 <div className="bg-white border shadow-lg absolute -translate-x-[20%] group-hover:grid hover:grid hidden">
                   <a
                     href="/#Finalidade"
@@ -66,7 +64,7 @@ function Header() {
                     Tecnologias
                   </a>
                 </div>
-              </a>
+              </div>
             </li>
 
             <li className="mr-5">
@@ -89,16 +87,60 @@ function Header() {
 
       {/* SubMenu */}
       {isSubMenuOpen && (
-        <div className='mt-20 z-50 bg-slate-500 flex justify-center shadow-xl md:hidden sm:fixed'>
+        <div className="mt-20 z-50 bg-slate-500 flex justify-center shadow-xl md:hidden sm:fixed">
           <ul className="">
-            <li><a href="/#"><div className="bg-slate-50 p-2 pl-10 border-b w-screen hover:bg-slate-200 duration-75">Inicio</div></a></li>
-            <li><a href="/#Finalidade"><div className="bg-slate-50 p-2 pl-10 border-b w-screen hover:bg-slate-200 duration-75">Finalidades</div></a></li>
-            <li><a href="/#Funcionalidade"><div className="bg-slate-50 p-2 pl-10 border-b w-screen hover:bg-slate-200 duration-75">Funcionalidades</div></a></li>
-            <li><a href="/#Tecnologias"><div className="bg-slate-50 p-2 pl-10 border-b w-screen hover:bg-slate-200 duration-75">Tecnologias</div></a></li>
-            <li><a href="/MoreInfo/BR"><div className="bg-slate-50 p-2 pl-10 border-b w-screen hover:bg-slate-200 duration-75">Filtro de dados</div></a></li>
-            <li><a href="/Map"><div className="bg-slate-50 p-2 pl-10 border-b w-screen hover:bg-slate-200 duration-75">Ver mapa</div></a></li>
+            <li>
+              <a href="/#" onClick={togleSubMenu}>
+                <div className="bg-slate-50 p-2 pl-10 border-b w-screen hover:bg-slate-200 duration-75">
+                  Inicio
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="/#Sobre" onClick={togleSubMenu}>
+                <div className="bg-slate-50 p-2 pl-10 border-b w-screen hover:bg-slate-200 duration-75">
+                  Sobre
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="/#Finalidade" onClick={togleSubMenu}>
+                <div className="bg-slate-50 p-2 pl-10 border-b w-screen hover:bg-slate-200 duration-75">
+                  Finalidades
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="/#Funcionalidade" onClick={togleSubMenu}>
+                <div className="bg-slate-50 p-2 pl-10 border-b w-screen hover:bg-slate-200 duration-75">
+                  Funcionalidades
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="/#Tecnologias" onClick={togleSubMenu}>
+                <div className="bg-slate-50 p-2 pl-10 border-b w-screen hover:bg-slate-200 duration-75">
+                  Tecnologias
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="/MoreInfo/BR" onClick={togleSubMenu}>
+                <div className="bg-slate-50 p-2 pl-10 border-b w-screen hover:bg-slate-200 duration-75">
+                  Filtro de dados
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="/Map" onClick={togleSubMenu}>
+                <div className="bg-slate-50 p-2 pl-10 border-b w-screen hover:bg-slate-200 duration-75">
+                  Ver mapa
+                </div>
+              </a>
+            </li>
           </ul>
-        </div>)}
+        </div>
+      )}
     </>
   );
 }
