@@ -1,17 +1,19 @@
 // important imports:
 import * as turf from "@turf/turf";
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 
 // Files:
-import { getNames } from "../../utils/getNames.js";
+import { getRanking } from "../../utils/getRanking.js";
+import { getName } from "../../utils/getName.js";
 
 // json:
-import geojson from "../../json/geojson.json";
+import json from "../../json/geojson.json";
 
 // Components:
 import Map, { Source, Layer } from "react-map-gl";
 import Modal from "../../Components/Modal/Modal.jsx";
 import Drawerbar from "../../Components/Drawerbar/Drawerbar.jsx";
+import { Box, TextField } from "@mui/material";
 
 // Icons:
 // import FilterAltIcon from "@mui/icons-material/FilterAlt";
@@ -19,6 +21,57 @@ import Drawerbar from "../../Components/Drawerbar/Drawerbar.jsx";
 function MapScreen() {
   const [hoverInfo, setHoverInfo] = useState(null);
   const [haveInfo, setHaveInfo] = useState(false);
+  const [geojson, setGeojson] = useState(json);
+
+  const [search, setSearch] = useState("");
+  const [biggerFrequency, setBiggerFrequency] = useState(null);
+  useEffect(() => {
+    if (search) {
+      let newGeojson = json;
+      let major = null;
+      // setBiggerFrequency(null);
+
+      getName(search, true).then((res) => {
+        const map = {};
+        if (res.length) {
+          for (const county of res) {
+            map[parseInt(county.localidade)] = county.res[0].frequencia;
+            if (major == null || major < county.res[0].frequencia) {
+              major = county.res[0].frequencia;
+            }
+          }
+        }
+
+        for (let i = 0; i < newGeojson.features.length; i++) {
+          newGeojson.features[i].properties.frequencia =
+            ((map[newGeojson.features[i].properties.codarea])/major) || 0;
+        }
+
+        setBiggerFrequency(major);
+        setGeojson(
+        //   {
+        //   "type": "Feature",
+        //   "properties": { "frequencia": 0.1},
+        //   "geometry": {
+        //     "type": "Polygon",
+        //     "coordinates": [
+        //       [
+        //         [-51.4253, -13.7350],
+        //         [-51.4253, -14.7350],
+        //         [-50.4253, -14.7350],
+        //         [-50.4253, -13.7350],
+        //         [-51.4253, -13.7350]
+        //       ]
+        //     ]
+        //   }
+        // }
+        newGeojson
+        );
+      });
+    } else {
+      setGeojson(json);
+    }
+  }, [search]);
 
   const onHover = useCallback((event) => {
     const county = event.features[0] ? event.features[0].properties.estado : "";
@@ -37,10 +90,12 @@ function MapScreen() {
       county: county,
       codearea: codearea,
       acronym: acronym,
+      // frequencia: frequencia,
       longitude: event.lngLat.lng,
       latitude: event.lngLat.lat,
     });
   }, []);
+
 
   const [viewState, setViewState] = useState({
     longitude: -57,
@@ -74,8 +129,16 @@ function MapScreen() {
         "#475569",
         "#334155",
       ],
+      "fill-opacity": [
+        "interpolate",
+        ["linear"],
+        ["get", search ? "frequencia" : ""], // Propriedade de ocorrência do estado
+        0, 0, // Mapear 0 de ocorrência para 0 de opacidade
+        1, 1, // Mapear 1000 de ocorrência para 1 de opacidade (totalmente opaco)
+      ],
     },
   };
+  console.log(layerStyle.paint["fill-opacity"], biggerFrequency, geojson)
 
   const mapRef = useRef();
   const GEOFENCE = turf.circle([-52.4, -16.3], 3000, { units: "kilometers" });
@@ -110,7 +173,7 @@ function MapScreen() {
   return (
     <>
       <Drawerbar onFilter={handleFilter} />
-      <div className="w-full h-screen bg-slate-300 overflow-hidden">
+      <div className="w-full h-screen bg-slate-300 overflow-hidden relative">
         <Map
           // Estilos:
           mapStyle="mapbox://styles/camarg0vs/clm1c13c401ub01p7g8sngg8x"
@@ -132,6 +195,7 @@ function MapScreen() {
           onMouseMove={onHover}
           onMove={onMove}
           onClick={() => {
+            // console.log(geojson);
             if (!!hoverInfo.county != "") {
               onSelectCity(
                 {
@@ -140,7 +204,7 @@ function MapScreen() {
                 },
                 1000
               );
-              getNames(
+              getRanking(
                 hoverInfo.codearea,
                 dec && dec != 1920 ? dec : false,
                 sex && sex != "N/A" ? sex : false
@@ -166,6 +230,16 @@ function MapScreen() {
             <Layer {...layerStyle} />
           </Source>
         </Map>
+        <Box className="absolute top-3 right-3 bg-white flex items-center justify-center rounded-sm p-2 w-1/4 h-1/20">
+          <TextField
+            id="filled-basic"
+            label="Pesquise a ocorrência de um nome específico"
+            variant="outlined"
+            size="small"
+            className="w-full h-full"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </Box>
         <Modal
           open={modalOpen}
           handleClose={() => setModalOpen(false)}
