@@ -173,6 +173,7 @@ function MapScreen() {
   return (
     <>
       <Drawerbar onFilter={handleFilter} />
+
       <div className="w-full h-screen bg-slate-300 overflow-hidden relative">
         <Map
           // Estilos:
@@ -230,6 +231,7 @@ function MapScreen() {
             <Layer {...layerStyle} />
           </Source>
         </Map>
+
         <Box className="absolute top-3 right-3 bg-white flex items-center justify-center rounded-sm p-2 w-1/4 h-1/20">
           <TextField
             id="filled-basic"
@@ -240,6 +242,7 @@ function MapScreen() {
             onChange={(e) => setSearch(e.target.value)}
           />
         </Box>
+
         <Modal
           open={modalOpen}
           handleClose={() => setModalOpen(false)}

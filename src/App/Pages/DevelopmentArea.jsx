@@ -1,15 +1,10 @@
 import React from "react";
 
-import Header from "../../Components/Header/Header";
-import Footer from "../../Components/Footer/Footer";
-
 function DevelopmentArea() {
   return (
-    <>
-      <Header />
-      <div className="h-screen sm:bg-red-200 md:bg-yellow-200 lg:bg-green-200"/>
-      <Footer />
-    </>
+    <div className="h-screen w-full border-8 sm:border-red-400 md:border-yellow-400 lg:border-green-400">
+
+    </div>
   );
 }
 

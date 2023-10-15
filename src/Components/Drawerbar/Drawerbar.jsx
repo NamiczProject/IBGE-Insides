@@ -10,8 +10,9 @@ import "react-modern-drawer/dist/index.css";
 import AddIcon from "@mui/icons-material/Add";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import FirstPageIcon from "@mui/icons-material/FirstPage";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import CloseIcon from "@mui/icons-material/Close";
+import LogoutIcon from "@mui/icons-material/Logout";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
 import ScienceIcon from "@mui/icons-material/Science";
 
@@ -87,12 +88,22 @@ function Drawerbar(props) {
       <a
         href={"./MoreInfo/BR"}
         rel="noreferrer"
-        className="fixed z-50 mt-[34px] flex items-center group gap-1 text-white border-[1px] border-l-0 border-t-0 rounded-br-sm border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 duration-75">
-        <ScienceIcon className="text-white group-hover:hidden"/>
+        className="fixed z-50 mt-[34px] flex items-center group gap-1 text-white border-r-[1px] border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 duration-75">
+        <ScienceIcon className="text-white group-hover:hidden" />
         <div className="group-hover:flex hidden">
           <QueryStatsIcon />
         </div>
         <h1 className="hidden group-hover:flex">Ver mais detalhes</h1>
+      </a>
+      <a
+        href={"./#"}
+        rel="noreferrer"
+        className="fixed z-50 mt-[68px] flex items-center group gap-1 text-white border-[1px] border-l-0 border-t-0 rounded-br-sm border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 duration-75">
+        <ExitToAppIcon className="text-white group-hover:hidden" />
+        <div className="group-hover:flex hidden">
+          <LogoutIcon />
+        </div>
+        <h1 className="hidden group-hover:flex">Voltar para página inicial</h1>
       </a>
 
       <Drawer
@@ -100,7 +111,7 @@ function Drawerbar(props) {
         direction="left"
         overlayOpacity={0}
         enableOverlay={false}
-        size={360}>
+        size={330}>
         <button
           onClick={toggleDrawer}
           className="fixed right-0 translate-x-full flex items-center group gap-1 text-white border-r border-slate-50 border-b-slate-800 p-[5px] bg-slate-800 hover:bg-slate-600 hover:pr-2 hover:z-10 duration-75">
@@ -113,12 +124,24 @@ function Drawerbar(props) {
         <a
           href={"./MoreInfo/BR"}
           rel="noreferrer"
-          className="fixed right-0 translate-x-full flex items-center mt-[34px] group gap-1 text-white border border-l-0 border-t-0 rounded-br-sm border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:border-t-slate-50 hover:pr-2 hover:z-10 duration-75">
+          className="fixed right-0 translate-x-full flex items-center mt-[34px] group gap-1 text-white border-r border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:border-t-slate-50 hover:pr-2 hover:z-10 duration-75">
           <ScienceIcon className="text-white group-hover:hidden" />
           <div className="group-hover:flex hidden">
             <QueryStatsIcon />
           </div>
           <h1 className="hidden group-hover:flex">Ver mais detalhes</h1>
+        </a>
+        <a
+          href={"./#"}
+          rel="noreferrer"
+          className="fixed right-0 translate-x-full flex items-center mt-[68px] group gap-1 text-white border border-l-0 border-t-0 rounded-br-sm border-slate-50 p-[5px] bg-slate-800 hover:bg-slate-600 hover:border-t-slate-50 hover:pr-2 hover:z-10 duration-75">
+          <ExitToAppIcon className="text-white group-hover:hidden" />
+          <div className="group-hover:flex hidden">
+            <LogoutIcon />
+          </div>
+          <h1 className="hidden group-hover:flex">
+            Voltar para página inicial
+          </h1>
         </a>
         <div>
           <Box className="border-b">
@@ -137,7 +160,7 @@ function Drawerbar(props) {
                   </Box>
                 </Box>
                 {names.map((item, index) => (
-                  <Box key={index} className="flex justify-around">
+                  <Box key={index} className="flex justify-around sm:text-xs md:text-base">
                     <Box className=" w-1/3">
                       <h1>{item.nome}</h1>
                     </Box>
@@ -150,61 +173,58 @@ function Drawerbar(props) {
             )}
           </Box>
 
-          <Box className="flex flex-col items-center justify-center p-3 px-10">
+          <Box className="flex flex-col items-center justify-center p-3 px-10 absolute border">
             <FormControl className="flex items-center justify-center">
-              <h1 className="font-bold">Gênero</h1>
-              <RadioGroup
-                row
-                aria-labelledby="demo-row-radio-buttons-group-label"
-                name="row-radio-buttons-group"
-                defaultValue="N/A"
-                onChange={(e) => setSex(e.target.value)}>
-                <FormControlLabel
-                  value="F"
-                  control={<Radio />}
-                  label="Feminino"
-                />
-                <FormControlLabel
-                  value="M"
-                  control={<Radio />}
-                  label="Masculino"
-                />
-                <FormControlLabel
-                  value="N/A"
-                  control={<Radio />}
-                  label="Todos"
-                />
-              </RadioGroup>
+              <div className="text-center border-b sm:py-0 md:py-5">
+                <h1 className="font-bold">Gênero</h1>
+                <RadioGroup
+                  row
+                  aria-labelledby="demo-row-radio-buttons-group-label"
+                  name="row-radio-buttons-group"
+                  defaultValue="N/A"
+                  onChange={(e) => setSex(e.target.value)}>
+                  <FormControlLabel
+                    value="F"
+                    control={<Radio />}
+                    label="Feminino"
+                  />
+                  <FormControlLabel
+                    value="M"
+                    control={<Radio />}
+                    label="Masculino"
+                  />
+                  <FormControlLabel
+                    value="N/A"
+                    control={<Radio />}
+                    label="Todos"
+                  />
+                </RadioGroup>
+              </div>
 
-              <Box className="mt-2">
-                <h1 className="font-bold">Decada</h1>
-              </Box>
-              <Slider
-                track={false}
-                aria-label="Decada"
-                defaultValue={1920}
-                getAriaValueText={(value) => {
-                  return value == 2020 ? "Todas" : value;
-                }}
-                valueLabelDisplay="auto"
-                valueLabelFormat={(value) => {
-                  return value == 1920 ? "Todas" : value;
-                }}
-                step={10}
-                marks={marks}
-                min={1920}
-                max={2010}
-                onChange={(e) => setDec(e.target.value)}
-              />
+              <div className="w-full text-center sm:py-0 md:py-5">
+                <Box className="mt-2">
+                  <h1 className="font-bold">Decada</h1>
+                </Box>
+                <Slider
+                  track={false}
+                  aria-label="Decada"
+                  defaultValue={1920}
+                  getAriaValueText={(value) => {
+                    return value == 2020 ? "Todas" : value;
+                  }}
+                  valueLabelDisplay="auto"
+                  valueLabelFormat={(value) => {
+                    return value == 1920 ? "Todas" : value;
+                  }}
+                  step={10}
+                  marks={marks}
+                  min={1920}
+                  max={2010}
+                  onChange={(e) => setDec(e.target.value)}
+                />
+              </div>
             </FormControl>
           </Box>
-
-          <div className="absolute w-full bottom-0 border-t-[1px] p-3 hover:bg-slate-100 text-slate-600 duration-75">
-            <a href="./" className="flex items-center justify-center">
-              <FirstPageIcon fontSize="large" />
-              Página Inicial
-            </a>
-          </div>
         </div>
       </Drawer>
     </>
