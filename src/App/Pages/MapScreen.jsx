@@ -7,71 +7,90 @@ import { getRanking } from "../../utils/getRanking.js";
 import { getName } from "../../utils/getName.js";
 
 // json:
-import json from "../../json/geojson.json";
+import geojson from "../../json/geojson.json";
 
 // Components:
 import Map, { Source, Layer } from "react-map-gl";
 import Modal from "../../Components/Modal/Modal.jsx";
 import Drawerbar from "../../Components/Drawerbar/Drawerbar.jsx";
-import { Box, TextField } from "@mui/material";
+import { Box, IconButton, TextField } from "@mui/material";
+import SubdirectoryArrowRightIcon from "@mui/icons-material/SubdirectoryArrowRight";
 
 // Icons:
 // import FilterAltIcon from "@mui/icons-material/FilterAlt";
+const hexagono = {
+  type: "Feature",
+  properties: {},
+  geometry: {
+    type: "Polygon",
+    coordinates: [
+      [
+        [-50.4253, -13.735],
+        [-50.6753, -13.235],
+        [-51.1753, -13.235],
+        [-51.4253, -13.735],
+        [-51.1753, -14.235],
+        [-50.6753, -14.235],
+        [-50.4253, -13.735],
+      ],
+    ],
+  },
+};
+const cubo = {
+  type: "Feature",
+  properties: { frequencia: 0.1 },
+  geometry: {
+    type: "Polygon",
+    coordinates: [
+      [
+        [-51.4253, -13.735],
+        [-51.4253, -14.735],
+        [-50.4253, -14.735],
+        [-50.4253, -13.735],
+        [-51.4253, -13.735],
+      ],
+    ],
+  },
+};
 
 function MapScreen() {
   const [hoverInfo, setHoverInfo] = useState(null);
   const [haveInfo, setHaveInfo] = useState(false);
-  const [geojson, setGeojson] = useState(json);
+  const [searchGeojson, setSearchGeojson] = useState(null);
 
   const [search, setSearch] = useState("");
-  const [biggerFrequency, setBiggerFrequency] = useState(null);
-  useEffect(() => {
-    if (search) {
-      let newGeojson = json;
-      let major = null;
-      // setBiggerFrequency(null);
+  // const [biggerFrequency, setBiggerFrequency] = useState(null);
+  // useEffect(() => {
+  //   if (search) {
+  //     let newGeojson = json;
+  //     let major = null;
+  //     // setBiggerFrequency(null);
 
-      getName(search, true).then((res) => {
-        const map = {};
-        if (res.length) {
-          for (const county of res) {
-            map[parseInt(county.localidade)] = county.res[0].frequencia;
-            if (major == null || major < county.res[0].frequencia) {
-              major = county.res[0].frequencia;
-            }
-          }
-        }
+  //     getName(search, true).then((res) => {
+  //       const map = {};
+  //       if (res.length) {
+  //         for (const county of res) {
+  //           map[parseInt(county.localidade)] = county.res[0].frequencia;
+  //           if (major == null || major < county.res[0].frequencia) {
+  //             major = county.res[0].frequencia;
+  //           }
+  //         }
+  //       }
 
-        for (let i = 0; i < newGeojson.features.length; i++) {
-          newGeojson.features[i].properties.frequencia =
-            ((map[newGeojson.features[i].properties.codarea])/major) || 0;
-        }
+  //       for (let i = 0; i < newGeojson.features.length; i++) {
+  //         newGeojson.features[i].properties.frequencia =
+  //           map[newGeojson.features[i].properties.codarea] / major || 0;
+  //       }
 
-        setBiggerFrequency(major);
-        setGeojson(
-        //   {
-        //   "type": "Feature",
-        //   "properties": { "frequencia": 0.1},
-        //   "geometry": {
-        //     "type": "Polygon",
-        //     "coordinates": [
-        //       [
-        //         [-51.4253, -13.7350],
-        //         [-51.4253, -14.7350],
-        //         [-50.4253, -14.7350],
-        //         [-50.4253, -13.7350],
-        //         [-51.4253, -13.7350]
-        //       ]
-        //     ]
-        //   }
-        // }
-        newGeojson
-        );
-      });
-    } else {
-      setGeojson(json);
-    }
-  }, [search]);
+  //       setBiggerFrequency(major);
+  //       setGeojson(
+  //         newGeojson
+  //       );
+  //     });
+  //   } else {
+  //     setGeojson(json);
+  //   }
+  // }, [search]);
 
   const onHover = useCallback((event) => {
     const county = event.features[0] ? event.features[0].properties.estado : "";
@@ -95,7 +114,6 @@ function MapScreen() {
       latitude: event.lngLat.lat,
     });
   }, []);
-
 
   const [viewState, setViewState] = useState({
     longitude: -57,
@@ -132,13 +150,15 @@ function MapScreen() {
       "fill-opacity": [
         "interpolate",
         ["linear"],
-        ["get", search ? "frequencia" : ""], // Propriedade de ocorrência do estado
-        0, 0, // Mapear 0 de ocorrência para 0 de opacidade
-        1, 1, // Mapear 1000 de ocorrência para 1 de opacidade (totalmente opaco)
+        ["get", searchGeojson ? "frequencia" : ""], // Propriedade de ocorrência do estado
+        0,
+        0, // Mapear 0 de ocorrência para 0 de opacidade
+        1,
+        1, // Mapear 1000 de ocorrência para 1 de opacidade (totalmente opaco)
       ],
     },
   };
-  console.log(layerStyle.paint["fill-opacity"], biggerFrequency, geojson)
+  // console.log(layerStyle.paint["fill-opacity"], biggerFrequency, geojson);
 
   const mapRef = useRef();
   const GEOFENCE = turf.circle([-52.4, -16.3], 3000, { units: "kilometers" });
@@ -170,6 +190,10 @@ function MapScreen() {
     setDec(decadeFiltered);
   };
 
+  useEffect(() => {
+    setSearchGeojson(null);
+  }, [search]);
+
   return (
     <>
       <Drawerbar onFilter={handleFilter} />
@@ -195,8 +219,8 @@ function MapScreen() {
           // Eventos:
           onMouseMove={onHover}
           onMove={onMove}
-          onClick={() => {
-            // console.log(geojson);
+          onClick={(e) => {
+            console.log(e.features);
             if (!!hoverInfo.county != "") {
               onSelectCity(
                 {
@@ -227,9 +251,15 @@ function MapScreen() {
             }
           }}
         >
-          <Source type="geojson" data={geojson}>
-            <Layer {...layerStyle} />
-          </Source>
+          {searchGeojson ? (
+            <Source type="geojson" data={searchGeojson}>
+              <Layer {...layerStyle} />
+            </Source>
+          ) : (
+            <Source type="geojson" data={geojson}>
+              <Layer {...layerStyle} />
+            </Source>
+          )}
         </Map>
 
         <Box className="absolute top-3 right-3 bg-white flex items-center justify-center rounded-sm p-2 w-1/4 h-1/20">
@@ -238,9 +268,55 @@ function MapScreen() {
             label="Pesquise a ocorrência de um nome específico"
             variant="outlined"
             size="small"
-            className="w-full h-full"
+            className={`w-full h-full`}
             onChange={(e) => setSearch(e.target.value)}
           />
+          {!!search && (
+            <IconButton
+              aria-label="enter"
+              sx={{ marginLeft: 1 }}
+              onClick={() => {
+                console.log("click");
+
+                // newGeojson.features[1].properties.frequencia = 0.7;
+                // setBiggerFrequency(null);
+
+                getName(search, true).then((res) => {
+                  let newGeojson = {
+                    type: "FeatureCollection",
+                    features: [],
+                  };
+                  let major = null;
+                  const map = {};
+
+                  if (res.length) {
+                    for (const county of res) {
+                      map[parseInt(county.localidade)] =
+                        county.res[0].frequencia;
+                      if (major == null || major < county.res[0].frequencia) {
+                        major = county.res[0].frequencia;
+                      }
+                    }
+                  }
+
+                  for (let i = 0; i < geojson.features.length; i++) {
+                    newGeojson.features[i] = geojson.features[i];
+
+                    newGeojson.features[i].properties.frequencia =
+                      map[newGeojson.features[i].properties.codarea] / major ||
+                      0;
+                  }
+
+                  setSearchGeojson(cubo);
+                  console.log(newGeojson);
+                });
+
+                // newGeojson.features[0].properties.frequencia = 0.5;
+              }}
+            >
+              <SubdirectoryArrowRightIcon />
+            </IconButton>
+          )}
         </Box>
 
         <Modal
