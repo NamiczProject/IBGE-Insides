@@ -17,7 +17,7 @@ import QueryStatsIcon from "@mui/icons-material/QueryStats";
 import ScienceIcon from "@mui/icons-material/Science";
 
 // import utils:
-import { getNames } from "../../utils/getNames";
+import { getRanking } from "../../utils/getRanking";
 import {
   Box,
   FormControl,
@@ -35,11 +35,11 @@ function Drawerbar(props) {
   const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
-    console.log("names");
+    // console.log("names");
 
     // eslint-disable-next-line react/prop-types
     props.onFilter(sex, dec);
-    getNames(
+    getRanking(
       false,
       dec && dec != 1920 ? dec : false,
       sex && sex != "N/A" ? sex : false
@@ -48,8 +48,8 @@ function Drawerbar(props) {
       setDataLoaded(true);
     });
 
-    console.log("sex", sex);
-    console.log("dec", dec);
+    // console.log("sex", sex);
+    // console.log("dec", dec);
   }, [dataLoaded, sex, dec]);
 
   const [isOpen, setIsOpen] = useState(true);
