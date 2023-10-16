@@ -20,25 +20,30 @@ function MoreInfo() {
   return (
     <>
       <Header />
-      <div className="flex px-40 gap-8 py-10 justify-between border-b pt-28">
-        <div className="border-[1px] rounded-sm w-1/2 group">
+      <div className="flex md:flex-col sm:scale-90 sm:flex-wrap lg:flex-row justify-around border-b py-28">
+        <div className="border-[1px] rounded-sm group sm:w-screen md:w-auto sm:mb-10 lg:mb-0">
           <div className="border-b p-5 flex justify-center bg-slate-800 text-slate-50">
             <h1 className="text-2xl">Estado Selecionado</h1>
           </div>
           <div className="flex m-6 items-center">
-            <div className="flex w-[350px] h-[350px] border-[1px] rounded-sm overflow-hidden">
+            <div className="flex rounded-sm overflow-hidden sm:hidden md:block">
               <img
                 src="https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=image/svg+xml&qualidade=maxima"
                 alt="state"
-                className="w-[350px] h-[350px]"
+                className="w-[400px] h-[400px] border-[1px] p-5"
               />
             </div>
-            <div className="pl-10">
+            <div className="sm:mx-auto md:pl-10">
               <div className="border-b-[1px] py-5">
-                <h1 className="text-4xl">
-                  Nome: <UnderlineTx text={"Brasil"} />
+                <h1 className="sm:text-2xl md:text-4xl flex items-center">
+                  Nome: <UnderlineTx text={"Brasil"} />{" "}
+                  <img
+                    src="https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=image/svg+xml&qualidade=maxima"
+                    alt="state"
+                    className="w-[24px] h-[24px] sm:block md:hidden ml-2"
+                  />
                 </h1>
-                <h1 className="text-2xl">Sigla: BR</h1>
+                <h1 className="sm:text-base md:text-2xl">Sigla: BR</h1>
               </div>
               <div className="border-b-[1px] py-5">
                 <h1 className="">Tamanho: 8.515.767,049 km²</h1>
@@ -54,7 +59,7 @@ function MoreInfo() {
           </div>
         </div>
 
-        <div className="border-[1px] rounded-sm w-1/2">
+        <div className="border-[1px] rounded-sm group sm:w-screen md:w-auto lg:max-w-[40vw]">
           <div className="border-b p-5 flex justify-center bg-slate-800 text-slate-50">
             <h1 className="text-2xl">Outros estados</h1>
           </div>
@@ -65,6 +70,9 @@ function MoreInfo() {
               id="stateFinder"
               placeholder="Procure um estado brasileiro..."
               className="p-[5px] pl-3 hover:pl-4 focus:pl-5 focus:border-slate-950 duration-75 border outline-none"
+              onInput={(e) => {
+                console.log(e.target.value);
+              }}
             />
           </div>
           <div className="h-80 overflow-x-auto p-5 mb-5 overflow border rounded-sm mx-5">
@@ -355,42 +363,38 @@ function MoreInfo() {
         </div>
       </div>
 
-      <div>
+      <div className="pb-28">
         <div className="text-center mt-10">
           <h1 className="text-3xl">
             <UnderlineTx text={"Analisando dados"} />
           </h1>
         </div>
 
-        <div className="flex justify-between px-28 pt-14">
-          <div className=" min-w-[25rem] border shadow-lg">
-            <div className="border-b p-5 flex justify-center bg-slate-800 text-slate-50">
+        <div className="flex flex-wrap gap-8 justify-around pt-14">
+          <div className="sm:min-w-[80vw] md:min-w-[25rem] min-h-[30rem] border shadow-lg">
+            <div className="border-b p-5 flex justify-center bg-slate-800 text-white">
               <h1 className="text-2xl">Filtro</h1>
             </div>
           </div>
-          <div className="w-[1200px] h-[600px] border">
+          <div className="sm:mx-4 md:mx-0 shadow-lg">
+            <div className="border-b p-5 flex justify-center bg-slate-800 text-white">
+              <h1 className="text-2xl">Gráfico com Filtro</h1>
+            </div>
             <img
-              className="w-[1200px] h-[600px] border-b"
-              src="https://d2w9rnfcy7mm78.cloudfront.net/14256899/original_19504a1513c73fa85db68c8fba667f7d.png?1638788267?bc=0"
-              alt="gráfico"
+              src="https://placehold.co/1000x600"
+              alt="Gráfico"
+              className=""
             />
           </div>
-        </div>
-
-        <div className="flex justify-center mt-28">
-          <div>
-            <div>
-              <h1 className="border-b p-5 flex justify-center bg-slate-800 text-slate-50 text-2xl">
-                Ranking
-              </h1>
+          <div className="sm:mx-4 md:mx-0 shadow-lg">
+            <div className="border-b p-5 flex justify-center bg-slate-800 text-white">
+              <h1 className="text-2xl">Ranking de Nomes</h1>
             </div>
-            <div className="w-[1200px] h-[600px] border">
-              <img
-                src="https://extra.globo.com/incoming/24278153-b3c-c03/w640h360-PROP/grafico-fgv-redes.png"
-                alt="Ranking"
-                className="w-[1200px] h-[600px] border-b"
-              />
-            </div>
+            <img
+              src="https://placehold.co/1000x600"
+              alt="Gráfico"
+              className=""
+            />
           </div>
         </div>
       </div>
