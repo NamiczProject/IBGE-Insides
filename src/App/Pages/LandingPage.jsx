@@ -13,6 +13,12 @@ import namiczImg from "../../assets/namicz-Icon.svg";
 import brasilCardImg from "../../assets/brasil-card-image.png";
 import rankingCardImg from "../../assets/ranking-card-image.png";
 import searchCardImg from "../../assets/search-card-image.png";
+import reactCardImg from "../../assets/react-card-image.png";
+import viteCardImg from "../../assets/vite-card-image.png";
+import githubCardImg from "../../assets/github-card-image.png";
+import materialUICardImg from "../../assets/mui-card-image.png";
+import mapboxGLCardImg from "../../assets/mapbox-card-image.png";
+import tailwindCSSCardImg from "../../assets/tailwind-card-image.png";
 
 // Icons:
 import SearchIcon from "@mui/icons-material/Search";
@@ -220,37 +226,37 @@ function LandingPage() {
             <Card
               title="React"
               description="React é uma biblioteca JavaScript de código aberto com foco em criar interfaces de usuário em páginas web. É mantido pelo Facebook, Instagram, outras empresas e uma comunidade de desenvolvedores individuais."
-              image="https://seeklogo.com/images/R/react-logo-7B3CE81517-seeklogo.com.png"
+              image={reactCardImg}
               goTo="https://pt-br.reactjs.org/"
             />
             <Card
               title="Vite"
               description="Vite é um construtor de aplicações web que visa oferecer uma experiência de desenvolvimento de desenvolvedor extremamente rápida. Ele faz isso através do agrupamento de módulos ES e de um servidor de desenvolvimento com recarga rápida do módulo (HMR) integrado."
-              image="https://seeklogo.com/images/V/vite-logo-BFD4283991-seeklogo.com.png"
+              image={viteCardImg}
               goTo="https://vitejs.dev/"
             />
             <Card
               title="GitHub"
               description="GitHub é uma plataforma de hospedagem de código-fonte e arquivos com controle de versão usando o Git. Ele permite que programadores, utilitários ou qualquer usuário cadastrado na plataforma contribuam em projetos privados e/ou Open Source de qualquer lugar do mundo."
-              image="https://seeklogo.com/images/G/github-logo-5F384D0265-seeklogo.com.png"
+              image={githubCardImg}
               goTo="https://github.com"
             />
             <Card
               title="Material UI"
               description="Material-UI é uma biblioteca de componentes simples e personalizáveis para construir aplicativos React mais rápidos, bonitos e acessíveis. A biblioteca de componentes React para um desenvolvimento web mais rápido e fácil. Crie interfaces de usuário bonitas e responsivas usando os componentes Material Design."
-              image="https://seeklogo.com/images/M/material-ui-logo-5BDCB9BA8F-seeklogo.com.png"
+              image={materialUICardImg}
               goTo="https://material-ui.com/pt/"
             />
             <Card
               title="Mapbox GL"
               description="Mapbox GL JS é uma biblioteca JavaScript para renderizar mapas interativos em navegadores da web e aplicativos móveis. Ele fornece uma API para adicionar camadas personalizadas, controles e ferramentas de interação de mapa para o seu aplicativo."
-              image="https://seeklogo.com/images/M/mapbox-logo-D6FDDD219C-seeklogo.com.png"
+              image={mapboxGLCardImg}
               goTo="https://docs.mapbox.com/"
             />
             <Card
               title="TailwindCSS"
               description="Tailwind CSS é um framework CSS de código aberto que utiliza uma abordagem de utilitários CSS para construir projetos customizados. Ele fornece classes de baixo nível que você pode combinar para criar qualquer interface de usuário que você desejar."
-              image="https://seeklogo.com/images/T/tailwind-css-logo-5AD4175897-seeklogo.com.png"
+              image={tailwindCSSCardImg}
               goTo="https://tailwindcss.com/"
             />
           </div>

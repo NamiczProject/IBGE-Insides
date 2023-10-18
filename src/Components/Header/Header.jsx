@@ -5,7 +5,7 @@ import Logo from "../../Components/Basic/Logo";
 
 // Import Icons:
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import MenuIcon from '@mui/icons-material/Menu';
 
 function Header() {
   const [isSubMenuOpen, setIsSubMenuOpen] = React.useState(false);
@@ -19,12 +19,13 @@ function Header() {
       <div className="fixed top-0 h-20 z-50 flex justify-between items-center w-screen bg-slate-100 py-5 px-10">
         <div className="sm:block md:hidden">
           <button
+            aria-label="Open Menu"
             onClick={togleSubMenu}
             className="flex justify-center items-center">
             {isSubMenuOpen ? (
               <KeyboardArrowUpIcon className="text-black" fontSize="large" />
             ) : (
-              <KeyboardArrowDownIcon className="text-black" fontSize="large" />
+              <MenuIcon className="text-black" fontSize="large" />
             )}
           </button>
         </div>
