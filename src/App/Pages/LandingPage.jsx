@@ -138,44 +138,25 @@ function LandingPage() {
           </div>
           <div className="py-5 px-14 bg-white">
             <h1>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
-              nam quasi ut tenetur iste labore expedita voluptatem sapiente
-              minus inventore voluptatum qui at debitis maxime, laborum nobis
-              suscipit minima maiores. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Aliquid dolorum similique impedit delectus ullam
-              molestias voluptas laborum harum cupiditate eveniet ea libero,
-              praesentium laboriosam nam, commodi at, deleniti laudantium quae?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Doloremque, fugiat quasi. Expedita porro, ea, nemo fuga blanditiis
-              dolor dolores ab officiis, inventore accusantium est aut obcaecati
-              atque! Minus, autem qui?
+            O estudo de nomes é uma importante forma de análise de aspectos socioeconômicos da formação de uma sociedade 
+            e de seu caráter histórico. Nosso projeto visa a Antroponímia do Brasil, a análise dos nomes próprios no Brasil, 
+            através de uma plataforma web onde é possível a visualização de estatísticas de nomes, seja ela por estado, 
+            ou até mesmo por todo país. Com ela será possível visualizar todo o território brasileiro de forma interativa 
+            e dinâmica, visando acessibilidade e facilidade de uso e principalmente a exposição do fenômeno de nomes, 
+            fenômeno este pouco abordado na mídia.
             </h1>
             <h1>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. At quia
-              eos officiis quasi minima facilis, accusantium ullam earum
-              repellat maiores ea obcaecati sequi eius itaque. Facilis illo
-              debitis sequi rerum? Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Reiciendis vitae molestiae ipsa nostrum dicta
-              laborum necessitatibus adipisci laudantium accusamus, voluptatibus
-              sed est voluptatum deleniti, numquam ut, et illo iste earum.
+              A antroponomástica não é um assunto muito midiático no Brasil, portanto queremos fazer com que essa área da onomástica 
+              tenha mais visibilidade no âmbito nacional. 
             </h1>
             <h1>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Repudiandae quidem consectetur eaque rem molestias hic, quaerat
-              omnis sit possimus, doloribus alias veritatis illo asperiores
-              dolorum vero doloremque dicta neque! Nihil? Lorem ipsum, dolor sit
-              amet consectetur adipisicing elit. Tempore, illum recusandae. At
-              ullam a corporis distinctio, maxime officia. Odit dolorum
-              similique repellat, eaque nam enim nesciunt id distinctio
-              consequatur unde? Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Explicabo id, quia et laboriosam culpa excepturi
-              possimus quod consequatur autem tempore eligendi rerum velit quae
-              odit rem quis corrupti eaque cupiditate.
+            Em síntese, o estudo de nomes próprios é uma janela fascinante para explorar a história, a cultura e a diversidade de uma sociedade. 
+            O projeto de Antroponímia do Brasil representa uma iniciativa importante para desbravar esse fenômeno muitas vezes esquecido. 
             </h1>
           </div>
           <div className="rounded-sm sm:justify-center lg:pl-14 md:p-0 md:justify-center lg:justify-start w-full h-24 flex items-center bg-white">
             <a
-              href="#"
+              href="https://books.google.com.br/books?hl=pt-BR&lr=&id=MTHrDwAAQBAJ&oi=fnd&pg=PP1&dq=nomes+pr%C3%B3prios&ots=N_C77K7N0t&sig=e5MHNNJ_pIg3CjPjZ7VorGZy9x8#v=onepage&q&f=false"
               className="flex items-center justify-center gap-1 h-11 p-2 border-[1px] border-slate-950 text-slate-950 rounded-sm hover:bg-slate-50 hover:px-3 duration-75">
               <AutoStoriesIcon className="text-slate-950" /> <p>Saiba mais!</p>
             </a>
