@@ -1,5 +1,5 @@
 # Namicz
-[Click here](https://namicz.vercel.app/) to see the demo.
+[Clique aqui](https://namicz.vercel.app/) para ver a demonstração.
 
 ## Índice
 
