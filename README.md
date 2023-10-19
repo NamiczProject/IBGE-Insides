@@ -18,6 +18,7 @@
 git clone https://github.com/NamiczProject/IBGE-Insides.git
 cd IBGE-Insides
 npm i
+npm run start
 ```
 ## Uso
 
