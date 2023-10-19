@@ -22,5 +22,9 @@ npm i
 ## Uso
 
 ## Contribuição
+  > O projeto foi desenvolvido por:\
+[Matheus Camargo Ginebro](https://github.com/MatheusCamargoGinebro)\
+[Victor Hugo Montanari Dias](https://github.com/vct-h-dias)\
+[Victor Samuel dos Santos](https://github.com/VictorSamuell)
 
 ## Licença
