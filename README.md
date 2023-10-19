@@ -16,7 +16,7 @@
 
 ```bash
 git clone https://github.com/NamiczProject/IBGE-Insides.git
-cd seu-projeto
+cd IBGE-Insides
 npm i
 ```
 ## Uso
