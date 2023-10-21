@@ -60,10 +60,10 @@ const cubo = {
 function MapScreen() {
   const [hoverInfo, setHoverInfo] = useState(null);
   const [haveInfo, setHaveInfo] = useState(false);
-  const [searchGeojson, setSearchGeojson] = useState(null);
+  const [searchGeojson, setSearchGeojson] = useState(geojson);
 
   const [search, setSearch] = useState("");
-  const [biggerFrequency, setBiggerFrequency] = useState(1);
+  const [biggerFrequency, setBiggerFrequency] = useState(null);
 
   const onHover = useCallback((event) => {
     const county = event.features[0] ? event.features[0].properties.estado : "";
@@ -71,7 +71,9 @@ function MapScreen() {
       ? event.features[0].properties.codarea
       : "";
     const acronym = event.features[0] ? event.features[0].properties.sigla : "";
-    const frequencia = event.features[0] ? (event.features[0].properties.frequencia || null) : null;
+    const frequencia = event.features[0]
+      ? event.features[0].properties.frequencia || null
+      : null;
 
     if (!!county != "") {
       setHaveInfo(true);
@@ -126,13 +128,12 @@ function MapScreen() {
         ["linear"],
         ["get", searchGeojson ? "frequencia" : ""],
         0,
-        0, 
-        biggerFrequency,
-        1, 
+        0,
+        biggerFrequency || 1,
+        1,
       ],
     },
   };
-
 
   const mapRef = useRef();
   const GEOFENCE = turf.circle([-52.4, -16.3], 3000, { units: "kilometers" });
@@ -175,7 +176,7 @@ function MapScreen() {
       x: e.clientX,
       y: e.clientY,
     });
-  }
+  };
 
   return (
     <>
@@ -248,23 +249,26 @@ function MapScreen() {
             }
           }}
         >
-          {console.log(!!hoverInfo && (!!hoverInfo.county && mouseUp))}
-          <Source type="geojson" data={searchGeojson ? searchGeojson : geojson}>
+          {/* {console.log(!!hoverInfo && !!hoverInfo.county && mouseUp)} */}
+          <Source type="geojson" data={searchGeojson}>
             <Layer {...layerStyle} />
           </Source>
-          { !!hoverInfo && (!!hoverInfo.county && mouseUp) && (
+          {!!hoverInfo && !!hoverInfo.county && mouseUp && (
             <div
               className="tooltip"
               style={{
                 background: "rgba(173, 216, 230, 0.8)",
                 position: "absolute",
-                left: mousePosition.x-40,
-                top: mousePosition.y - 50,
+                left: mousePosition.x - 40,
+                top: mousePosition.y - (biggerFrequency ? 70 : 50),
                 padding: "10px",
                 pointerEvents: "none",
               }}
             >
               <div>Estado: {hoverInfo.county}</div>
+              {biggerFrequency ? (
+                <div>Frequencia: {hoverInfo.frequencia || 0}</div>
+              ) : null}
             </div>
           )}
         </Map>
@@ -309,6 +313,8 @@ function MapScreen() {
             <button
               className="p-2 bg-white rounded-sm border-l group hover:bg-slate-50 duration-75"
               onClick={() => {
+                setSearchGeojson({});
+                // console.log(sea)
                 async function updateGeoJson() {
                   const res = await getName(search, true);
                   let newGeojson = {
@@ -333,7 +339,7 @@ function MapScreen() {
                       0;
                   }
                   // setSearchGeojson(newGeojson);
-                  setBiggerFrequency(1);
+                  setBiggerFrequency(major || 1);
                   setSearchGeojson(newGeojson);
                 }
                 updateGeoJson();
