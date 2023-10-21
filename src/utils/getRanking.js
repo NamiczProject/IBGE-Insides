@@ -6,7 +6,7 @@ export async function getRanking(codeArea, decade, sex) {
                     + (sex ? `sexo=${sex}&` : '')
                     + (decade ? `decada=${decade}&` : '')
                     + (codeArea ? `localidade=${codeArea}&` : '');
-        console.log(url);
+        // console.log(url);
         const data = await fetch(url);
         const names = await data.json();
         return names;

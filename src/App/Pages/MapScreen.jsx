@@ -1,6 +1,6 @@
 // important imports:
 import * as turf from "@turf/turf";
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 
 // Files:
 import { getRanking } from "../../utils/getRanking.js";
@@ -13,10 +13,8 @@ import geojson from "../../json/geojson.json";
 import Map, { Source, Layer } from "react-map-gl";
 import Modal from "../../Components/Modal/Modal.jsx";
 import Drawerbar from "../../Components/Drawerbar/Drawerbar.jsx";
-import { Box, IconButton, TextField } from "@mui/material";
 
 // Icons:
-import SubdirectoryArrowRightIcon from "@mui/icons-material/SubdirectoryArrowRight";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
@@ -65,38 +63,7 @@ function MapScreen() {
   const [searchGeojson, setSearchGeojson] = useState(null);
 
   const [search, setSearch] = useState("");
-  // const [biggerFrequency, setBiggerFrequency] = useState(null);
-  // useEffect(() => {
-  //   if (search) {
-  //     let newGeojson = json;
-  //     let major = null;
-  //     // setBiggerFrequency(null);
-
-  //     getName(search, true).then((res) => {
-  //       const map = {};
-  //       if (res.length) {
-  //         for (const county of res) {
-  //           map[parseInt(county.localidade)] = county.res[0].frequencia;
-  //           if (major == null || major < county.res[0].frequencia) {
-  //             major = county.res[0].frequencia;
-  //           }
-  //         }
-  //       }
-
-  //       for (let i = 0; i < newGeojson.features.length; i++) {
-  //         newGeojson.features[i].properties.frequencia =
-  //           map[newGeojson.features[i].properties.codarea] / major || 0;
-  //       }
-
-  //       setBiggerFrequency(major);
-  //       setGeojson(
-  //         newGeojson
-  //       );
-  //     });
-  //   } else {
-  //     setGeojson(json);
-  //   }
-  // }, [search]);
+  const [biggerFrequency, setBiggerFrequency] = useState(1);
 
   const onHover = useCallback((event) => {
     const county = event.features[0] ? event.features[0].properties.estado : "";
@@ -104,6 +71,7 @@ function MapScreen() {
       ? event.features[0].properties.codarea
       : "";
     const acronym = event.features[0] ? event.features[0].properties.sigla : "";
+    const frequencia = event.features[0] ? (event.features[0].properties.frequencia || null) : null;
 
     if (!!county != "") {
       setHaveInfo(true);
@@ -115,7 +83,7 @@ function MapScreen() {
       county: county,
       codearea: codearea,
       acronym: acronym,
-      // frequencia: frequencia,
+      frequencia: frequencia,
       longitude: event.lngLat.lng,
       latitude: event.lngLat.lat,
     });
@@ -156,24 +124,18 @@ function MapScreen() {
       "fill-opacity": [
         "interpolate",
         ["linear"],
-        ["get", searchGeojson ? "frequencia" : ""], // Propriedade de ocorrência do estado
+        ["get", searchGeojson ? "frequencia" : ""],
         0,
-        0, // Mapear 0 de ocorrência para 0 de opacidade
-        1,
-        1, // Mapear 1000 de ocorrência para 1 de opacidade (totalmente opaco)
+        0, 
+        biggerFrequency,
+        1, 
       ],
     },
   };
-  // console.log(layerStyle.paint["fill-opacity"], biggerFrequency, geojson);
+
 
   const mapRef = useRef();
   const GEOFENCE = turf.circle([-52.4, -16.3], 3000, { units: "kilometers" });
-
-  //impedindo que o brasil saia da tela e mantendo uma boa proporção/margem conforme o zoom:
-  // const bounds = [
-  //   [-80, 30], // Southwest coordinates
-  //   [-30, -30], // Northeast coordinates
-  // ];
 
   const onSelectCity = useCallback(({ longitude, latitude }, duration) => {
     mapRef.current?.flyTo({
@@ -197,13 +159,34 @@ function MapScreen() {
     setDec(decadeFiltered);
   };
 
+  // console.log(searchGeojson ? true : false);
 
+  const [mouseUp, setMouseUp] = useState(true);
+  const handleMouseDown = () => {
+    setMouseUp(false);
+  };
+  const handleMouseUp = () => {
+    setMouseUp(true);
+  };
+
+  const [mousePosition, setMousePosition] = useState({ x: null, y: null });
+  const handleMouseMove = (e) => {
+    setMousePosition({
+      x: e.clientX,
+      y: e.clientY,
+    });
+  }
 
   return (
     <>
       <Drawerbar onFilter={handleFilter} />
 
-      <div className="w-full h-screen bg-slate-300 overflow-hidden relative">
+      <div
+        className="w-full h-screen bg-slate-300 overflow-hidden relative"
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseMove={handleMouseMove}
+      >
         <Map
           // Estilos:
           mapStyle="mapbox://styles/camarg0vs/clm1c13c401ub01p7g8sngg8x"
@@ -234,8 +217,7 @@ function MapScreen() {
               duration: 1000,
             });
           }}
-          onClick={(e) => {
-            console.log(e.features);
+          onClick={() => {
             if (!!hoverInfo.county != "") {
               onSelectCity(
                 {
@@ -264,22 +246,42 @@ function MapScreen() {
                 onSelectCity({ longitude: -47, latitude: -15 }, 1000);
               }
             }
-          }}>
-          <Source type="geojson" data={searchGeojson}>
+          }}
+        >
+          {console.log(!!hoverInfo && (!!hoverInfo.county && mouseUp))}
+          <Source type="geojson" data={searchGeojson ? searchGeojson : geojson}>
             <Layer {...layerStyle} />
           </Source>
-
+          { !!hoverInfo && (!!hoverInfo.county && mouseUp) && (
+            <div
+              className="tooltip"
+              style={{
+                background: "rgba(173, 216, 230, 0.8)",
+                position: "absolute",
+                left: mousePosition.x-40,
+                top: mousePosition.y - 50,
+                padding: "10px",
+                pointerEvents: "none",
+              }}
+            >
+              <div>Estado: {hoverInfo.county}</div>
+            </div>
+          )}
         </Map>
 
         <div
-          className={`fixed flex top-0 md:right-0 sm:left-0 md:left-auto min-h-[34px] duration-200 ${openSearchbar ? "sm:w-[100vw]" : "sm:w-[0vw]"
-            } md:w-fit`}>
+          className={`fixed flex top-0 md:right-0 sm:left-0 md:left-auto min-h-[34px] duration-200 ${
+            openSearchbar ? "sm:w-[100vw]" : "sm:w-[0vw]"
+          } md:w-fit`}
+        >
           <button
-            className={`group hover:pl-3 hover:pr-1 flex justify-center items-center min-w-[34px] bg-slate-800 text-white border sm:border-b-0 sm:border-l-0 md:border-l md:border-b border-t-0 md:border-r-0 ${openSearchbar ? "sm:border-0" : ""
-              } hover:bg-slate-700 duration-75`}
+            className={`group hover:pl-3 hover:pr-1 flex justify-center items-center min-w-[34px] bg-slate-800 text-white border sm:border-b-0 sm:border-l-0 md:border-l md:border-b border-t-0 md:border-r-0 ${
+              openSearchbar ? "sm:border-0" : ""
+            } hover:bg-slate-700 duration-75`}
             onClick={() => {
               setOpenSearchbar(!openSearchbar);
-            }}>
+            }}
+          >
             <h1 className="hidden md:group-hover:flex">
               {openSearchbar ? "Fechar barra de pesquisa" : "Pesquisar um nome"}
             </h1>
@@ -290,8 +292,10 @@ function MapScreen() {
             )}
           </button>
           <div
-            className={`${openSearchbar ? "lg:w-[26rem]" : "w-0"
-              } flex overflow-hidden duration-[.6s]`}>
+            className={`${
+              openSearchbar ? "lg:w-[26rem]" : "w-0"
+            } flex overflow-hidden duration-[.6s]`}
+          >
             <input
               className="w-[24rem] p-2 hover:pl-3 focus:pl-4 outline-none border border-slate-200 duration-75"
               type="text"
@@ -300,14 +304,11 @@ function MapScreen() {
               placeholder="Pesquise um nome..."
               onChange={(e) => {
                 setSearch(e.target.value);
-                console.log(e.target.value);
               }}
             />
             <button
               className="p-2 bg-white rounded-sm border-l group hover:bg-slate-50 duration-75"
               onClick={() => {
-                console.log("click");
-
                 async function updateGeoJson() {
                   const res = await getName(search, true);
                   let newGeojson = {
@@ -318,8 +319,8 @@ function MapScreen() {
                   const map = {};
 
                   for (const county of res) {
-                    map[parseInt(county.localidade)] =
-                      await county.res[0].frequencia;
+                    map[parseInt(county.localidade)] = await county.res[0]
+                      .frequencia;
                     if (major == null || major < county.res[0].frequencia) {
                       major = await county.res[0].frequencia;
                     }
@@ -328,15 +329,16 @@ function MapScreen() {
                   for (let i = 0; i < geojson.features.length; i++) {
                     newGeojson.features[i] = await geojson.features[i];
                     newGeojson.features[i].properties.frequencia =
-                      await map[newGeojson.features[i].properties.codarea] / major ||
+                      (await map[newGeojson.features[i].properties.codarea]) ||
                       0;
                   }
                   // setSearchGeojson(newGeojson);
-                  setSearchGeojson(newGeojson)
+                  setBiggerFrequency(1);
+                  setSearchGeojson(newGeojson);
                 }
                 updateGeoJson();
-
-              }}>
+              }}
+            >
               <div className="group-hover:scale-125 duration-75">
                 <SearchIcon />
               </div>
@@ -355,7 +357,8 @@ function MapScreen() {
                 bearing: 0,
                 duration: 1000,
               });
-            }}>
+            }}
+          >
             <ReplayIcon />
           </button>
         </div>
