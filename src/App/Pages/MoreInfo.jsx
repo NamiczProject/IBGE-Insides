@@ -26,21 +26,27 @@ function MoreInfo() {
 
   useEffect(() => {
     setRanking(null);
-    
+
     getRanking(regions[acronym].codarea, null, null).then((res) => {
       let data = {
         x: [],
         y: [],
-      }
+      };
       res[0].res.map((item) => {
         data.x.push(item.nome);
         data.y.push(item.frequencia);
-      })
+      });
 
       setRanking(data);
       console.log(data);
     });
   }, [acronym]);
+
+  const [searchRegion, setSearchRegion] = useState(false);
+  useEffect(() => {
+    if (!searchRegion) setSearchRegion(false);
+    console.log(searchRegion);
+  }, [searchRegion]);
 
   return (
     <>
@@ -99,8 +105,8 @@ function MoreInfo() {
               id="stateFinder"
               placeholder="Procure um estado brasileiro..."
               className="p-[5px] pl-3 hover:pl-4 focus:pl-5 focus:border-slate-950 duration-75 border outline-none"
-              onInput={(e) => {
-                console.log(e.target.value);
+              onChange={(e) => {
+                setSearchRegion(e.target.value);
               }}
             />
           </div>
@@ -118,6 +124,13 @@ function MoreInfo() {
                       regions[region].sigla == "BR"
                         ? "https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=image/svg+xml&qualidade=maxima"
                         : `https://servicodados.ibge.gov.br/api/v3/malhas/estados/${regions[region].sigla}?formato=image/svg+xml&qualidade=maxima`
+                    }
+                    isVisible={
+                      searchRegion
+                        ? regions[region].nome
+                            .toLowerCase()
+                            .includes(searchRegion.toLowerCase())
+                        : true
                     }
                     onClick={() => {
                       setSelectedState(regions[region].sigla);
@@ -164,7 +177,7 @@ function MoreInfo() {
                     type: "bar",
                     x: ranking.x,
                     y: ranking.y,
-                    marker: { color: "#4ba5d6" },
+                    marker: { color: "#4ba5d6", borderColor: "#000" },
                   },
                 ]
               }
