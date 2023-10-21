@@ -7,7 +7,8 @@
     "densidade": "25,07 hab/km²",
     "pib": "7.4 trilhões",
     "região": "América do Sul",
-    "capital": "Brasília"
+    "capital": "Brasília",
+    "codarea": "0"
   },
   "AC": {
     "nome": "Acre",
@@ -17,7 +18,8 @@
     "densidade": "5,52 hab/km²",
     "pib": "16.4 milhões",
     "região": "Norte",
-    "capital": "Rio Branco"
+    "capital": "Rio Branco",
+    "codarea": "12"
   },
   "AL": {
     "nome": "Alagoas",
@@ -27,7 +29,8 @@
     "densidade": "120,63 hab/km²",
     "pib": "63.3 bilhões",
     "região": "Nordeste",
-    "capital": "Maceió"
+    "capital": "Maceió",
+    "codarea": "27"
   },
   "AP": {
     "nome": "Amapá",
@@ -37,7 +40,8 @@
     "densidade": "5,92 hab/km²",
     "pib": "17.6 bilhões",
     "região": "Norte",
-    "capital": "Macapá"
+    "capital": "Macapá",
+    "codarea": "16"
   },
   "AM": {
     "nome": "Amazonas",
@@ -47,7 +51,8 @@
     "densidade": "2,70 hab/km²",
     "pib": "93.6 bilhões",
     "região": "Norte",
-    "capital": "Manaus"
+    "capital": "Manaus",
+    "codarea": "13"
   },
   "BA": {
     "nome": "Bahia",
@@ -57,7 +62,8 @@
     "densidade": "24,82 hab/km²",
     "pib": "282 bilhões",
     "região": "Nordeste",
-    "capital": "Salvador"
+    "capital": "Salvador",
+    "codarea": "29"
   },
   "CE": {
     "nome": "Ceará",
@@ -67,7 +73,8 @@
     "densidade": "61,74 hab/km²",
     "pib": "102 bilhões",
     "região": "Nordeste",
-    "capital": "Fortaleza"
+    "capital": "Fortaleza",
+    "codarea": "23"
   },
   "DF": {
     "nome": "Distrito Federal",
@@ -77,7 +84,8 @@
     "densidade": "525,71 hab/km²",
     "pib": "200.8 bilhões",
     "região": "Centro-Oeste",
-    "capital": "Brasília"
+    "capital": "Brasília",
+    "codarea": "53"
   },
   "ES": {
     "nome": "Espírito Santo",
@@ -87,7 +95,8 @@
     "densidade": "88,16 hab/km²",
     "pib": "90.4 bilhões",
     "região": "Sudeste",
-    "capital": "Vitória"
+    "capital": "Vitória",
+    "codarea": "32"
   },
   "GO": {
     "nome": "Goiás",
@@ -97,7 +106,8 @@
     "densidade": "20,95 hab/km²",
     "pib": "122 bilhões",
     "região": "Centro-Oeste",
-    "capital": "Goiânia"
+    "capital": "Goiânia",
+    "codarea": "52"
   },
   "MA": {
     "nome": "Maranhão",
@@ -107,17 +117,19 @@
     "densidade": "21,44 hab/km²",
     "pib": "70.6 bilhões",
     "região": "Nordeste",
-    "capital": "São Luís"
+    "capital": "São Luís",
+    "codarea": "21"
   },
   "MT": {
-    "nome": "Mato Grosso",
     "sigla": "MT",
     "tamanho": "903.357 km²",
+    "nome": "Mato Grosso",
     "habitantes": "3.5 milhões",
     "densidade": "3,90 hab/km²",
     "pib": "103 bilhões",
     "região": "Centro-Oeste",
-    "capital": "Cuiabá"
+    "capital": "Cuiabá",
+    "codarea": "51"
   },
   "MS": {
     "nome": "Mato Grosso do Sul",
@@ -127,7 +139,8 @@
     "densidade": "7,86 hab/km²",
     "pib": "47.4 bilhões",
     "região": "Centro-Oeste",
-    "capital": "Campo Grande"
+    "capital": "Campo Grande",
+    "codarea": "50"
   },
   "MG": {
     "nome": "Minas Gerais",
@@ -137,7 +150,8 @@
     "densidade": "36,33 hab/km²",
     "pib": "385 bilhões",
     "região": "Sudeste",
-    "capital": "Belo Horizonte"
+    "capital": "Belo Horizonte",
+    "codarea": "31"
   },
   "PA": {
     "nome": "Pará",
@@ -147,7 +161,8 @@
     "densidade": "6,96 hab/km²",
     "pib": "117 bilhões",
     "região": "Norte",
-    "capital": "Belém"
+    "capital": "Belém",
+    "codarea": "15"
   },
   "PB": {
     "nome": "Paraíba",
@@ -157,7 +172,8 @@
     "densidade": "71,43 hab/km²",
     "pib": "41.1 bilhões",
     "região": "Nordeste",
-    "capital": "João Pessoa"
+    "capital": "João Pessoa",
+    "codarea": "25"
   },
   "PR": {
     "nome": "Paraná",
@@ -167,7 +183,8 @@
     "densidade": "57,64 hab/km²",
     "pib": "244 bilhões",
     "região": "Sul",
-    "capital": "Curitiba"
+    "capital": "Curitiba",
+    "codarea": "41"
   },
   "PE": {
     "nome": "Pernambuco",
@@ -177,7 +194,8 @@
     "densidade": "98,03 hab/km²",
     "pib": "67.8 bilhões",
     "região": "Nordeste",
-    "capital": "Recife"
+    "capital": "Recife",
+    "codarea": "26"
   },
   "PI": {
     "nome": "Piauí",
@@ -187,7 +205,8 @@
     "densidade": "13,04 hab/km²",
     "pib": "37.4 bilhões",
     "região": "Nordeste",
-    "capital": "Teresina"
+    "capital": "Teresina",
+    "codarea": "22"
   },
   "RJ": {
     "nome": "Rio de Janeiro",
@@ -197,7 +216,8 @@
     "densidade": "396,78 hab/km²",
     "pib": "671 bilhões",
     "região": "Sudeste",
-    "capital": "Rio de Janeiro"
+    "capital": "Rio de Janeiro",
+    "codarea": "33"
   },
   "RN": {
     "nome": "Rio Grande do Norte",
@@ -207,7 +227,8 @@
     "densidade": "66,88 hab/km²",
     "pib": "44.2 bilhões",
     "região": "Nordeste",
-    "capital": "Natal"
+    "capital": "Natal",
+    "codarea": "24"
   },
   "RS": {
     "nome": "Rio Grande do Sul",
@@ -217,7 +238,8 @@
     "densidade": "40,49 hab/km²",
     "pib": "329 bilhões",
     "região": "Sul",
-    "capital": "Porto Alegre"
+    "capital": "Porto Alegre",
+    "codarea": "43"
   },
   "RO": {
     "nome": "Rondônia",
@@ -227,7 +249,8 @@
     "densidade": "7,62 hab/km²",
     "pib": "21.9 bilhões",
     "região": "Norte",
-    "capital": "Porto Velho"
+    "capital": "Porto Velho",
+    "codarea": "11"
   },
   "RR": {
     "nome": "Roraima",
@@ -237,7 +260,8 @@
     "densidade": "2,92 hab/km²",
     "pib": "5.8 bilhões",
     "região": "Norte",
-    "capital": "Boa Vista"
+    "capital": "Boa Vista",
+    "codarea": "14"
   },
   "SC": {
     "nome": "Santa Catarina",
@@ -247,7 +271,8 @@
     "densidade": "76,03 hab/km²",
     "pib": "260 bilhões",
     "região": "Sul",
-    "capital": "Florianópolis"
+    "capital": "Florianópolis",
+    "codarea": "42"
   },
   "SE": {
     "nome": "Sergipe",
@@ -257,7 +282,8 @@
     "densidade": "105,76 hab/km²",
     "pib": "37 bilhões",
     "região": "Nordeste",
-    "capital": "Aracaju"
+    "capital": "Aracaju",
+    "codarea": "28"
   },
   "SP": {
     "nome": "São Paulo",
@@ -267,7 +293,8 @@
     "densidade": "178,95 hab/km²",
     "pib": "2.6 trilhões",
     "região": "Sudeste",
-    "capital": "São Paulo"
+    "capital": "São Paulo",
+    "codarea": "35"
   },
   "TO": {
     "nome": "Tocantins",
@@ -277,6 +304,7 @@
     "densidade": "5,73 hab/km²",
     "pib": "16.5 bilhões",
     "região": "Norte",
-    "capital": "Palmas"
+    "capital": "Palmas",
+    "codarea": "17"
   }
 }

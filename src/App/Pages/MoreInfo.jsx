@@ -9,17 +9,38 @@ import Footer from "../../Components/Footer/Footer.jsx";
 import { Link, useParams } from "react-router-dom";
 
 import regions from "../../json/state.json";
+import Plot from "react-plotly.js";
+
+import { getRanking } from "../../utils/getRanking.js";
 
 function MoreInfo() {
   const { acronym } = useParams();
-  // const { history } = useHref();
 
-  // console.log(regions.length);
   const [selectedState, setSelectedState] = useState("BR");
 
   useEffect(() => {
     console.log(selectedState);
   }, [selectedState]);
+
+  const [ranking, setRanking] = useState(null);
+
+  useEffect(() => {
+    setRanking(null);
+    
+    getRanking(regions[acronym].codarea, null, null).then((res) => {
+      let data = {
+        x: [],
+        y: [],
+      }
+      res[0].res.map((item) => {
+        data.x.push(item.nome);
+        data.y.push(item.frequencia);
+      })
+
+      setRanking(data);
+      console.log(data);
+    });
+  }, [acronym]);
 
   return (
     <>
@@ -86,7 +107,10 @@ function MoreInfo() {
           <div className="h-80 overflow-x-auto p-5 mb-5 overflow border rounded-sm mx-5">
             <div className="flex flex-wrap gap-6 justify-center">
               {Object.keys(regions).map((region) => (
-                <Link key={`key-region-${regions[region].sigla}`} to={`/MoreInfo/${regions[region].sigla}`}>
+                <Link
+                  key={`key-region-${regions[region].sigla}`}
+                  to={`/MoreInfo/${regions[region].sigla}`}
+                >
                   <CardImage
                     key={`region-${regions[region].sigla}`}
                     title={regions[region].nome}
@@ -127,6 +151,28 @@ function MoreInfo() {
               src="https://placehold.co/1000x600"
               alt="Gráfico"
               className=""
+            />
+          </div>
+          <div className="sm:mx-4 md:mx-0 shadow-lg">
+            <div className="border-b p-5 flex justify-center bg-slate-800 text-white">
+              <h1 className="text-2xl">Ranking de Nomes</h1>
+            </div>
+            <Plot
+              data={
+                ranking && [
+                  {
+                    type: "bar",
+                    x: ranking.x,
+                    y: ranking.y,
+                    marker: { color: "#4ba5d6" },
+                  },
+                ]
+              }
+              layout={{
+                width: 1800,
+                height: 700,
+                title: `${regions[acronym].nome}`,
+              }}
             />
           </div>
         </div>
