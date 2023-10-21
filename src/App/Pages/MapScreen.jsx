@@ -20,43 +20,6 @@ import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ReplayIcon from "@mui/icons-material/Replay";
 
-// Icons:
-// import FilterAltIcon from "@mui/icons-material/FilterAlt";
-const hexagono = {
-  type: "Feature",
-  properties: {},
-  geometry: {
-    type: "Polygon",
-    coordinates: [
-      [
-        [-50.4253, -13.735],
-        [-50.6753, -13.235],
-        [-51.1753, -13.235],
-        [-51.4253, -13.735],
-        [-51.1753, -14.235],
-        [-50.6753, -14.235],
-        [-50.4253, -13.735],
-      ],
-    ],
-  },
-};
-const cubo = {
-  type: "Feature",
-  properties: { frequencia: 0.1 },
-  geometry: {
-    type: "Polygon",
-    coordinates: [
-      [
-        [-51.4253, -13.735],
-        [-51.4253, -14.735],
-        [-50.4253, -14.735],
-        [-50.4253, -13.735],
-        [-51.4253, -13.735],
-      ],
-    ],
-  },
-};
-
 function MapScreen() {
   const [hoverInfo, setHoverInfo] = useState(null);
   const [haveInfo, setHaveInfo] = useState(false);
@@ -152,7 +115,6 @@ function MapScreen() {
   const [ranking, setRanking] = useState(null);
   const [openSearchbar, setOpenSearchbar] = useState(false);
 
-  //filter handler
   const [sex, setSex] = useState(false);
   const [dec, setDec] = useState(false);
   const handleFilter = (sexFiltered, decadeFiltered) => {
@@ -160,7 +122,6 @@ function MapScreen() {
     setDec(decadeFiltered);
   };
 
-  // console.log(searchGeojson ? true : false);
 
   const [mouseUp, setMouseUp] = useState(true);
   const handleMouseDown = () => {
@@ -249,11 +210,10 @@ function MapScreen() {
             }
           }}
         >
-          {/* {console.log(!!hoverInfo && !!hoverInfo.county && mouseUp)} */}
           <Source type="geojson" data={searchGeojson}>
             <Layer {...layerStyle} />
           </Source>
-          {!!hoverInfo && !!hoverInfo.county && mouseUp && (
+          {!!hoverInfo && !!hoverInfo.county && mouseUp && !modalOpen && (
             <div
               className="tooltip"
               style={{
@@ -313,8 +273,10 @@ function MapScreen() {
             <button
               className="p-2 bg-white rounded-sm border-l group hover:bg-slate-50 duration-75"
               onClick={() => {
-                setSearchGeojson({});
-                // console.log(sea)
+                setSearchGeojson({
+                  type: "FeatureCollection",
+                  features: [],
+                });
                 async function updateGeoJson() {
                   const res = await getName(search, true);
                   let newGeojson = {
@@ -338,7 +300,6 @@ function MapScreen() {
                       (await map[newGeojson.features[i].properties.codarea]) ||
                       0;
                   }
-                  // setSearchGeojson(newGeojson);
                   setBiggerFrequency(major || 1);
                   setSearchGeojson(newGeojson);
                 }
@@ -355,7 +316,6 @@ function MapScreen() {
         <div className="fixed w-[34px] h-[34px] bottom-0 right-0 bg-slate-800 m-5 text-white border justify-center items-center sm:hidden md:flex hover:bg-slate-700 duration-75">
           <button
             onClick={() => {
-              // Voltando a visão inicial do mapa suavemente:
               mapRef.current?.flyTo({
                 center: [-57, -15],
                 zoom: 3.8,
