@@ -6,11 +6,15 @@ import UnderlineTx from "../../Components/Basic/UnderlineTx.jsx";
 
 import Header from "../../Components/Header/Header.jsx";
 import Footer from "../../Components/Footer/Footer.jsx";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+
+import regions from "../../json/state.json";
 
 function MoreInfo() {
   const { acronym } = useParams();
-  console.log(acronym);
+  // const { history } = useHref();
+
+  // console.log(regions.length);
   const [selectedState, setSelectedState] = useState("BR");
 
   useEffect(() => {
@@ -23,12 +27,16 @@ function MoreInfo() {
       <div className="flex md:flex-col sm:scale-90 sm:flex-wrap lg:flex-row justify-around border-b py-28">
         <div className="border-[1px] rounded-sm group sm:w-screen md:w-auto sm:mb-10 lg:mb-0">
           <div className="border-b p-5 flex justify-center bg-slate-800 text-slate-50">
-            <h1 className="text-2xl">Estado Selecionado</h1>
+            <h1 className="text-2xl">Região Selecionado</h1>
           </div>
           <div className="flex m-6 items-center">
             <div className="flex rounded-sm overflow-hidden sm:hidden md:block">
               <img
-                src="https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=image/svg+xml&qualidade=maxima"
+                src={
+                  acronym == "BR"
+                    ? `https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=image/svg+xml&qualidade=maxima`
+                    : `https://servicodados.ibge.gov.br/api/v3/malhas/estados/${acronym}?formato=image/svg+xml&qualidade=maxima`
+                }
                 alt="state"
                 className="w-[400px] h-[400px] border-[1px] p-5"
               />
@@ -36,24 +44,24 @@ function MoreInfo() {
             <div className="sm:mx-auto md:pl-10">
               <div className="border-b-[1px] py-5">
                 <h1 className="sm:text-2xl md:text-4xl flex items-center">
-                  Nome: <UnderlineTx text={"Brasil"} />{" "}
+                  Nome: <UnderlineTx text={`${regions[acronym].nome}`} />{" "}
                   <img
                     src="https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=image/svg+xml&qualidade=maxima"
                     alt="state"
                     className="w-[24px] h-[24px] sm:block md:hidden ml-2"
                   />
                 </h1>
-                <h1 className="sm:text-base md:text-2xl">Sigla: BR</h1>
+                <h1 className="sm:text-base md:text-2xl">Sigla: {acronym}</h1>
               </div>
               <div className="border-b-[1px] py-5">
-                <h1 className="">Tamanho: 8.515.767,049 km²</h1>
-                <h1 className="">População: 211.755.692 habitantes</h1>
-                <h1 className="">Densidade demográfica: 25,07 hab/km²</h1>
+                <h1 className="">Tamanho: {regions[acronym].tamanho}</h1>
+                <h1 className="">População: {regions[acronym].habitantes}</h1>
+                <h1 className="">Densidade {regions[acronym].densidade}</h1>
               </div>
               <div className="py-5">
-                <h1 className="">PIB: R$ 7,4 trilhões</h1>
-                <h1 className="">Região: América do Sul</h1>
-                <h1 className="">Capital: Brasília</h1>
+                <h1 className="">PIB: {regions[acronym].pib}</h1>
+                <h1 className="">Região: {regions[acronym].região}</h1>
+                <h1 className="">Capital: {regions[acronym].capital}</h1>
               </div>
             </div>
           </div>
@@ -61,7 +69,7 @@ function MoreInfo() {
 
         <div className="border-[1px] rounded-sm group sm:w-screen md:w-auto lg:max-w-[40vw]">
           <div className="border-b p-5 flex justify-center bg-slate-800 text-slate-50">
-            <h1 className="text-2xl">Outros estados</h1>
+            <h1 className="text-2xl">Outras regiões</h1>
           </div>
           <div className="grid p-5">
             <input
@@ -77,287 +85,22 @@ function MoreInfo() {
           </div>
           <div className="h-80 overflow-x-auto p-5 mb-5 overflow border rounded-sm mx-5">
             <div className="flex flex-wrap gap-6 justify-center">
-              <CardImage
-                title={"Acre"}
-                goTo={"./MoreInfo/AC"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/AC?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("AC");
-                }}
-              />
-              <CardImage
-                title={"Alagoas"}
-                goTo={"./MoreInfo/AL"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/AL?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("AL");
-                }}
-              />
-              <CardImage
-                title={"Amapá"}
-                goTo={"./MoreInfo/AP"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/AP?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("AP");
-                }}
-              />
-              <CardImage
-                title={"Amazonas"}
-                goTo={"./MoreInfo/AM"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/AM?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("AM");
-                }}
-              />
-              <CardImage
-                title={"Bahia"}
-                goTo={"./MoreInfo/BA"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/BA?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("BA");
-                }}
-              />
-              <CardImage
-                title={"Ceará"}
-                goTo={"./MoreInfo/CE"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/CE?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("CE");
-                }}
-              />
-              <CardImage
-                title={"Distrito Federal"}
-                goTo={"./MoreInfo/DF"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/DF?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("DF");
-                }}
-              />
-              <CardImage
-                title={"Espírito Santo"}
-                goTo={"./MoreInfo/ES"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/ES?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("ES");
-                }}
-              />
-              <CardImage
-                title={"Goiás"}
-                goTo={"./MoreInfo/GO"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/GO?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("GO");
-                }}
-              />
-              <CardImage
-                title={"Maranhão"}
-                goTo={"./MoreInfo/MA"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/MA?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("MA");
-                }}
-              />
-              <CardImage
-                title={"Mato Grosso"}
-                goTo={"./MoreInfo/MT"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/MT?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("MT");
-                }}
-              />
-              <CardImage
-                title={"Mato Grosso do Sul"}
-                goTo={"./MoreInfo/MS"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/MS?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("MS");
-                }}
-              />
-              <CardImage
-                title={"Minas Gerais"}
-                goTo={"./MoreInfo/MG"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/MG?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("MG");
-                }}
-              />
-              <CardImage
-                title={"Pará"}
-                goTo={"./MoreInfo/PA"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/PA?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("PA");
-                }}
-              />
-              <CardImage
-                title={"Paraíba"}
-                goTo={"./MoreInfo/PB"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/PB?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("PB");
-                }}
-              />
-              <CardImage
-                title={"Paraná"}
-                goTo={"./MoreInfo/PR"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/PR?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("PR");
-                }}
-              />
-              <CardImage
-                title={"Pernambuco"}
-                goTo={"./MoreInfo/PE"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/PE?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("PE");
-                }}
-              />
-              <CardImage
-                title={"Piauí"}
-                goTo={"./MoreInfo/PI"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/PI?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("PI");
-                }}
-              />
-              <CardImage
-                title={"Rio de Janeiro"}
-                goTo={"./MoreInfo/RJ"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/RJ?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("RJ");
-                }}
-              />
-
-              <CardImage
-                title={"Rio Grande do Norte"}
-                goTo={"./MoreInfo/RN"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/RN?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("RN");
-                }}
-              />
-              <CardImage
-                title={"Rio Grande do Sul"}
-                goTo={"./MoreInfo/RS"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/RS?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("RS");
-                }}
-              />
-              <CardImage
-                title={"Rondônia"}
-                goTo={"./MoreInfo/RO"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/RO?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("RO");
-                }}
-              />
-              <CardImage
-                title={"Roraima"}
-                goTo={"./MoreInfo/RR"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/RR?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("RR");
-                }}
-              />
-              <CardImage
-                title={"Santa Catarina"}
-                goTo={"./MoreInfo/SC"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/SC?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("SC");
-                }}
-              />
-              <CardImage
-                title={"São Paulo"}
-                goTo={"./MoreInfo/SP"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/SP?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("SP");
-                }}
-              />
-              <CardImage
-                title={"Sergipe"}
-                goTo={"./MoreInfo/SE"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/SE?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("SE");
-                }}
-              />
-              <CardImage
-                title={"Tocantins"}
-                goTo={"./MoreInfo/TO"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/estados/TO?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("TO");
-                }}
-              />
-              <CardImage
-                title={"Brasil"}
-                goTo={"./MoreInfo/BR"}
-                image={
-                  "https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=image/svg+xml&qualidade=maxima"
-                }
-                onClick={() => {
-                  setSelectedState("BR");
-                }}
-              />
+              {Object.keys(regions).map((region) => (
+                <Link key={`key-region-${regions[region].sigla}`} to={`/MoreInfo/${regions[region].sigla}`}>
+                  <CardImage
+                    key={`region-${regions[region].sigla}`}
+                    title={regions[region].nome}
+                    image={
+                      regions[region].sigla == "BR"
+                        ? "https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=image/svg+xml&qualidade=maxima"
+                        : `https://servicodados.ibge.gov.br/api/v3/malhas/estados/${regions[region].sigla}?formato=image/svg+xml&qualidade=maxima`
+                    }
+                    onClick={() => {
+                      setSelectedState(regions[region].sigla);
+                    }}
+                  />
+                </Link>
+              ))}
             </div>
           </div>
         </div>
@@ -379,16 +122,6 @@ function MoreInfo() {
           <div className="sm:mx-4 md:mx-0 shadow-lg">
             <div className="border-b p-5 flex justify-center bg-slate-800 text-white">
               <h1 className="text-2xl">Gráfico com Filtro</h1>
-            </div>
-            <img
-              src="https://placehold.co/1000x600"
-              alt="Gráfico"
-              className=""
-            />
-          </div>
-          <div className="sm:mx-4 md:mx-0 shadow-lg">
-            <div className="border-b p-5 flex justify-center bg-slate-800 text-white">
-              <h1 className="text-2xl">Ranking de Nomes</h1>
             </div>
             <img
               src="https://placehold.co/1000x600"
