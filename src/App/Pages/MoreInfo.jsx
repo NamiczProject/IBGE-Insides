@@ -65,8 +65,7 @@ function MoreInfo() {
 
       setDetails(null);
       
-      getName(search, groupBy, sex).then((res) => {
-        console.log(res);
+      getName(search, groupBy, sex, regions[acronym].codarea).then((res) => {
         let data = {
           x: [],
           y: [],
@@ -89,7 +88,7 @@ function MoreInfo() {
         setDetails(data);
       });
     }
-  }, [sex, search, groupBy]);
+  }, [sex, search, groupBy, acronym]);
 
   return (
     <>
