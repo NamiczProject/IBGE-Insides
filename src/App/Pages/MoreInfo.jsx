@@ -12,6 +12,10 @@ import regions from "../../json/state.json";
 import Plot from "react-plotly.js";
 
 import { getRanking } from "../../utils/getRanking.js";
+import { Checkbox, FormControlLabel, Radio, RadioGroup } from "@mui/material";
+
+import "../styles/moreinfo.css";
+import { getName } from "../../utils/getName.js";
 
 function MoreInfo() {
   const { acronym } = useParams();
@@ -47,6 +51,43 @@ function MoreInfo() {
     if (!searchRegion) setSearchRegion(false);
     console.log(searchRegion);
   }, [searchRegion]);
+
+  const [sex, setSex] = useState(false);
+  const [search, setSearch] = useState(false);
+  const [groupBy, setGroupBy] = useState(false);
+
+  const [details, setDetails] = useState(false);
+
+  useEffect(() => {
+    if(search){
+
+      setDetails(null);
+      
+      getName(search, groupBy, sex).then((res) => {
+        console.log(res);
+        let data = {
+          x: [],
+          y: [],
+        };
+        if (groupBy) {
+          res.map((item) => {
+            const county = Object.keys(regions).find((region) => (
+              regions[region].codarea == item.localidade
+            ));
+
+            data.x.push(regions[county].nome);
+            data.y.push(item.res[0].frequencia);
+          });
+        } else {
+          res[0].res.map((item) => {
+            data.x.push(item.periodo);
+            data.y.push(item.frequencia);
+          });
+        }
+        setDetails(data);
+      });
+    }
+  }, [sex, search, groupBy]);
 
   return (
     <>
@@ -151,19 +192,99 @@ function MoreInfo() {
         </div>
 
         <div className="flex flex-wrap gap-8 justify-around pt-14">
-          <div className="sm:min-w-[80vw] md:min-w-[25rem] min-h-[30rem] border shadow-lg">
+          <div className="sm:min-w-[80vw] md:min-w-[25rem] min-h-[30rem] border shadow-lg flex flex-col">
             <div className="border-b p-5 flex justify-center bg-slate-800 text-white">
-              <h1 className="text-2xl">Filtro</h1>
+              <h1 className="text-2xl">Filtros</h1>
+            </div>
+            <input
+              type="text"
+              name="stateFinder"
+              id="stateFinder"
+              placeholder="Digite um nome..."
+              className="text-center p-[20px] text-lg pl-3 hover:pl-4 focus:pl-5 focus:border-slate-950 duration-75 border outline-none"
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+            />
+            <div className="flex center items-center flex-col border-b sm:py-0 md:py-5">
+              <h1 className="font-bold">Gênero</h1>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+                defaultValue="N/A"
+                onChange={(e) => setSex(e.target.value)}
+              >
+                <FormControlLabel
+                  value="N/A"
+                  control={<Radio />}
+                  label="Ambos"
+                  disabled={groupBy}
+                />
+                <FormControlLabel
+                  value="F"
+                  control={<Radio />}
+                  label="Feminino"
+                  disabled={groupBy}
+                />
+                <FormControlLabel
+                  value="M"
+                  control={<Radio />}
+                  label="Masculino"
+                  disabled={groupBy}
+                />
+              </RadioGroup>
+            </div>
+            <div className="flex justify-center items-center flex-row border-b sm:py-0 md:py-5">
+              <Checkbox
+                onChange={(e) => {
+                  setGroupBy(e.target.checked);
+                }}
+              />
+              <div className="flex justify-center items-center flex-col">
+                <p
+                  className={`font-bold mb-2 ${
+                    groupBy ? "slide-in" : "slide-out"
+                  }`}
+                >
+                  Filtrar frequência por UF
+                </p>
+                {/* {groupBy && ( */}
+                <div className="text-center">
+                  <p
+                    className={`text-sm ${
+                      groupBy ? "p-slide-in" : "p-slide-out"
+                    }`}
+                  >
+                    Implica em desativar outros filtros
+                    <br />
+                    (genero e/ou localidade)
+                  </p>
+                </div>
+                {/* )} */}
+              </div>
             </div>
           </div>
           <div className="sm:mx-4 md:mx-0 shadow-lg">
             <div className="border-b p-5 flex justify-center bg-slate-800 text-white">
-              <h1 className="text-2xl">Gráfico com Filtro</h1>
+              <h1 className="text-2xl">Detalhes</h1>
             </div>
-            <img
-              src="https://placehold.co/1000x600"
-              alt="Gráfico"
-              className=""
+            <Plot
+              data={
+                details && [
+                  {
+                    type: "bar",
+                    x: details.x,
+                    y: details.y,
+                    marker: { color: "#4ba5d6", borderColor: "#000" },
+                  },
+                ]
+              }
+              layout={{
+                width: 1400,
+                height: 700,
+                title: groupBy ? "Estados" : search ? `Frequência de ${search.toUpperCase()} em ${regions[acronym].nome}` : '',
+              }}
             />
           </div>
           <div className="sm:mx-4 md:mx-0 shadow-lg">

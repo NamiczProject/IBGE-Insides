@@ -198,7 +198,7 @@ function Drawerbar(props) {
                   <FormControlLabel
                     value="N/A"
                     control={<Radio />}
-                    label="Todos"
+                    label="Ambos"
                   />
                 </RadioGroup>
               </div>
