@@ -58,13 +58,12 @@ function MoreInfo() {
 
   const [details, setDetails] = useState(false);
 
-  const [detailsStyle, setDetailsStyle] = useState('lines');
+  const [detailsStyle, setDetailsStyle] = useState("lines");
 
   useEffect(() => {
-    if(search){
-
+    if (search) {
       setDetails(null);
-      
+
       getName(search, groupBy, sex, regions[acronym].codarea).then((res) => {
         let data = {
           x: [],
@@ -72,9 +71,9 @@ function MoreInfo() {
         };
         if (groupBy) {
           res.map((item) => {
-            const county = Object.keys(regions).find((region) => (
-              regions[region].codarea == item.localidade
-            ));
+            const county = Object.keys(regions).find(
+              (region) => regions[region].codarea == item.localidade
+            );
 
             data.x.push(regions[county].nome);
             data.y.push(item.res[0].frequencia);
@@ -94,7 +93,7 @@ function MoreInfo() {
     <>
       <Header />
       <div className="flex md:flex-col sm:scale-90 sm:flex-wrap lg:flex-row justify-around border-b py-28">
-        <div className="border-[1px] rounded-sm group sm:w-screen md:w-auto sm:mb-10 lg:mb-0">
+        <div className="border-[1px] rounded-sm group sm:w-screen md:min-w-[40vw] md:max-w-[50vw] sm:mb-10 lg:mb-0">
           <div className="border-b p-5 flex justify-center bg-slate-800 text-slate-50">
             <h1 className="text-2xl">Região Selecionado</h1>
           </div>
@@ -110,12 +109,16 @@ function MoreInfo() {
                 className="w-[400px] h-[400px] border-[1px] p-5"
               />
             </div>
-            <div className="sm:mx-auto md:pl-10">
+            <div className="sm:mx-auto sm:w-full md:w-1/2 md:pl-5 sm:pl-0 justify-start">
               <div className="border-b-[1px] py-5">
-                <h1 className="sm:text-2xl md:text-4xl flex items-center">
+                <h1 className="sm:text-2xl md:text-4xl flex items-center gap-1">
                   Nome: <UnderlineTx text={`${regions[acronym].nome}`} />{" "}
                   <img
-                    src="https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=image/svg+xml&qualidade=maxima"
+                    src={
+                      acronym == "BR"
+                        ? `https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=image/svg+xml&qualidade=maxima`
+                        : `https://servicodados.ibge.gov.br/api/v3/malhas/estados/${acronym}?formato=image/svg+xml&qualidade=maxima`
+                    }
                     alt="state"
                     className="w-[24px] h-[24px] sm:block md:hidden ml-2"
                   />
@@ -145,7 +148,7 @@ function MoreInfo() {
               type="text"
               name="stateFinder"
               id="stateFinder"
-              placeholder="Procure um estado brasileiro..."
+              placeholder="Procure um estado brasileiro"
               className="p-[5px] pl-3 hover:pl-4 focus:pl-5 focus:border-slate-950 duration-75 border outline-none"
               onChange={(e) => {
                 setSearchRegion(e.target.value);
@@ -157,8 +160,7 @@ function MoreInfo() {
               {Object.keys(regions).map((region) => (
                 <Link
                   key={`key-region-${regions[region].sigla}`}
-                  to={`/MoreInfo/${regions[region].sigla}`}
-                >
+                  to={`/MoreInfo/${regions[region].sigla}`}>
                   <CardImage
                     key={`region-${regions[region].sigla}`}
                     title={regions[region].nome}
@@ -194,6 +196,7 @@ function MoreInfo() {
 
         <div className="flex flex-wrap gap-8 justify-around pt-14">
           <div className="sm:min-w-[80vw] md:min-w-[25rem] min-h-[30rem] border shadow-lg flex flex-col">
+
             <div className="border-b p-5 flex justify-center bg-slate-800 text-white">
               <h1 className="text-2xl">Filtros</h1>
             </div>
@@ -201,7 +204,7 @@ function MoreInfo() {
               type="text"
               name="stateFinder"
               id="stateFinder"
-              placeholder="Digite um nome..."
+              placeholder="Digite um nome"
               className="text-center p-[20px] text-lg pl-3 hover:pl-4 focus:pl-5 focus:border-slate-950 duration-75 border outline-none"
               onChange={(e) => {
                 setSearch(e.target.value);
@@ -214,8 +217,7 @@ function MoreInfo() {
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
                 defaultValue="N/A"
-                onChange={(e) => setSex(e.target.value)}
-              >
+                onChange={(e) => setSex(e.target.value)}>
                 <FormControlLabel
                   value="N/A"
                   control={<Radio />}
@@ -246,8 +248,7 @@ function MoreInfo() {
                 <p
                   className={`font-bold mb-2 ${
                     groupBy ? "slide-in" : "slide-out"
-                  }`}
-                >
+                  }`}>
                   Filtrar frequência por UF
                 </p>
                 {/* {groupBy && ( */}
@@ -255,8 +256,7 @@ function MoreInfo() {
                   <p
                     className={`text-sm ${
                       groupBy ? "p-slide-in" : "p-slide-out"
-                    }`}
-                  >
+                    }`}>
                     Implica em desativar outros filtros
                     <br />
                     (genero e/ou localidade)
@@ -272,8 +272,7 @@ function MoreInfo() {
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
                 defaultValue="lines"
-                onChange={(e) => setDetailsStyle(e.target.value)}
-              >
+                onChange={(e) => setDetailsStyle(e.target.value)}>
                 <FormControlLabel
                   value="lines"
                   control={<Radio />}
@@ -287,6 +286,7 @@ function MoreInfo() {
               </RadioGroup>
             </div>
           </div>
+          
           <div className="sm:mx-4 md:mx-0 shadow-lg">
             <div className="border-b p-5 flex justify-center bg-slate-800 text-white">
               <h1 className="text-2xl">Detalhes</h1>
@@ -303,10 +303,17 @@ function MoreInfo() {
                 ]
               }
               layout={{
-                width: 1400,
+                width: 1000,
                 height: 700,
-                title: groupBy ? "Estados" : search ? `Frequência de ${search.toUpperCase()} em ${regions[acronym].nome}` : '',
+                title: groupBy
+                  ? "Estados"
+                  : search
+                  ? `Frequência de ${search.toUpperCase()} em ${
+                      regions[acronym].nome
+                    }`
+                  : "",
               }}
+              config={{ responsive: true }}
             />
           </div>
           <div className="sm:mx-4 md:mx-0 shadow-lg">
