@@ -58,6 +58,8 @@ function MoreInfo() {
 
   const [details, setDetails] = useState(false);
 
+  const [detailsStyle, setDetailsStyle] = useState('lines');
+
   useEffect(() => {
     if(search){
 
@@ -264,6 +266,27 @@ function MoreInfo() {
                 {/* )} */}
               </div>
             </div>
+            <div className="flex center items-center flex-col border-b sm:py-0 md:py-5">
+              <h1 className="font-bold">Estilo do gráfico</h1>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+                defaultValue="lines"
+                onChange={(e) => setDetailsStyle(e.target.value)}
+              >
+                <FormControlLabel
+                  value="lines"
+                  control={<Radio />}
+                  label="Linhas"
+                />
+                <FormControlLabel
+                  value="bar"
+                  control={<Radio />}
+                  label="Barras"
+                />
+              </RadioGroup>
+            </div>
           </div>
           <div className="sm:mx-4 md:mx-0 shadow-lg">
             <div className="border-b p-5 flex justify-center bg-slate-800 text-white">
@@ -273,7 +296,7 @@ function MoreInfo() {
               data={
                 details && [
                   {
-                    type: "bar",
+                    type: detailsStyle,
                     x: details.x,
                     y: details.y,
                     marker: { color: "#4ba5d6", borderColor: "#000" },
