@@ -1,4 +1,9 @@
 import { useEffect, useState } from "react";
+import {
+  useWindowSize,
+  useWindowWidth,
+  useWindowHeight,
+} from "@react-hook/window-size/throttled";
 
 // Components:
 import CardImage from "../../Components/CardImage/CardImage.jsx";
@@ -19,7 +24,7 @@ import { getName } from "../../utils/getName.js";
 
 function MoreInfo() {
   const { acronym } = useParams();
-
+  const [width, height] = useWindowSize();
   const [selectedState, setSelectedState] = useState("BR");
 
   useEffect(() => {
@@ -92,7 +97,7 @@ function MoreInfo() {
   return (
     <>
       <Header />
-      <div className="flex md:flex-col sm:scale-90 sm:flex-wrap lg:flex-row justify-around border-b py-28">
+      <div className="flex md:flex-col sm:scale-90 sm:flex-wrap lg:flex-row justify-around pt-28">
         <div className="border-[1px] rounded-sm group sm:w-screen md:min-w-[40vw] md:max-w-[50vw] sm:mb-10 lg:mb-0">
           <div className="border-b p-5 flex justify-center bg-slate-800 text-slate-50">
             <h1 className="text-2xl">Região Selecionado</h1>
@@ -188,15 +193,31 @@ function MoreInfo() {
       </div>
 
       <div className="pb-28">
-        <div className="text-center mt-10">
-          <h1 className="text-3xl">
-            <UnderlineTx text={"Analisando dados"} />
-          </h1>
-        </div>
-
-        <div className="flex flex-wrap gap-8 justify-around pt-14">
-          <div className="sm:min-w-[80vw] md:min-w-[25rem] min-h-[30rem] border shadow-lg flex flex-col">
-
+        <div className="flex flex-wrap gap-8 items-center justify-around pt-14 px-[8vh]">
+          <div className="sm:mx-4 md:mx-0 shadow-lg mb-14">
+            <div className="border-b p-5 flex justify-center bg-slate-800 text-white">
+              <h1 className="text-2xl">Ranking de Nomes</h1>
+            </div>
+            <Plot
+              data={
+                ranking && [
+                  {
+                    type: "bar",
+                    x: ranking.x,
+                    y: ranking.y,
+                    marker: { color: "#334155", borderColor: "#020617" },
+                  },
+                ]
+              }
+              layout={{
+                width: width * 0.9,
+                height: width > 1280 ? height * 0.75 : width * 0.5,
+                title: `${regions[acronym].nome}`,
+              }}
+              config={{ responsive: true, displayModeBar: false }}
+            />
+          </div>
+          <div className="sm:min-w-[80vw] md:min-w-[25rem] h-fit border shadow-lg flex flex-col">
             <div className="border-b p-5 flex justify-center bg-slate-800 text-white">
               <h1 className="text-2xl">Filtros</h1>
             </div>
@@ -205,12 +226,12 @@ function MoreInfo() {
               name="stateFinder"
               id="stateFinder"
               placeholder="Digite um nome"
-              className="text-center p-[20px] text-lg pl-3 hover:pl-4 focus:pl-5 focus:border-slate-950 duration-75 border outline-none"
+              className="text-'center' p-5 text-lg pl-3 hover:pl-4 focus:pl-5 focus:border-slate-950 duration-75 border outline-none"
               onChange={(e) => {
                 setSearch(e.target.value);
               }}
             />
-            <div className="flex center items-center flex-col border-b sm:py-0 md:py-5">
+            <div className="flex center items-center flex-col border-b sm:py-3 md:py-5">
               <h1 className="font-bold">Gênero</h1>
               <RadioGroup
                 row
@@ -265,7 +286,7 @@ function MoreInfo() {
                 {/* )} */}
               </div>
             </div>
-            <div className="flex center items-center flex-col border-b sm:py-0 md:py-5">
+            <div className="flex center items-center flex-col border-b sm:py-3 md:py-5">
               <h1 className="font-bold">Estilo do gráfico</h1>
               <RadioGroup
                 row
@@ -286,7 +307,7 @@ function MoreInfo() {
               </RadioGroup>
             </div>
           </div>
-          
+
           <div className="sm:mx-4 md:mx-0 shadow-lg">
             <div className="border-b p-5 flex justify-center bg-slate-800 text-white">
               <h1 className="text-2xl">Detalhes</h1>
@@ -298,13 +319,18 @@ function MoreInfo() {
                     type: detailsStyle,
                     x: details.x,
                     y: details.y,
-                    marker: { color: "#4ba5d6", borderColor: "#000" },
+                    marker: { color: "#334155", borderColor: "#020617" },
                   },
                 ]
               }
               layout={{
-                width: 1000,
-                height: 700,
+                width:
+                  width > 1280
+                    ? width * 0.65
+                    : width > 920
+                    ? width * 0.8
+                    : width * 0.9,
+                height: width > 1280 ? height * 0.66 : width * 0.5,
                 title: groupBy
                   ? "Estados"
                   : search
@@ -313,29 +339,7 @@ function MoreInfo() {
                     }`
                   : "",
               }}
-              config={{ responsive: true }}
-            />
-          </div>
-          <div className="sm:mx-4 md:mx-0 shadow-lg">
-            <div className="border-b p-5 flex justify-center bg-slate-800 text-white">
-              <h1 className="text-2xl">Ranking de Nomes</h1>
-            </div>
-            <Plot
-              data={
-                ranking && [
-                  {
-                    type: "bar",
-                    x: ranking.x,
-                    y: ranking.y,
-                    marker: { color: "#4ba5d6", borderColor: "#000" },
-                  },
-                ]
-              }
-              layout={{
-                width: 1800,
-                height: 700,
-                title: `${regions[acronym].nome}`,
-              }}
+              config={{ responsive: true, displayModeBar: false }}
             />
           </div>
         </div>
