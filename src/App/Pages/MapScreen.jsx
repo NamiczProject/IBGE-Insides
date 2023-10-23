@@ -215,17 +215,13 @@ function MapScreen() {
           </Source>
           {!!hoverInfo && !!hoverInfo.county && mouseUp && !modalOpen && (
             <div
-              className="tooltip"
+              className="tooltip bg-slate-800 rounded-sm text-white border-white border-[1px] absolute p-3 pointer-events-none -translate-x-1/2"
               style={{
-                background: "rgba(173, 216, 230, 0.8)",
-                position: "absolute",
-                left: mousePosition.x - 40,
-                top: mousePosition.y - (biggerFrequency ? 70 : 50),
-                padding: "10px",
-                pointerEvents: "none",
+                left: mousePosition.x,
+                top: mousePosition.y - (biggerFrequency?  80 : 60),
               }}
             >
-              <div>Estado: {hoverInfo.county}</div>
+              <div className="">{hoverInfo.county}</div>
               {biggerFrequency ? (
                 <div>Frequencia: {hoverInfo.frequencia || 0}</div>
               ) : null}
