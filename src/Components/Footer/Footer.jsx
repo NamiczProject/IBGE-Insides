@@ -12,9 +12,9 @@ function Footer(){
                 <div className="flex gap-5 sm:flex-col md:flex-row sm:text-center md:text-start sm:mb-4">
                     <div className="">
                         <ul className='gap-2 grid'>
-                            <li><a href="https://github.com/vct-h-dias/IBGE-Insides" target="_blank" className='hover:text-black hover:bg-slate-50 duration-100'>| Repositório do projeto <span className="md:hidden">|</span></a></li>
-                            <li><a href="#" target="_blank" className='hover:text-black hover:bg-slate-50 duration-100'>| Documentação do projeto <span className="md:hidden">|</span></a></li>
-                            <li><a href="#" target="_blank" className='hover:text-black hover:bg-slate-50 duration-100'>| Entrar em contato <span className="md:hidden">|</span></a></li>
+                            <li><a href="https://github.com/NamiczProject/IBGE-Insides" target="_blank" className='hover:text-black hover:bg-slate-50 duration-100'>| Repositório do projeto <span className="md:hidden">|</span></a></li>
+                            <li><a href="https://github.com/NamiczProject/IBGE-Insides#readme" target="_blank" className='hover:text-black hover:bg-slate-50 duration-100'>| Documentação do projeto <span className="md:hidden">|</span></a></li>
+                            <li><a href="https://github.com/orgs/NamiczProject/people" target="_blank" className='hover:text-black hover:bg-slate-50 duration-100'>| Desenvolvedores <span className="md:hidden">|</span></a></li>
                         </ul>
                     </div>
                     <div className="md:text-end">

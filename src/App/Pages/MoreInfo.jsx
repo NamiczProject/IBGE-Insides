@@ -98,8 +98,8 @@ function MoreInfo() {
     <>
       <Header />
       <div className="flex md:flex-col sm:scale-90 sm:flex-wrap lg:flex-row justify-around pt-28">
-        <div className="border-[1px] rounded-sm group sm:w-screen md:min-w-[40vw] md:max-w-[50vw] sm:mb-10 lg:mb-0">
-          <div className="border-b p-5 flex justify-center bg-slate-800 text-slate-50">
+        <div className="border-[1px] rounded-md group sm:w-screen md:min-w-[40vw] md:max-w-[50vw] sm:mb-10 lg:mb-0">
+          <div className="border-b p-5 flex justify-center bg-slate-800 text-slate-50 rounded-t-md">
             <h1 className="text-2xl">Região Selecionado</h1>
           </div>
           <div className="flex m-6 items-center">
@@ -111,7 +111,7 @@ function MoreInfo() {
                     : `https://servicodados.ibge.gov.br/api/v3/malhas/estados/${acronym}?formato=image/svg+xml&qualidade=maxima`
                 }
                 alt="state"
-                className="w-[400px] h-[400px] border-[1px] p-5"
+                className="w-[400px] h-[400px] border-[1px] p-5 rounded-lg"
               />
             </div>
             <div className="sm:mx-auto sm:w-full md:w-1/2 md:pl-5 sm:pl-0 justify-start">
@@ -144,8 +144,8 @@ function MoreInfo() {
           </div>
         </div>
 
-        <div className="border-[1px] rounded-sm group sm:w-screen md:w-auto lg:max-w-[40vw]">
-          <div className="border-b p-5 flex justify-center bg-slate-800 text-slate-50">
+        <div className="border-[1px] rounded-md group sm:w-screen md:w-auto lg:max-w-[40vw]">
+          <div className="border-b p-5 flex justify-center bg-slate-800 text-slate-50 rounded-t-md">
             <h1 className="text-2xl">Outras regiões</h1>
           </div>
           <div className="grid p-5">
@@ -154,13 +154,13 @@ function MoreInfo() {
               name="stateFinder"
               id="stateFinder"
               placeholder="Procure um estado brasileiro"
-              className="p-[5px] pl-3 hover:pl-4 focus:pl-5 focus:border-slate-950 duration-75 border outline-none"
+              className="p-[5px] pl-3 hover:pl-4 focus:pl-5 focus:border-slate-950 duration-75 border outline-none rounded-lg"
               onChange={(e) => {
                 setSearchRegion(e.target.value);
               }}
             />
           </div>
-          <div className="h-80 overflow-x-auto p-5 mb-5 overflow border rounded-sm mx-5">
+          <div className="h-80 overflow-x-auto p-5 mb-5 overflow border rounded-lg mx-5">
             <div className="flex flex-wrap gap-6 justify-center">
               {Object.keys(regions).map((region) => (
                 <Link
@@ -194,8 +194,8 @@ function MoreInfo() {
 
       <div className="pb-28">
         <div className="flex flex-wrap gap-8 items-center justify-around pt-14 px-[8vh]">
-          <div className="sm:mx-4 md:mx-0 shadow-lg mb-14">
-            <div className="border-b p-5 flex justify-center bg-slate-800 text-white">
+          <div className="sm:mx-4 md:mx-0 shadow-lg mb-14 rounded-md">
+            <div className="border-b p-5 flex justify-center bg-slate-800 text-white rounded-t-md">
               <h1 className="text-2xl">Ranking de Nomes</h1>
             </div>
             <Plot
@@ -217,8 +217,8 @@ function MoreInfo() {
               config={{ responsive: true, displayModeBar: false }}
             />
           </div>
-          <div className="sm:min-w-[80vw] md:min-w-[25rem] h-fit border shadow-lg flex flex-col">
-            <div className="border-b p-5 flex justify-center bg-slate-800 text-white">
+          <div className="sm:min-w-[80vw] md:min-w-[25rem] h-fit border shadow-lg flex flex-col rounded-md">
+            <div className="border-b p-5 flex justify-center bg-slate-800 text-white rounded-t-md">
               <h1 className="text-2xl">Filtros</h1>
             </div>
             <input
@@ -226,7 +226,7 @@ function MoreInfo() {
               name="stateFinder"
               id="stateFinder"
               placeholder="Digite um nome"
-              className="text-'center' p-5 text-lg pl-3 hover:pl-4 focus:pl-5 focus:border-slate-950 duration-75 border outline-none"
+              className="p-5 text-lg pl-3 hover:pl-4 focus:pl-5 focus:border-slate-400 duration-75 border-b outline-none"
               onChange={(e) => {
                 setSearch(e.target.value);
               }}
@@ -286,7 +286,7 @@ function MoreInfo() {
                 {/* )} */}
               </div>
             </div>
-            <div className="flex center items-center flex-col border-b sm:py-3 md:py-5">
+            <div className="flex center items-center flex-col sm:py-3 md:py-5">
               <h1 className="font-bold">Estilo do gráfico</h1>
               <RadioGroup
                 row
@@ -308,8 +308,8 @@ function MoreInfo() {
             </div>
           </div>
 
-          <div className="sm:mx-4 md:mx-0 shadow-lg">
-            <div className="border-b p-5 flex justify-center bg-slate-800 text-white">
+          <div className="sm:mx-4 md:mx-0 shadow-lg rounded-md">
+            <div className="border-b p-5 flex justify-center bg-slate-800 text-white rounded-t-md">
               <h1 className="text-2xl">Detalhes</h1>
             </div>
             <Plot
@@ -334,7 +334,7 @@ function MoreInfo() {
                 title: groupBy
                   ? "Estados"
                   : search
-                  ? `Frequência de ${search.toUpperCase()} em ${
+                  ? `Frequência do nome ${search.toUpperCase()} em ${
                       regions[acronym].nome
                     }`
                   : "",
