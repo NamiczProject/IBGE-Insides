@@ -259,7 +259,9 @@ function MapScreen() {
                 setSearch(e.target.value);
               }}
               onKeyUp={(e) => {
-                if (e.key === "Enter") {
+                if (search === "") {
+                  console.log("oi");
+                } else if (e.key === "Enter") {
                   setSearchGeojson({
                     type: "FeatureCollection",
                     features: [],
@@ -298,37 +300,42 @@ function MapScreen() {
             <button
               className="p-2 bg-white rounded-sm border-l group hover:bg-slate-50 duration-75"
               onClick={() => {
-                setSearchGeojson({
-                  type: "FeatureCollection",
-                  features: [],
-                });
-                async function updateGeoJson() {
-                  const res = await getName(search, true);
-                  let newGeojson = {
+                if (search === "") {
+                  console.log("oi");
+                } else {
+                  setSearchGeojson({
                     type: "FeatureCollection",
                     features: [],
-                  };
-                  let major = null;
-                  const map = {};
+                  });
+                  async function updateGeoJson() {
+                    const res = await getName(search, true);
+                    let newGeojson = {
+                      type: "FeatureCollection",
+                      features: [],
+                    };
+                    let major = null;
+                    const map = {};
 
-                  for (const county of res) {
-                    map[parseInt(county.localidade)] = await county.res[0]
-                      .frequencia;
-                    if (major == null || major < county.res[0].frequencia) {
-                      major = await county.res[0].frequencia;
+                    for (const county of res) {
+                      map[parseInt(county.localidade)] = await county.res[0]
+                        .frequencia;
+                      if (major == null || major < county.res[0].frequencia) {
+                        major = await county.res[0].frequencia;
+                      }
                     }
-                  }
 
-                  for (let i = 0; i < geojson.features.length; i++) {
-                    newGeojson.features[i] = await geojson.features[i];
-                    newGeojson.features[i].properties.frequencia =
-                      (await map[newGeojson.features[i].properties.codarea]) ||
-                      0;
+                    for (let i = 0; i < geojson.features.length; i++) {
+                      newGeojson.features[i] = await geojson.features[i];
+                      newGeojson.features[i].properties.frequencia =
+                        (await map[
+                          newGeojson.features[i].properties.codarea
+                        ]) || 0;
+                    }
+                    setBiggerFrequency(major || 1);
+                    setSearchGeojson(newGeojson);
                   }
-                  setBiggerFrequency(major || 1);
-                  setSearchGeojson(newGeojson);
+                  updateGeoJson();
                 }
-                updateGeoJson();
               }}>
               <div className="group-hover:scale-125 duration-75">
                 <SearchIcon />
