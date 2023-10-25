@@ -16,6 +16,7 @@ import Drawerbar from "../../Components/Drawerbar/Drawerbar.jsx";
 
 // Icons:
 import SearchIcon from "@mui/icons-material/Search";
+import CloseIcon from '@mui/icons-material/Close';
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ReplayIcon from "@mui/icons-material/Replay";
@@ -69,6 +70,7 @@ function MapScreen() {
   }, []);
 
   const selectedCounty = (hoverInfo && hoverInfo.county) || "";
+  const [hasSearch, setHasSearch] = useState(false);
 
   const layerStyle = {
     id: "data",
@@ -89,7 +91,7 @@ function MapScreen() {
       "fill-opacity": [
         "interpolate",
         ["linear"],
-        ["get", searchGeojson ? "frequencia" : ""],
+        ["get", hasSearch ? "frequencia" : ""],
         0,
         0,
         biggerFrequency || 1,
@@ -129,6 +131,35 @@ function MapScreen() {
   const handleMouseUp = () => {
     setMouseUp(true);
   };
+
+  async function updateGeoJson() {
+    setHasSearch(true);
+    const res = await getName(search, true);
+    let newGeojson = {
+      type: "FeatureCollection",
+      features: [],
+    };
+    let major = null;
+    const map = {};
+
+    for (const county of res) {
+      map[parseInt(county.localidade)] = await county.res[0]
+        .frequencia;
+      if (major == null || major < county.res[0].frequencia) {
+        major = await county.res[0].frequencia;
+      }
+    }
+
+    for (let i = 0; i < geojson.features.length; i++) {
+      newGeojson.features[i] = await geojson.features[i];
+      newGeojson.features[i].properties.frequencia =
+        (await map[
+          newGeojson.features[i].properties.codarea
+        ]) || 0;
+    }
+    setBiggerFrequency(major || 1);
+    setSearchGeojson(newGeojson);
+  }
 
   const [mousePosition, setMousePosition] = useState({ x: null, y: null });
   const handleMouseMove = (e) => {
@@ -218,8 +249,8 @@ function MapScreen() {
                 top: mousePosition.y - (biggerFrequency ? 80 : 60),
               }}>
               <div className="">{hoverInfo.county}</div>
-              {biggerFrequency ? (
-                <div>Frequencia: {hoverInfo.frequencia || 0}</div>
+              {hasSearch ? (
+                <div>Frequencia: {hoverInfo.frequencia || 'Insuficiente'}</div>
               ) : null}
             </div>
           )}
@@ -259,86 +290,38 @@ function MapScreen() {
                 setSearch(e.target.value);
               }}
               onKeyUp={(e) => {
-                if (search === "") {
-                  console.log("oi");
-                } else if (e.key === "Enter") {
+                if (e.key === "Enter" && search) {
                   setSearchGeojson({
                     type: "FeatureCollection",
                     features: [],
                   });
-                  async function updateGeoJson() {
-                    const res = await getName(search, true);
-                    let newGeojson = {
-                      type: "FeatureCollection",
-                      features: [],
-                    };
-                    let major = null;
-                    const map = {};
-
-                    for (const county of res) {
-                      map[parseInt(county.localidade)] = await county.res[0]
-                        .frequencia;
-                      if (major == null || major < county.res[0].frequencia) {
-                        major = await county.res[0].frequencia;
-                      }
-                    }
-
-                    for (let i = 0; i < geojson.features.length; i++) {
-                      newGeojson.features[i] = await geojson.features[i];
-                      newGeojson.features[i].properties.frequencia =
-                        (await map[
-                          newGeojson.features[i].properties.codarea
-                        ]) || 0;
-                    }
-                    setBiggerFrequency(major || 1);
-                    setSearchGeojson(newGeojson);
-                  }
                   updateGeoJson();
                 }
               }}
             />
-            <button
-              className="p-2 bg-white rounded-sm border-l group hover:bg-slate-50 duration-75"
-              onClick={() => {
-                if (search === "") {
-                  console.log("oi");
-                } else {
-                  setSearchGeojson({
-                    type: "FeatureCollection",
-                    features: [],
-                  });
-                  async function updateGeoJson() {
-                    const res = await getName(search, true);
-                    let newGeojson = {
+            <button className="p-2 bg-white rounded-sm border-l group hover:bg-slate-50 duration-75">
+              <div className="flex justify-center items-center">
+                {hasSearch && (
+                  <CloseIcon className="mr-2 hover:scale-125 duration-75"
+                    onClick={() => {
+                      setHasSearch(false);
+                      // setSearchGeojson(geojson)
+                    }}
+                  />
+                )
+
+                }
+                <SearchIcon
+                  className="hover:scale-125 duration-75" 
+                  onClick={() => {
+                    if (search) {
+                      setSearchGeojson({
                       type: "FeatureCollection",
                       features: [],
-                    };
-                    let major = null;
-                    const map = {};
-
-                    for (const county of res) {
-                      map[parseInt(county.localidade)] = await county.res[0]
-                        .frequencia;
-                      if (major == null || major < county.res[0].frequencia) {
-                        major = await county.res[0].frequencia;
-                      }
-                    }
-
-                    for (let i = 0; i < geojson.features.length; i++) {
-                      newGeojson.features[i] = await geojson.features[i];
-                      newGeojson.features[i].properties.frequencia =
-                        (await map[
-                          newGeojson.features[i].properties.codarea
-                        ]) || 0;
-                    }
-                    setBiggerFrequency(major || 1);
-                    setSearchGeojson(newGeojson);
+                    });
+                    updateGeoJson();
                   }
-                  updateGeoJson();
-                }
-              }}>
-              <div className="group-hover:scale-125 duration-75">
-                <SearchIcon />
+                }}/>
               </div>
             </button>
           </div>
