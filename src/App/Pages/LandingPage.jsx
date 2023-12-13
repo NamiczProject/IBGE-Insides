@@ -89,23 +89,23 @@ function LandingPage() {
       <div
         id="Sobre"
         className="bg-slate-700 w-full min-h-screen shadow-inner h-full flex justify-evenly items-center">
-        <div className="bg-slate-50 cursor-pointer sm:hidden md:hidden lg:block">
+        <div className="bg-slate-50 cursor-pointer sm:hidden md:hidden lg:block rounded-md">
           <img
             src={namiczImg}
             alt="namiczLogo"
-            className=" w-96 h-96  shadow-2xl hover:scale-105 duration-150"
+            className=" w-96 h-96  shadow-2xl hover:scale-105 duration-150 rounded-md"
           />
         </div>
 
-        <div className="border-[1px] border-slate-800 rounded-sm md:w-[35rem] lg:w-[45rem] h-fit shadow-2xl sm:scale-75 md:scale-90 lg:scale-100">
-          <div className="w-full bg-slate-100 rounded-t-sm border-b-[1px] border-slate-800 py-5 pl-4">
+        <div className="rounded-md md:w-[35rem] lg:w-[45rem] h-fit shadow-2xl sm:scale-75 md:scale-90 lg:scale-100">
+          <div className="w-full bg-slate-50 rounded-t-md border-b-[1px] border-slate-200 py-5 pl-4">
             <h1 className="text-xl">
               <UnderlineTx text="O que é isso?" />
             </h1>
           </div>
           <div>
             <div className="py-5 px-14 bg-white">
-              <h1>
+              <h1 className="text-justify">
                 O Namicz é uma plataforma revolucionária que fornece acesso
                 gratuito a uma riqueza de dados demográficos do Instituto
                 Brasileiro de Geografia e Estatística. Com foco na visualização
@@ -116,10 +116,10 @@ function LandingPage() {
               </h1>
             </div>
           </div>
-          <div className="bg-white rounded-b-sm pr-14 w-full h-24 flex justify-end items-center">
+          <div className="bg-white rounded-b-md pr-14 w-full h-24 flex justify-end items-center">
             <a
               href="/Map"
-              className="flex items-center justify-center rounded-sm gap-1 h-11 p-1 pr-2 border-[1px] border-slate-400 text-slate-50 bg-slate-800 hover:bg-slate-700 hover:w-fit hover:px-3 duration-75">
+              className="flex items-center justify-center rounded-md gap-1 h-11 p-1 pr-2 border-[1px] border-slate-400 text-slate-50 bg-slate-800 hover:bg-slate-700 hover:w-fit hover:px-3 duration-75">
               <SearchIcon className="text-slate-50" /> <p>Ver Mapa</p>
             </a>
           </div>
@@ -130,8 +130,8 @@ function LandingPage() {
       <div
         id="Finalidade"
         className="flex justify-center items-center w-full px-2 min-h-screen shadow-[0_-65px_60px_-15px_rgba(0,0,0,0.3)] sm:text-justify pt-28">
-        <div className="border-[1px] rounded-sm w-[45rem] h-fit shadow-2xl duration-100 lg:hover:scale-105">
-          <div className="w-full rounded-t-sm border-b-[1px] py-5 flex justify-center bg-white">
+        <div className="border-[1px] rounded-md w-[45rem] h-fit shadow-2xl duration-100 lg:hover:scale-105">
+          <div className="w-full rounded-t-md border-b-[1px] py-5 flex justify-center bg-white">
             <h1 className="text-xl">
               Nossa finalidade, a <UnderlineTx text="antroponomástica" />:
             </h1>
@@ -154,10 +154,10 @@ function LandingPage() {
             O projeto de Antroponímia do Brasil representa uma iniciativa importante para desbravar esse fenômeno muitas vezes esquecido. 
             </h1>
           </div>
-          <div className="rounded-sm sm:justify-center lg:pl-14 md:p-0 md:justify-center lg:justify-start w-full h-24 flex items-center bg-white">
+          <div className="rounded-md sm:justify-center lg:pl-14 md:p-0 md:justify-center lg:justify-start w-full h-24 flex items-center bg-white">
             <a
               href="https://books.google.com.br/books?hl=pt-BR&lr=&id=MTHrDwAAQBAJ&oi=fnd&pg=PP1&dq=nomes+pr%C3%B3prios&ots=N_C77K7N0t&sig=e5MHNNJ_pIg3CjPjZ7VorGZy9x8#v=onepage&q&f=false"
-              className="flex items-center justify-center gap-1 h-11 p-2 border-[1px] border-slate-950 text-slate-950 rounded-sm hover:bg-slate-50 hover:px-3 duration-75">
+              className="flex items-center justify-center gap-1 h-11 p-2 border-[1px] border-slate-950 text-slate-950 rounded-md hover:bg-slate-50 hover:px-3 duration-75">
               <AutoStoriesIcon className="text-slate-950" /> <p>Saiba mais!</p>
             </a>
           </div>

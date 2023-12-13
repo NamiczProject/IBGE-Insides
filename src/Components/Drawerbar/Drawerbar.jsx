@@ -175,7 +175,7 @@ function Drawerbar(props) {
             )}
           </Box>
 
-          <Box className="flex flex-col items-center justify-center p-3 px-10 absolute border">
+          <Box className="flex flex-col items-center justify-center p-3 px-10 absolute">
             <FormControl className="flex items-center justify-center">
               <div className="text-center border-b sm:py-0 md:py-5">
                 <h1 className="font-bold">Gênero</h1>

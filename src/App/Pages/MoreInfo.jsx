@@ -28,7 +28,7 @@ function MoreInfo() {
   const [selectedState, setSelectedState] = useState("BR");
 
   useEffect(() => {
-    console.log(selectedState);
+    //console.log(selectedState);
   }, [selectedState]);
 
   const [ranking, setRanking] = useState(null);
@@ -47,14 +47,14 @@ function MoreInfo() {
       });
 
       setRanking(data);
-      console.log(data);
+      //console.log(data);
     });
   }, [acronym]);
 
   const [searchRegion, setSearchRegion] = useState(false);
   useEffect(() => {
     if (!searchRegion) setSearchRegion(false);
-    console.log(searchRegion);
+    //console.log(searchRegion);
   }, [searchRegion]);
 
   const [sex, setSex] = useState(false);
@@ -98,7 +98,7 @@ function MoreInfo() {
     <>
       <Header />
       <div className="flex md:flex-col sm:scale-90 sm:flex-wrap lg:flex-row justify-around pt-28">
-        <div className="border-[1px] rounded-md group sm:w-screen md:min-w-[40vw] md:max-w-[50vw] sm:mb-10 lg:mb-0">
+        <div className="border-[1px] rounded-md group sm:w-screen md:w-auto lg:min-w-[50vw] sm:mb-10 lg:mb-0">
           <div className="border-b p-5 flex justify-center bg-slate-800 text-slate-50 rounded-t-md">
             <h1 className="text-2xl">Região Selecionado</h1>
           </div>
@@ -223,8 +223,8 @@ function MoreInfo() {
             </div>
             <input
               type="text"
-              name="stateFinder"
-              id="stateFinder"
+              name="nameFinder"
+              id="nameFinder"
               placeholder="Digite um nome"
               className="p-5 text-lg pl-3 hover:pl-4 focus:pl-5 focus:border-slate-400 duration-75 border-b outline-none"
               onChange={(e) => {
@@ -260,7 +260,7 @@ function MoreInfo() {
               </RadioGroup>
             </div>
             <div className="flex justify-center items-center flex-row border-b sm:py-0 md:py-5">
-              <Checkbox
+              <Checkbox id="filterByIF" name="filterByIF" 
                 onChange={(e) => {
                   setGroupBy(e.target.checked);
                 }}
@@ -314,15 +314,16 @@ function MoreInfo() {
             </div>
             <Plot
               data={
-                details && [
+                details && details.x && details.y ? [
                   {
                     type: detailsStyle,
                     x: details.x,
                     y: details.y,
                     marker: { color: "#334155", borderColor: "#020617" },
                   },
-                ]
+                ] : []
               }
+              
               layout={{
                 width:
                   width > 1280

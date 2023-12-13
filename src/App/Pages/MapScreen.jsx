@@ -261,7 +261,7 @@ function MapScreen() {
             openSearchbar ? "sm:w-[100vw]" : "sm:w-[0vw]"
           } md:w-fit`}>
           <button
-            className={`group hover:pl-3 hover:pr-1 flex justify-center items-center min-w-[34px] bg-slate-800 text-white border sm:border-b-0 sm:border-l-0 md:border-l md:border-b border-t-0 md:border-r-0 ${
+            className={`group hover:pl-3 hover:pr-1 flex justify-center items-center min-w-[35px] bg-slate-800 text-white border sm:border-b-0 sm:border-l-0 md:border-l md:border-b border-t-0 md:border-r-0 ${
               openSearchbar ? "sm:border-0" : ""
             } hover:bg-slate-700 duration-75`}
             onClick={() => {
