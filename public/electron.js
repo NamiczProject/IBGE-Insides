@@ -2,6 +2,7 @@ import { app, BrowserWindow } from "electron/main";
 import { join } from "node:path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+// import isDev from "electron-is-dev";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -15,8 +16,8 @@ function createWindow() {
     },
   });
 
-  win.setIcon(join(__dirname, "/src/assets/namicz-Icon.png"));
-  win.loadURL("http://localhost:5173/");
+  win.setIcon(join(__dirname, "../src/assets/namicz-Icon.png"));
+  win.loadURL("https://namicz.vercel.app");
 }
 
 app.whenReady().then(() => {

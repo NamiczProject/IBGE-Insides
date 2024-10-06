@@ -6,9 +6,24 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "electron": "electron main.js",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "electron": "electron public/electron.js",
+    "package:win": "vite build && electron-builder -w -c.extraMetadata.main=build/electron.js",
+    "package:mac": "vite build && electron-builder -m -c.extraMetadata.main=build/electron.js",
+    "package:linux": "vite build && electron-builder -l -c.extraMetadata.main=build/electron.js"
+  },
+  "build": {
+    "appId": "com.namicz.desktop",
+    "productName": "Namicz",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "src/**/*"
+    ],
+    "directories": {
+      "buildResources": "public"
+    }
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -18,6 +33,7 @@
     "@mui/material": "^5.14.11",
     "@react-hook/window-size": "^3.1.1",
     "@turf/turf": "^6.5.0",
+    "electron-is-dev": "^3.0.1",
     "mapbox-gl": "^2.15.0",
     "plotly.js": "^2.27.0",
     "react": "^18.2.0",
@@ -35,6 +51,7 @@
     "@vitejs/plugin-react": "^4.0.3",
     "autoprefixer": "^10.4.16",
     "electron": "^32.1.2",
+    "electron-builder": "^25.1.7",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
@@ -44,6 +61,9 @@
   },
   "description": "Namicz package to a desktop version",
   "main": "postcss.config.js",
-  "author": "",
+  "author": {
+    "name": "Namicz Organization",
+    "email": "namicz@gmai.com"
+  },
   "license": "ISC"
 }
