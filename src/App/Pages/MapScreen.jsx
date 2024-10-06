@@ -250,7 +250,7 @@ function MapScreen() {
               }}>
               <div className="">{hoverInfo.county}</div>
               {hasSearch ? (
-                <div>Frequencia: {hoverInfo.frequencia || 'Insuficiente'}</div>
+                <div>Frequência: {hoverInfo.frequencia || 'Insuficiente'}</div>
               ) : null}
             </div>
           )}

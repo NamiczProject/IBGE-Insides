@@ -40,7 +40,7 @@ export default function Modaldiv({
               <h1>Nome</h1>
             </div>
             <div className="w-1/2 justify-end flex font-bold">
-              <h1>Frequencia</h1>
+              <h1>Frequência</h1>
             </div>
           </div>
           {!!ranking && (
