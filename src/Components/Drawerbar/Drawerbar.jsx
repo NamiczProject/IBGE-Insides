@@ -156,7 +156,7 @@ function Drawerbar(props) {
                     <h1>Nome</h1>
                   </Box>
                   <Box className=" w-1/3 justify-end flex font-bold">
-                    <h1>Frequencia</h1>
+                    <h1>Frequência</h1>
                   </Box>
                 </Box>
                 {names.map((item, index) => (
